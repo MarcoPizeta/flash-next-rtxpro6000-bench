@@ -1,0 +1,247 @@
+
+##### 05/09/2026 08:26:52 — INIZIO run-extra — attendo FINE tool-eval 27B thinking OFF
+
+##### 05/09/2026 10:55:53 — miglior effort Flash-Next: low
+
+##### 05/09/2026 10:55:53 — PREFIX-CACHE 27b-nvfp4 (system ~4,7k tok identico, 8 domande diverse, c=1)
+  req 0: TTFT 161 ms  total 318 ms  (prefisso freddo)
+  req 1: TTFT 146 ms  total 327 ms  
+  req 2: TTFT 84 ms  total 332 ms  
+  req 3: TTFT 85 ms  total 447 ms  
+  req 4: TTFT 85 ms  total 265 ms  
+  req 5: TTFT 83 ms  total 309 ms  
+  req 6: TTFT 84 ms  total 265 ms  
+  req 7: TTFT 84 ms  total 288 ms  
+  prompt None tok — TTFT freddo 161 ms, caldo mediano 84 ms
+
+##### 05/09/2026 10:55:56 — CONCORRENZA 27b-nvfp4: 32k input, out 256, c=8 (16 richieste)
+  Successful requests:                     16        
+  Output token throughput (tok/s):         65.02     
+  Median E2E Latency (ms):                 10817.68  
+  P99 E2E Latency (ms):                    27933.46  
+  Median TTFT (ms):                        4967.91   
+  P99 TTFT (ms):                           12834.68  
+
+##### 05/09/2026 10:56:50 — CONCORRENZA 27b-nvfp4: 32k input, out 256, c=16 (32 richieste)
+  Successful requests:                     32        
+  Output token throughput (tok/s):         62.64     
+  Median E2E Latency (ms):                 26892.17  
+  P99 E2E Latency (ms):                    54278.09  
+  Median TTFT (ms):                        17073.02  
+  P99 TTFT (ms):                           30164.27  
+
+##### 05/09/2026 10:58:16 — CONTEXT-PRESSURE SWEEP 27b-nvfp4: 25/50/75/100% di 65.536 tok, 2 trial
+│ █████████████████░░░                                                         │
+│    50%  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ⚠️   ✅  ✅  ✅  │
+│ ✅  ✅  ✅  ✅  ✅  ⚠️   ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ⚠️   ✅ │
+│ ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ⚠️   ✅  ✅  ⚠️   ⚠️   ❌  ✅  ⚠️   ✅   │
+│ ✅  ✅  ⚠️   ✅  ✅  ✅  ❌  ✅  ⚠️   ✅  ✅  ✅  ✅  ⚠️   ✅  ✅  ✅  ✅    │
+│ ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ❌  ⚠️   ✅  ❌  ⚠️   ✅  ✅  ✅    82%      │
+│ ████████████████░░░░                                                         │
+│    75%  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ⚠️   ✅  ✅  ✅  │
+│ ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ⚠️   ✅  │
+│ ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ⚠️   ⚠️   ✅  ✅  ⚠️   ⚠️   ⚠️   ⚠️   ✅ │
+│ ✅  ✅  ⚠️   ✅  ✅  ✅  ⚠️   ✅  ⚠️   ✅  ✅  ✅  ✅  ⚠️   ✅  ✅  ✅  ✅   │
+│ ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ⚠️   ✅  ❌  ⚠️   ✅  ✅  ✅    83%      │
+│ ████████████████░░░░                                                         │
+│   100%  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ⚠️   ✅  ✅  ✅  │
+│ ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅   │
+│ ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ⚠️   ⚠️   ✅  ✅  ⚠️   ✅  ✅  ⚠️   ✅   │
+│ ✅  ✅  ⚠️   ✅  ✅  ✅  ⚠️   ✅  ⚠️   ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅    │
+│ ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ⚠️   ✅  ❌  ⚠️   ✅  ✅  ✅    88%      │
+│ █████████████████░░░                                                         │
+│                                                                              │
+│   Breaking point: none (no level had all scenarios pass)                     │
+│   Degradation:    25% (first partial/fail)                                   │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to 
+/opt/flash-next/bench/runs/runs/2026/09/2026-09-05T09-48-48.683492Z_d3cdc359--sg
+lang-radixark-qwen3.8-27b-nvfp4-thinking-medium-template-context-pressure-swee.m
+d
+
+/opt/flash-next/bench/runs/runs/2026/09/2026-09-05T08-23-33.470291Z_5d47eb2b--sglang-dev-cu13-radixark-qwen3.8-27b-nvfp4-nextn-2-thinking-off-enable_thinking-_summary.md
+
+##### 05/09/2026 11:48:48 — STOP 27B → vLLM Flash-Next MTP on (alias)
+flash-next-vllm avviato (MTP=on) su :8010 — segui con: docker logs -f flash-next-vllm
+READY dopo 351s — gen di prova: "content":"PONG"
+
+##### 05/09/2026 11:54:43 — PREFIX-CACHE flash-next-vllm (system ~4,7k tok identico, 8 domande diverse, c=1)
+  req 0: TTFT 6529 ms  total 7124 ms  (prefisso freddo)
+  req 1: TTFT 609 ms  total 754 ms  
+  req 2: TTFT 288 ms  total 526 ms  
+  req 3: TTFT 320 ms  total 468 ms  
+  req 4: TTFT 267 ms  total 400 ms  
+  req 5: TTFT 250 ms  total 480 ms  
+  req 6: TTFT 255 ms  total 497 ms  
+  req 7: TTFT 270 ms  total 413 ms  
+  prompt None tok — TTFT freddo 6529 ms, caldo mediano 270 ms
+
+##### 05/09/2026 11:54:54 — CONCORRENZA flash-next-vllm: 32k input, out 256, c=8 (16 richieste)
+  Successful requests:                     16        
+  Output token throughput (tok/s):         46.92     
+  Median E2E Latency (ms):                 18465.58  
+  P99 E2E Latency (ms):                    36642.17  
+  Median TTFT (ms):                        12803.21  
+  P99 TTFT (ms):                           19857.99  
+
+##### 05/09/2026 11:56:00 — CONCORRENZA flash-next-vllm: 32k input, out 256, c=16 (32 richieste)
+  Successful requests:                     32        
+  Output token throughput (tok/s):         68.17     
+  Median E2E Latency (ms):                 24370.02  
+  P99 E2E Latency (ms):                    36050.12  
+  Median TTFT (ms):                        20630.10  
+  P99 TTFT (ms):                           28172.34  
+
+##### 05/09/2026 11:57:24 — CONTEXT-PRESSURE SWEEP flash-next-vllm: 25/50/75/100% di 65.536 tok, 2 trial
+│ ████████████████░░░░                                                         │
+│    50%  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ⚠️   ✅  ✅  ✅  │
+│ ✅  ✅  ✅  ⚠️   ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ❌  ✅  ✅  │
+│ ✅  ✅  ✅  ✅  ✅  ✅  ⚠️   ✅  ❌  ✅  ✅  ✅  ⚠️   ⚠️   ⚠️   ⚠️   ⚠️   ✅ │
+│ ⚠️   ✅  ⚠️   ✅  ✅  ✅  ❌  ✅  ⚠️   ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅    │
+│ ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ⚠️   ✅  ✅  ❌  ✅  ✅  ✅    82%       │
+│ ████████████████░░░░                                                         │
+│    75%  ✅  ✅  ✅  ✅  ✅  ✅  ❌  ✅  ✅  ✅  ✅  ✅  ✅  ⚠️   ✅  ✅  ✅  │
+│ ✅  ✅  ✅  ⚠️   ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ❌  ✅  ✅  │
+│ ✅  ✅  ✅  ✅  ✅  ✅  ⚠️   ✅  ❌  ✅  ✅  ✅  ⚠️   ⚠️   ❌  ✅  ⚠️   ⚠️   │
+│ ⚠️   ✅  ⚠️   ✅  ✅  ✅  ❌  ❌  ⚠️   ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅    │
+│ ✅  ⚠️   ✅  ✅  ✅  ✅  ✅  ❌  ✅  ❌  ✅  ❌  ❌  ✅  ✅  ✅    76%       │
+│ ███████████████░░░░░                                                         │
+│   100%  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ⚠️   ✅  ✅  ✅  │
+│ ✅  ✅  ✅  ⚠️   ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ❌  ✅  ✅  │
+│ ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ❌  ✅  ✅  ✅  ⚠️   ⚠️   ⚠️   ⚠️   ⚠️   ⚠️  │
+│ ⚠️   ✅  ⚠️   ✅  ✅  ✅  ❌  ✅  ⚠️   ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅  ✅    │
+│ ✅  ✅  ✅  ✅  ✅  ✅  ✅  ❌  ✅  ⚠️   ✅  ❌  ❌  ✅  ✅  ✅    80%       │
+│ ███████████████░░░░░                                                         │
+│                                                                              │
+│   Breaking point: none (no level had all scenarios pass)                     │
+│   Degradation:    25% (first partial/fail)                                   │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to 
+/opt/flash-next/bench/runs/runs/2026/09/2026-09-05T10-28-44.099649Z_1948c9b6--vl
+lm-0.1.dev20073-mtp-on-ple-int4-offload-reasoning_effort-low-context-pressure-.m
+d
+
+/opt/flash-next/bench/runs/runs/2026/09/2026-09-05T08-23-33.470291Z_5d47eb2b--sglang-dev-cu13-radixark-qwen3.8-27b-nvfp4-nextn-2-thinking-off-enable_thinking-_summary.md
+
+##### 05/09/2026 12:28:45 — TabbyAPI/EXL3 MTP on
+flash-next-tabby avviato (MTP=on, draft_mode=mtp) su :8011 — segui con: docker logs -f flash-next-tabby
+READY dopo 88s — gen di prova: "content":"PONG"
+
+##### 05/09/2026 12:30:13 — PREFIX-CACHE flash-next-exl3 (system ~4,7k tok identico, 8 domande diverse, c=1)
+  req 0: TTFT 6388 ms  total 7111 ms  (prefisso freddo)
+  req 1: TTFT 820 ms  total 870 ms  
+  req 2: TTFT 942 ms  total 1092 ms  
+  req 3: TTFT 826 ms  total 998 ms  
+  req 4: TTFT 819 ms  total 864 ms  
+  req 5: TTFT 824 ms  total 912 ms  
+  req 6: TTFT 818 ms  total 946 ms  
+  req 7: TTFT 818 ms  total 905 ms  
+  prompt None tok — TTFT freddo 6388 ms, caldo mediano 820 ms
+
+##### 05/09/2026 12:30:27 — CONCORRENZA flash-next-exl3: 32k input, out 256, c=8 (16 richieste)
+  Successful requests:                     2         
+  Output token throughput (tok/s):         1.30      
+  Median E2E Latency (ms):                 21911.37  
+  P99 E2E Latency (ms):                    26397.59  
+  Median TTFT (ms):                        14109.72  
+  P99 TTFT (ms):                           21690.92  
+
+##### 05/09/2026 12:31:46 — CONCORRENZA flash-next-exl3: 32k input, out 256, c=16 (32 richieste)
+  Successful requests:                     3         
+  Output token throughput (tok/s):         2.20      
+  Median E2E Latency (ms):                 13200.92  
+  P99 E2E Latency (ms):                    15205.43  
+  Median TTFT (ms):                        7053.20   
+  P99 TTFT (ms):                           13077.95  
+--- errori server tabby ---
+2026-09-05 10:33:14.037 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 10:33:15.693 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 10:33:17.894 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 10:33:20.659 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 10:33:22.432 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 10:33:23.517 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 10:33:24.253 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 10:33:24.284 ERROR:    Request disconnected: /v1/chat/completions
+
+##### 05/09/2026 12:33:28 — 27B BF16 (Qwen/Qwen3.8-27B): download completo?
+3c1dcab70d2049282b5bc48cbc1bed1dd21d7c76f1074da553a492882f77bd55
+sglang-27b-bf16 avviato su :8000
+READY dopo 130s — gen di prova: "content":"PONG"
+VRAM: 85372 MiB
+
+##### 05/09/2026 12:35:39 — TOOL-EVAL 27B BF16, thinking medium, 8 trial
+│      TC-51: 0.8 ± 0.5  (1,1,0,0,1,1,1,1)                                     │
+│      TC-52: 1.6 ± 0.5  (2,2,2,2,2,1,1,1)                                     │
+│      TC-61: 0.1 ± 0.3  (0,0,0,0,0,0,1,0)                                     │
+│      TC-62: 1.1 ± 0.3  (2,1,1,1,1,1,1,1)                                     │
+│      TC-68: 1.5 ± 0.5  (2,2,1,1,1,2,1,2)                                     │
+│      TC-74: 1.4 ± 0.5  (1,1,2,1,2,2,1,1)                                     │
+│      TC-75: 1.5 ± 0.5  (1,2,1,2,1,2,2,1)                                     │
+│      TC-80: 0.8 ± 1.0  (0,0,2,0,0,2,2,0)                                     │
+│      TC-84: 0.2 ± 0.7  (0,0,2,0,0,0,0,0)                                     │
+│      TC-85: 1.6 ± 0.7  (2,2,2,1,0,2,2,2)                                     │
+│      TC-87: 1.8 ± 0.7  (2,2,0,2,2,2,2,2)                                     │
+│      TC-88: 0.8 ± 0.9  (0,0,2,0,0,2,1,1)                                     │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  📊 Summary report: 
+/opt/flash-next/bench/runs/runs/2026/09/2026-09-05T10-35-40.229483Z_5d14360f--sg
+lang-dev-cu13-qwen-qwen3.8-27b-bf16-originale-kv-bf16-nextn-2-thinking-medium-_s
+ummary.md
+
+summary BF16: /opt/flash-next/bench/runs/runs/2026/09/2026-09-05T10-35-40.229483Z_5d14360f--sglang-dev-cu13-qwen-qwen3.8-27b-bf16-originale-kv-bf16-nextn-2-thinking-medium-_summary.md
+| **Final Score** | 88 | 89 | 91 | 88 | 86 | 91 | 90 | 89 | **89.0 ± 1.7** |
+| **Pass@8** (capability ceiling) | 92.0% |
+| **Pass^8** (reliability floor) | 71.6% |
+
+##### 05/09/2026 14:19:58 — RIAVVIO 27B NVFP4 (script canonico)
+27B READY dopo ~120 s
+
+##### 05/09/2026 14:21:48 — ENERGIA per fase
+# Energia GPU (power-log 5 s) — 05/09/2026
+
+## Per fase (tra marker consecutivi dei log)
+
+| inizio | fase | durata min | W medi | Wh | campioni |
+|---|---|---|---|---|---|
+| 08:18 | attendo FINE run-effort | 8 | 407 | 33.4 | 59 |
+| 08:26 | INIZIO run-extra — attendo FINE tool-eval 27B thinking OFF | 27 | 405 | 180.6 | 321 |
+| 08:53 | TOOL-EVAL Flash-Next vLLM MTP on — reasoning_effort=low (thinking ON) | 38 | 414 | 261.9 | 455 |
+| 09:31 | punteggi Flash-Next su vLLM: xhigh=85.6 medium=86.5 low=87.9 → miglior | 41 | 439 | 301.8 | 495 |
+| 10:13 | test vision / tool-call / idle su vLLM (riaccende il 27B alla fine) | 10 | 96 | 16.0 | 120 |
+| 10:23 | FINE run-effort | 0 | 84 | 0.1 | 1 |
+| 10:23 | TOOL-EVAL 27B thinking OFF | 32 | 485 | 255.8 | 380 |
+| 10:55 | FINE tool-eval 27B thinking OFF | 0 | 75 | 0.6 | 6 |
+| 10:55 | CONCORRENZA 27b-nvfp4: 32k input, out 256, c=8 (16 richieste) | 1 | 370 | 5.7 | 11 |
+| 10:56 | CONCORRENZA 27b-nvfp4: 32k input, out 256, c=16 (32 richieste) | 1 | 515 | 12.2 | 17 |
+| 10:58 | CONTEXT-PRESSURE SWEEP 27b-nvfp4: 25/50/75/100% di 65.536 tok, 2 trial | 51 | 528 | 441.9 | 603 |
+| 11:48 | STOP 27B → vLLM Flash-Next MTP on (alias) | 6 | 117 | 11.4 | 70 |
+| 11:54 | PREFIX-CACHE flash-next-vllm (system ~4,7k tok identico, 8 domande div | 0 | 132 | 0.4 | 2 |
+| 11:54 | CONCORRENZA flash-next-vllm: 32k input, out 256, c=8 (16 richieste) | 1 | 254 | 4.9 | 14 |
+| 11:56 | CONCORRENZA flash-next-vllm: 32k input, out 256, c=16 (32 richieste) | 1 | 337 | 7.5 | 16 |
+| 11:57 | CONTEXT-PRESSURE SWEEP flash-next-vllm: 25/50/75/100% di 65.536 tok, 2 | 31 | 483 | 251.0 | 374 |
+| 12:28 | TabbyAPI/EXL3 MTP on | 1 | 153 | 3.8 | 18 |
+| 12:30 | PREFIX-CACHE flash-next-exl3 (system ~4,7k tok identico, 8 domande div | 0 | 429 | 1.2 | 2 |
+| 12:30 | CONCORRENZA flash-next-exl3: 32k input, out 256, c=8 (16 richieste) | 1 | 377 | 8.4 | 16 |
+| 12:31 | CONCORRENZA flash-next-exl3: 32k input, out 256, c=16 (32 richieste) | 2 | 438 | 12.2 | 20 |
+| 12:33 | 27B BF16 (Qwen/Qwen3.8-27B): download completo? | 2 | 191 | 7.2 | 27 |
+| 12:35 | TOOL-EVAL 27B BF16, thinking medium, 8 trial | 104 | 534 | 919.7 | 1241 |
+| 14:19 | RIAVVIO 27B NVFP4 (script canonico) | 2 | 148 | 4.5 | 22 |
+
+## Matrice v3 — Wh per 1000 token di output (mem_*.csv 10 s, intero run della config incl. caricamento)
+
+| config | durata min | W medi | Wh totali | token output | Wh / 1k tok out | Wh / 1k tok in+out |
+|---|---|---|---|---|---|---|
+| vllm_mtp-on | 43 | 188 | 134 | 62605 | 2.14 | 0.050 |
+| vllm_mtp-off | 46 | 190 | 144 | 62605 | 2.30 | 0.054 |
+| tabby_mtp-on | 54 | 260 | 235 | 47747 | 4.92 | 0.170 |
+| tabby_mtp-off | 56 | 264 | 246 | 48927 | 5.03 | 0.173 |
+
+Note: le fasi comprendono caricamento, warm-up e attese; i W medi dei tool-eval includono i tempi morti tra richieste. Riferimento: 27B a riposo con `--sleep-on-idle` = 12 W GPU.
+
+##### 05/09/2026 14:21:48 — FINE run-extra

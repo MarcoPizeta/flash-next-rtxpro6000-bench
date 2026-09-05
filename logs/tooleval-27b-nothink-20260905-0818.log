@@ -1,0 +1,27 @@
+##### 05/09/2026 08:18:32 — attendo FINE run-effort
+##### 05/09/2026 10:23:32 — TOOL-EVAL 27B thinking OFF
+│      TC-57: 0.8 ± 0.5  (0,1,1,1,0,1,1,1)                                     │
+│      TC-58: 1.5 ± 0.8  (2,2,0,2,2,1,2,1)                                     │
+│      TC-60: 1.6 ± 0.7  (2,2,2,2,2,2,1,0)                                     │
+│      TC-61: 0.1 ± 0.3  (0,1,0,0,0,0,0,0)                                     │
+│      TC-62: 0.6 ± 0.5  (0,1,1,0,0,1,1,1)                                     │
+│      TC-68: 1.1 ± 1.0  (2,1,0,2,0,0,2,2)                                     │
+│      TC-69: 1.8 ± 0.5  (1,1,2,2,2,2,2,2)                                     │
+│      TC-71: 1.5 ± 0.9  (0,0,2,2,2,2,2,2)                                     │
+│      TC-74: 1.1 ± 0.6  (2,2,1,1,1,0,1,1)                                     │
+│      TC-84: 0.5 ± 0.9  (0,2,0,0,0,0,2,0)                                     │
+│      TC-85: 1.9 ± 0.3  (2,2,2,2,2,1,2,2)                                     │
+│      TC-87: 1.8 ± 0.7  (2,2,2,2,2,2,2,0)                                     │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  📊 Summary report: 
+/opt/flash-next/bench/runs/runs/2026/09/2026-09-05T08-23-33.470291Z_5d47eb2b--sg
+lang-dev-cu13-radixark-qwen3.8-27b-nvfp4-nextn-2-thinking-off-enable_thinking-_s
+ummary.md
+
+summary: /opt/flash-next/bench/runs/runs/2026/09/2026-09-05T08-23-33.470291Z_5d47eb2b--sglang-dev-cu13-radixark-qwen3.8-27b-nvfp4-nextn-2-thinking-off-enable_thinking-_summary.md
+| **Final Score** | 85 | 87 | 86 | 88 | 86 | 85 | 90 | 85 | **86.5 ± 1.8** |
+| **Pass@8** (capability ceiling) | 89.8% |
+| **Pass^8** (reliability floor) | 62.5% |
+##### 05/09/2026 10:55:24 — FINE tool-eval 27B thinking OFF

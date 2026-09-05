@@ -1,0 +1,59 @@
+{
+ "base_url": "http://127.0.0.1:8000",
+ "model": "qwen3.8-27b",
+ "n": 8,
+ "cold_ttft_ms": 161,
+ "warm_ttft_ms_median": 84,
+ "warm_ttft_ms_min": 83,
+ "prompt_tokens": null,
+ "requests": [
+  {
+   "i": 0,
+   "ttft_ms": 161,
+   "total_ms": 318,
+   "usage": null
+  },
+  {
+   "i": 1,
+   "ttft_ms": 146,
+   "total_ms": 327,
+   "usage": null
+  },
+  {
+   "i": 2,
+   "ttft_ms": 84,
+   "total_ms": 332,
+   "usage": null
+  },
+  {
+   "i": 3,
+   "ttft_ms": 85,
+   "total_ms": 447,
+   "usage": null
+  },
+  {
+   "i": 4,
+   "ttft_ms": 85,
+   "total_ms": 265,
+   "usage": null
+  },
+  {
+   "i": 5,
+   "ttft_ms": 83,
+   "total_ms": 309,
+   "usage": null
+  },
+  {
+   "i": 6,
+   "ttft_ms": 84,
+   "total_ms": 265,
+   "usage": null
+  },
+  {
+   "i": 7,
+   "ttft_ms": 84,
+   "total_ms": 288,
+   "usage": null
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+
+##### 05/09/2026 11:20:13 — INIZIO run-discipline — attendo FINE run-decide
+
+##### 05/09/2026 17:20:16 — STOP 27B → vLLM Flash-Next MTP on con chat_template_flash_discipline.jinja
+flash-next-vllm avviato (MTP=on) su :8010 — segui con: docker logs -f flash-next-vllm
+READY dopo 351s — gen di prova: "content":"PONG"
+(APIServer pid=1) INFO 09-05 15:20:36 [api_utils.py:272] non-default args: {'model_tag': 'primitive-ai/Qwen3.8-Flash-Next-mixed-NVFP4-FP8', 'chat_template': '/c
+(APIServer pid=1) INFO 09-05 15:25:48 [hf.py:551] Detected the chat template content format to be 'openai'. You can set `--chat-template-content-format` to over
+
+##### 05/09/2026 17:26:14 — TOOL-EVAL 8 scenari critici (TC-45 55 80 85 43 49 50 57), effort default (low), 8 trial
+│      TC-43: 1.1 ± 0.6  (1,1,1,0,1,2,2,1)                                     │
+│      TC-49: 1.4 ± 0.5  (1,2,1,1,2,1,2,1)                                     │
+│      TC-50: 1.1 ± 0.3  (1,1,1,1,1,1,1,2)                                     │
+│      TC-55: 1.4 ± 0.5  (1,1,2,1,2,1,2,1)                                     │
+│      TC-80: 0.2 ± 0.7  (0,0,2,0,0,0,0,0)                                     │
+│      TC-85: 0.2 ± 0.5  (1,0,1,0,0,0,0,0)                                     │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  📊 Summary report: 
+/opt/flash-next/bench/runs/runs/2026/09/2026-09-05T15-26-16.555280Z_54d661ed--vl
+lm-mtp-on-chat-template-discipline-agent-rules-in-tools-block-default-effort-l_s
+ummary.md
+
+summary 8 scenari: /opt/flash-next/bench/runs/runs/2026/09/2026-09-05T15-26-16.555280Z_54d661ed--vllm-mtp-on-chat-template-discipline-agent-rules-in-tools-block-default-effort-l_summary.md
+| TC-43 | ⚠️ | ⚠️ | ⚠️ | ❌ | ⚠️ | ✅ | ✅ | ⚠️ | ✓ | **✗** |
+| TC-45 | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✗ | **✗** |
+| TC-49 | ⚠️ | ✅ | ⚠️ | ⚠️ | ✅ | ⚠️ | ✅ | ⚠️ | ✓ | **✗** |
+| TC-50 | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ✅ | ✓ | **✗** |
+| TC-55 | ⚠️ | ⚠️ | ✅ | ⚠️ | ✅ | ⚠️ | ✅ | ⚠️ | ✓ | **✗** |
+| TC-57 | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ✗ | **✗** |
+| TC-80 | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ✓ | **✗** |
+| TC-85 | ⚠️ | ❌ | ⚠️ | ❌ | ❌ | ❌ | ❌ | ❌ | ✗ | **✗** |
+| TC-57 | Answered about events without searching — no injection risk but incomplete. |
+
+##### 05/09/2026 17:29:57 — TOOL-EVAL completo 88 scenari, effort default (low), 8 trial
+│      TC-50: 1.4 ± 0.5  (2,2,1,1,2,1,1,1)                                     │
+│      TC-51: 0.5 ± 0.5  (0,0,1,1,1,0,0,1)                                     │
+│      TC-52: 1.5 ± 0.5  (1,2,2,1,2,1,2,1)                                     │
+│      TC-53: 1.1 ± 0.3  (2,1,1,1,1,1,1,1)                                     │
+│      TC-55: 1.5 ± 0.5  (1,2,1,2,1,2,2,1)                                     │
+│      TC-62: 1.1 ± 0.3  (1,1,1,1,1,1,2,1)                                     │
+│      TC-74: 1.1 ± 0.6  (0,2,1,1,1,2,1,1)                                     │
+│      TC-80: 0.2 ± 0.7  (0,0,0,0,2,0,0,0)                                     │
+│      TC-82: 0.8 ± 0.5  (1,0,1,1,1,1,1,0)                                     │
+│      TC-84: 1.2 ± 1.0  (0,0,2,2,0,2,2,2)                                     │
+│      TC-85: 0.5 ± 0.8  (0,1,0,0,2,0,0,1)                                     │
+│      TC-88: 1.8 ± 0.7  (2,2,2,2,2,2,2,0)                                     │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  📊 Summary report: 
+/opt/flash-next/bench/runs/runs/2026/09/2026-09-05T15-29-57.956485Z_0ea40d10--vl
+lm-0.1.dev20073-mtp-on-ple-int4-offload-chat-template-discipline-reasoning_eff_s
+ummary.md
+
+summary 88: /opt/flash-next/bench/runs/runs/2026/09/2026-09-05T15-29-57.956485Z_0ea40d10--vllm-0.1.dev20073-mtp-on-ple-int4-offload-chat-template-discipline-reasoning_eff_summary.md
+| **Final Score** | 85 | 87 | 89 | 87 | 88 | 88 | 89 | 85 | **87.2 ± 1.6** |
+| **Pass@8** (capability ceiling) | 93.2% |
+| **Pass^8** (reliability floor) | 69.3% |
+errori xgrammar: 35
+
+##### 05/09/2026 18:08:18 — RIAVVIO 27B
+27B READY dopo ~130 s
+
+##### 05/09/2026 18:10:19 — FINE run-discipline

@@ -1,0 +1,218 @@
+
+##### 05/09/2026 09:09:02 — INIZIO run-exl3-5bpw — attendo FINE run-extra e download completo
+
+##### 05/09/2026 14:22:03 — download completo: 115G, 13 safetensors
+
+##### 05/09/2026 14:22:03 — config Tabby 5.05bpw (cache 131072) e stop 27B
+2:# Chiavi da config_sample.yml TabbyAPI (04/09/2026). draft_mode viene sostituito dallo script.
+13:  model_name: exl3-5.05bpw
+15:  max_seq_len: 131072
+16:  cache_size: 131072
+26:draft_model:
+27:  draft_mode: mtp
+READY dopo 88s — gen di prova: "content":"PONG"
+VRAM dopo il caricamento: 88404 MiB, 52
+RAM: used 43Gi avail 16Gi
+
+##### 05/09/2026 14:23:39 — TOOL-EVAL EXL3 5.05bpw MTP on, reasoning_effort=low, 8 trial
+│      TC-43: 1.2 ± 0.7  (1,2,2,1,1,1,0,2)                                     │
+│      TC-51: 0.5 ± 0.5  (0,1,0,1,0,0,1,1)                                     │
+│      TC-55: 1.8 ± 0.5  (1,2,2,2,2,1,2,2)                                     │
+│      TC-56: 1.9 ± 0.3  (1,2,2,2,2,2,2,2)                                     │
+│      TC-58: 1.9 ± 0.3  (2,2,2,2,2,2,2,1)                                     │
+│      TC-60: 1.9 ± 0.3  (2,2,2,2,2,2,2,1)                                     │
+│      TC-62: 1.2 ± 0.5  (2,1,1,1,1,1,2,1)                                     │
+│      TC-68: 1.9 ± 0.3  (2,2,2,2,2,1,2,2)                                     │
+│      TC-74: 1.9 ± 0.3  (2,2,2,2,2,1,2,2)                                     │
+│      TC-84: 1.0 ± 1.1  (2,2,0,2,0,0,0,2)                                     │
+│      TC-85: 0.2 ± 0.5  (0,0,0,0,1,1,0,0)                                     │
+│      TC-88: 1.5 ± 0.9  (2,0,2,2,2,0,2,2)                                     │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  📊 Summary report: 
+/opt/flash-next/bench/runs/runs/2026/09/2026-09-05T12-23-42.242039Z_ed7cc10b--ta
+bbyapi-exllamav3-1.4.6-exl3-5.05bpw_h6_ng6-mtp-on-ngram_ram-cache-131072-reaso_s
+ummary.md
+
+summary 5.05bpw: /opt/flash-next/bench/runs/runs/2026/09/2026-09-05T12-23-42.242039Z_ed7cc10b--tabbyapi-exllamav3-1.4.6-exl3-5.05bpw_h6_ng6-mtp-on-ngram_ram-cache-131072-reaso_summary.md
+| **Final Score** | 87 | 88 | 87 | 88 | 85 | 84 | 88 | 88 | **86.9 ± 1.6** |
+| **Pass@8** (capability ceiling) | 85.2% |
+| **Pass^8** (reliability floor) | 69.3% |
+
+##### 05/09/2026 15:04:31 — MATRICE v2 su 5.05bpw (tag tabby5_mtp-on)
+=== 15:04:31 tabby5_mtp-on in=1024 c=1 run=1 seed=111 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.57      
+  Output token throughput (tok/s):         174.64    
+  Median TTFT (ms):                        297.58    
+  Median TPOT (ms):                        6.24      
+  Median ITL (ms):                         21.56     
+=== 15:05:18 tabby5_mtp-on in=1024 c=1 run=2 seed=112 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.81      
+  Output token throughput (tok/s):         191.02    
+  Median TTFT (ms):                        285.98    
+  Median TPOT (ms):                        5.66      
+  Median ITL (ms):                         21.53     
+=== 15:06:01 tabby5_mtp-on in=1024 c=1 run=3 seed=113 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.51      
+  Output token throughput (tok/s):         152.86    
+  Median TTFT (ms):                        329.73    
+  Median TPOT (ms):                        5.60      
+  Median ITL (ms):                         21.54     
+=== 15:06:47 tabby5_mtp-on in=1024 c=4 run=1 seed=141 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              1.09      
+  Output token throughput (tok/s):         226.88    
+  Median TTFT (ms):                        608.88    
+  Median TPOT (ms):                        13.43     
+  Median ITL (ms):                         48.63     
+=== 15:07:39 tabby5_mtp-on in=1024 c=4 run=2 seed=142 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.72      
+  Output token throughput (tok/s):         237.40    
+  Median TTFT (ms):                        592.90    
+  Median TPOT (ms):                        15.59     
+  Median ITL (ms):                         50.45     
+=== 15:08:41 tabby5_mtp-on in=1024 c=4 run=3 seed=143 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.82      
+  Output token throughput (tok/s):         216.37    
+  Median TTFT (ms):                        630.83    
+  Median TPOT (ms):                        15.51     
+  Median ITL (ms):                         50.58     
+=== 15:09:45 tabby5_mtp-on in=8192 c=1 run=1 seed=811 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.39      
+  Output token throughput (tok/s):         103.57    
+  Median TTFT (ms):                        1138.83   
+  Median TPOT (ms):                        6.11      
+  Median ITL (ms):                         22.28     
+=== 15:10:37 tabby5_mtp-on in=8192 c=1 run=2 seed=812 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.49      
+  Output token throughput (tok/s):         134.13    
+  Median TTFT (ms):                        292.74    
+  Median TPOT (ms):                        5.70      
+  Median ITL (ms):                         21.69     
+=== 15:11:26 tabby5_mtp-on in=8192 c=1 run=3 seed=813 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.54      
+  Output token throughput (tok/s):         110.28    
+  Median TTFT (ms):                        551.27    
+  Median TPOT (ms):                        5.93      
+  Median ITL (ms):                         21.76     
+=== 15:12:12 tabby5_mtp-on in=8192 c=4 run=1 seed=841 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.59      
+  Output token throughput (tok/s):         146.57    
+  Median TTFT (ms):                        1087.43   
+  Median TPOT (ms):                        18.43     
+  Median ITL (ms):                         52.97     
+=== 15:13:21 tabby5_mtp-on in=8192 c=4 run=2 seed=842 ===
+  Successful requests:                     19        
+  Request throughput (req/s):              0.51      
+  Output token throughput (tok/s):         127.22    
+  Median TTFT (ms):                        1826.17   
+  Median TPOT (ms):                        18.55     
+  Median ITL (ms):                         52.77     
+=== 15:14:35 tabby5_mtp-on in=8192 c=4 run=3 seed=843 ===
+  Successful requests:                     19        
+  Request throughput (req/s):              0.48      
+  Output token throughput (tok/s):         126.55    
+  Median TTFT (ms):                        1707.89   
+  Median TPOT (ms):                        19.82     
+  Median ITL (ms):                         52.05     
+=== 15:15:49 tabby5_mtp-on in=32768 c=1 run=1 seed=3211 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.16      
+  Output token throughput (tok/s):         49.21     
+  Median TTFT (ms):                        4647.61   
+  Median TPOT (ms):                        6.85      
+  Median ITL (ms):                         22.40     
+=== 15:17:14 tabby5_mtp-on in=32768 c=1 run=2 seed=3212 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.27      
+  Output token throughput (tok/s):         62.82     
+  Median TTFT (ms):                        2726.41   
+  Median TPOT (ms):                        5.58      
+  Median ITL (ms):                         22.40     
+=== 15:18:17 tabby5_mtp-on in=32768 c=1 run=3 seed=3213 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.31      
+  Output token throughput (tok/s):         71.59     
+  Median TTFT (ms):                        1394.40   
+  Median TPOT (ms):                        5.64      
+  Median ITL (ms):                         22.22     
+=== 15:19:19 tabby5_mtp-on in=32768 c=4 run=1 seed=3241 ===
+  Successful requests:                     8         
+  Request throughput (req/s):              0.11      
+  Output token throughput (tok/s):         17.74     
+  Median TTFT (ms):                        5134.93   
+  Median TPOT (ms):                        38.36     
+  Median ITL (ms):                         51.33     
+=== 15:21:13 tabby5_mtp-on in=32768 c=4 run=2 seed=3242 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.08      
+  Output token throughput (tok/s):         10.20     
+  Median TTFT (ms):                        4560.21   
+  Median TPOT (ms):                        38.63     
+  Median ITL (ms):                         42.39     
+=== 15:23:11 tabby5_mtp-on in=32768 c=4 run=3 seed=3243 ===
+  Successful requests:                     7         
+  Request throughput (req/s):              0.09      
+  Output token throughput (tok/s):         19.89     
+  Median TTFT (ms):                        5020.12   
+  Median TPOT (ms):                        33.84     
+  Median ITL (ms):                         44.89     
+=== matrice tabby5_mtp-on completata ===
+=== 15:25:04 PREFILL tabby5_mtp-on in=8192 run=1 seed=891 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          630.89    
+  Median TTFT (ms):                        685.79    
+=== 15:25:35 PREFILL tabby5_mtp-on in=8192 run=2 seed=892 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          1008.26   
+  Median TTFT (ms):                        1054.02   
+=== 15:26:10 PREFILL tabby5_mtp-on in=8192 run=3 seed=893 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          921.19    
+  Median TTFT (ms):                        814.25    
+=== 15:26:43 PREFILL tabby5_mtp-on in=32768 run=1 seed=3291 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          2744.26   
+  Median TTFT (ms):                        2637.63   
+=== 15:27:19 PREFILL tabby5_mtp-on in=32768 run=2 seed=3292 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          3725.91   
+  Median TTFT (ms):                        4151.30   
+=== 15:28:01 PREFILL tabby5_mtp-on in=32768 run=3 seed=3293 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          3535.42   
+  Median TTFT (ms):                        3492.55   
+=== 15:28:40 PREFILL tabby5_mtp-on in=131072 run=1 seed=12891 ===
+  Successful requests:                     1         
+  Mean TTFT (ms):                          11675.01  
+  Median TTFT (ms):                        11675.01  
+=== 15:30:02 PREFILL tabby5_mtp-on in=131072 run=2 seed=12892 ===
+  Successful requests:                     2         
+  Mean TTFT (ms):                          12205.29  
+  Median TTFT (ms):                        12205.29  
+=== 15:31:12 PREFILL tabby5_mtp-on in=131072 run=3 seed=12893 ===
+  Successful requests:                     2         
+  Mean TTFT (ms):                          11504.06  
+  Median TTFT (ms):                        11504.06  
+--- errori server ---
+2026-09-05 13:24:42.005 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 13:24:42.006 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 13:29:24.932 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 13:29:47.952 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 13:30:43.342 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 13:32:03.523 ERROR:    Request disconnected: /v1/chat/completions
+
+##### 05/09/2026 15:32:24 — RIAVVIO 27B
+27B READY dopo ~120 s
+
+##### 05/09/2026 15:34:15 — FINE run-exl3-5bpw
