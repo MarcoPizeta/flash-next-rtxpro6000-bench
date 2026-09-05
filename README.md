@@ -2,7 +2,7 @@
 
 Independent, reproducible benchmark of the two ways to serve **Qwen3.8-Flash-Next** (125B-A6B + 51B n-gram/PLE table) on one workstation GPU with only **64 GB of host RAM**, run on the night of 04–05 September 2026. Everything needed to reproduce is in this repo: raw client JSON, tool-eval reports, engine configs, scripts, hardware snapshot, and the full orchestrator logs.
 
-**TL;DR** — On this hardware, **vLLM + `primitive-ai/Qwen3.8-Flash-Next-mixed-NVFP4-FP8` + INT4 PLE offload + MTP** is the production choice: faster from 8k context up and at any concurrency > 1, **2.7× faster prefill**, stable at 32k×4, ~10–12 GB host RAM. **ExLlamaV3/TabbyAPI + `turboderp/Qwen3.8-Flash-Next-exl3` 4.05bpw** wins only short single-user chat (169 tok/s at 1k input), loads in ~1–1.5 min instead of 5–6, but needs ~46 GB host RAM (`ngram_ram: true`) and fails half of the requests at 32k input × 4 concurrent. **Tool-calling quality is indistinguishable** between the two (tool-eval-bench 85.5–87.0, all within 1σ, matching MiaAI's published numbers).
+**TL;DR** — On this hardware, **vLLM + `primitive-ai/Qwen3.8-Flash-Next-mixed-NVFP4-FP8` + INT4 PLE offload + MTP** is the production choice: faster from 8k context up and at any concurrency > 1, **2.7× faster prefill**, stable at 32k×4, ~10–12 GB host RAM. **ExLlamaV3/TabbyAPI + `turboderp/Qwen3.8-Flash-Next-exl3` 4.05bpw** wins only short single-user chat (169 tok/s at 1k input), loads in ~1–1.5 min instead of 5–6, but needs ~45 GB host RAM (`ngram_ram: true`) and fails about two thirds of the requests at 32k input × 4 concurrent (21/60 completed). **Tool-calling quality is indistinguishable** between the two (tool-eval-bench 85.5–87.0, all within 1σ, matching MiaAI's published numbers).
 
 ---
 
@@ -64,10 +64,10 @@ Cold prefill, output 1, c=1, 3 runs (individual TTFTs in the last column).
 |---|---|---|---|
 | vLLM MTP on | 290 ms → **28.2k tok/s** (213/340/290) | 1181 ms → **27.7k** (861/1423/1181) | 4662 ms → **28.1k** (6592/4662/4411) |
 | vLLM MTP off | 277 ms → **29.6k** (188/304/277) | 1134 ms → **28.9k** (825/1372/1134) | 4426 ms → **29.6k** (6351/4426/4234) |
-| EXL3 MTP on | 794 ms → **10.3k** (651/1010/794) | 3353 ms → **9.8k** (2563/4026/3353) | 11666 ms → **11.2k** (11666/12052/11351) · ok 5/9 |
-| EXL3 MTP off | 772 ms → **10.6k** (633/963/772) | 3214 ms → **10.2k** (2461/3892/3214) | 11316 ms → **11.6k** (11316/11677/11002) · ok 5/9 |
+| EXL3 MTP on | 794 ms → **10.3k** (651/1010/794) | 3353 ms → **9.8k** (2563/4026/3353) | 11666 ms → **11.2k** (11666/12052/11351) · completed 1/3, 2/3, 2/3 |
+| EXL3 MTP off | 772 ms → **10.6k** (633/963/772) | 3214 ms → **10.2k** (2461/3892/3214) | 11316 ms → **11.6k** (11316/11677/11002) · completed 1/3, 2/3, 2/3 |
 
-vLLM prefills **~2.7× faster** and flat from 8k to 128k. EXL3's ~10k tok/s is far above the 1.3–1.5k reported on 4×3090, but 4 of 9 requests at 128k failed with the same non-JSON-chunk error seen at 32k×4.
+vLLM prefills **~2.7× faster** and flat from 8k to 128k. EXL3's ~10k tok/s is far above the 1.3–1.5k reported on 4×3090, but at 128k only 5 of the 9 requests per config completed (per run: 1/3, 2/3, 2/3 — `completed` field in `results/prefill_tabby_*_in131072_r*.json`); the failures are the same non-JSON-chunk error seen at 32k×4. The TTFT medians at 128k are therefore computed on the completed requests only.
 
 ## Results — tool-calling quality (tool-eval-bench)
 
@@ -75,13 +75,15 @@ vLLM prefills **~2.7× faster** and flat from 8k to 128k. EXL3's ~10k tok/s is f
 
 | engine | thinking | Final Score | Pass@8 | Pass^8 | notes |
 |---|---|---|---|---|---|
-| vLLM MTP on | on | 85.6 ± 2.3 | 93.2 % | 63.6 % | 33 `xgrammar Failed to advance FSM` log errors / ~2170 requests |
-| vLLM MTP on | off | **87.0 ± 2.1** | 92.0 % | 56.8 % | 0 xgrammar errors |
-| vLLM MTP **off** | on | 86.5 ± 1.8 | 92.0 % | 63.6 % | **0 xgrammar errors / 2093 requests** |
+| vLLM MTP on | on | 85.6 ± 2.3 | 93.2 % | 63.6 % | 33 `xgrammar Failed to advance FSM` server-log errors ² |
+| vLLM MTP on | off | **87.0 ± 2.1** | 92.0 % | 56.8 % | no new xgrammar errors ² |
+| vLLM MTP **off** | on | 86.5 ± 1.8 | 92.0 % | 63.6 % | **0 xgrammar errors / 2093 requests** (counted in `logs/run-matrix-v3-*.log`) |
 | EXL3 MTP on | on | 86.4 ± 1.6 | 88.6 % | **67.0 %** | |
 | EXL3 MTP on | off | 85.5 ± 2.2 | 89.8 % | 60.2 % | |
 
 All five runs are within one standard deviation of each other and of MiaAI's references. EXL3 with thinking is the most repeatable (Pass^8 67 %), vLLM has the higher ceiling (Pass@8 93 %). The xgrammar errors appear **only with MTP + thinking + constrained tool-call decoding** on this vLLM build (draft tokens `\n\n` and ` ``` ` proposed at the reasoning→tool-call boundary and rejected by the grammar); they did not affect the score.
+
+² The MTP-on counts were read live from the vLLM container log during the run (`docker logs … | grep -c 'Failed to advance FSM'`) and are recorded with timestamps in [`logs/xgrammar-observations.md`](logs/xgrammar-observations.md); that container log was not preserved, so **these two figures are operator observations, not reproducible from this repo**. The MTP-off count (0 / 2093) is in the v3 orchestrator log.
 
 ## Host memory & load times
 
@@ -89,8 +91,11 @@ All five runs are within one standard deviation of each other and of MiaAI's ref
 |---|---|---|---|---|
 | Time to ready (weights from NVMe, warm page cache) | 351 s | 281 s | **88 s** | **65 s** |
 | VRAM after load / max | 91.4 / 96.5 GB | 89.7 / 94.4 GB | 77.1 / 78.4 GB | 73.1 / 74.7 GB |
-| Host RAM used (`free`) | ~10 GB | ~12 GB | **43 GB** | **46 GB** |
-| Min host RAM available during run | 48.9 GB | 48.0 GB | **7.4 GB** | **8.3 GB** |
+| Host RAM `used` (`free -h`, right after load — see `logs/run-matrix-v3-*.log`) | 10 GiB | 12 GiB | **43 GiB** | **46 GiB** |
+| Engine process RSS max (`engine_rss_mib` in `results/mem_*.csv`) | 3.3 GiB ¹ | 4.0 GiB ¹ | **44.8 GiB** | **44.7 GiB** |
+| Min host RAM available during run (`mem_available_mib`) | 48.9 GiB | 48.0 GiB | **7.4 GiB** | **8.3 GiB** |
+
+¹ For vLLM the RSS column tracks the API-server/engine process only; the INT4 PLE table lives in the separate `PleOffloadWorker` process and is not included — use the `free` row for the real host footprint. The `free` figures include ~1–2 GiB of OS and background containers.
 | GPU power max | 588 W | 578 W | 586 W | 593 W |
 
 ## Fixes needed to get here (all in this repo)
