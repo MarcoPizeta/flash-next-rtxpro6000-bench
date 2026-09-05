@@ -1,0 +1,150 @@
+
+##### 04/09/2026 19:07:01 — INIZIO run-all — log: /opt/flash-next/bench/logs/run-all-20260904-1907.log
+
+##### 04/09/2026 19:07:01 — snapshot hardware/software
+salvato in /opt/flash-next/bench/results/HARDWARE.md
+
+##### 04/09/2026 19:07:12 — STOP 27B (docker stop: al termine riparte con run-sglang-38.sh)
+sglang-workhorse
+27B fermato
+2 MiB
+
+##### 04/09/2026 19:07:33 — ===== vllm_mtp-on =====
+1151d6c82bc260a20681bde08839cc1887cb14831dad4330466a87652f829a0e
+flash-next-vllm avviato (MTP=on) su :8010 — segui con: docker logs -f flash-next-vllm
+TIMEOUT dopo 1800s
+!!! vllm_mtp-on NON PRONTO entro 30 min — ultime righe del container:
+    (APIServer pid=1)     sys.exit(main())
+    (APIServer pid=1)              ^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/cli/main.py", line 97, in main
+    (APIServer pid=1)     args.dispatch_function(args)
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/cli/serve.py", line 152, in cmd
+    (APIServer pid=1)     uvloop.run(run_server(args))
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/uvloop/__init__.py", line 96, in run
+    (APIServer pid=1)     return __asyncio.run(
+    (APIServer pid=1)            ^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    (APIServer pid=1)     return runner.run(main)
+    (APIServer pid=1)            ^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    (APIServer pid=1)     return self._loop.run_until_complete(task)
+    (APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/uvloop/__init__.py", line 48, in wrapper
+    (APIServer pid=1)     return await main
+    (APIServer pid=1)            ^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py", line 739, in run_server
+    (APIServer pid=1)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py", line 753, in run_server_worker
+    (APIServer pid=1)     async with build_async_engine_client(
+    (APIServer pid=1)   File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+    (APIServer pid=1)     return await anext(self.gen)
+    (APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py", line 127, in build_async_engine_client
+    (APIServer pid=1)     async with build_async_engine_client_from_engine_args(
+    (APIServer pid=1)   File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+    (APIServer pid=1)     return await anext(self.gen)
+    (APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py", line 163, in build_async_engine_client_from_engine_args
+    (APIServer pid=1)     async_llm = AsyncLLM.from_vllm_config(
+    (APIServer pid=1)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/async_llm.py", line 220, in from_vllm_config
+    (APIServer pid=1)     return cls(
+    (APIServer pid=1)            ^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/async_llm.py", line 149, in __init__
+    (APIServer pid=1)     self.engine_core = EngineCoreClient.make_async_mp_client(
+    (APIServer pid=1)                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+    (APIServer pid=1)     return func(*args, **kwargs)
+    (APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core_client.py", line 139, in make_async_mp_client
+    (APIServer pid=1)     return AsyncMPClient(*client_args)
+    (APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+    (APIServer pid=1)     return func(*args, **kwargs)
+    (APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core_client.py", line 990, in __init__
+    (APIServer pid=1)     super().__init__(
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core_client.py", line 609, in __init__
+    (APIServer pid=1)     with launch_core_engines(
+    (APIServer pid=1)   File "/usr/lib/python3.12/contextlib.py", line 144, in __exit__
+    (APIServer pid=1)     next(self.gen)
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/utils.py", line 1206, in launch_core_engines
+    (APIServer pid=1)     wait_for_engine_startup(
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/utils.py", line 1286, in wait_for_engine_startup
+    (APIServer pid=1)     raise RuntimeError(
+    (APIServer pid=1) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+flash-next-vllm
+!!! vllm_mtp-on SCARTATO
+
+##### 04/09/2026 19:37:35 — ===== vllm_mtp-off =====
+062d2be9567dc59ac10757a52e33d848ecff3e282b56946752a9742158eb84c6
+flash-next-vllm avviato (MTP=off) su :8010 — segui con: docker logs -f flash-next-vllm
+TIMEOUT dopo 1800s
+!!! vllm_mtp-off NON PRONTO entro 30 min — ultime righe del container:
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/cli/main.py", line 97, in main
+    (APIServer pid=1)     args.dispatch_function(args)
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/cli/serve.py", line 152, in cmd
+    (APIServer pid=1)     uvloop.run(run_server(args))
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/uvloop/__init__.py", line 96, in run
+    (APIServer pid=1)     return __asyncio.run(
+    (APIServer pid=1)            ^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    (APIServer pid=1)     return runner.run(main)
+    (APIServer pid=1)            ^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    (APIServer pid=1)     return self._loop.run_until_complete(task)
+    (APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/uvloop/__init__.py", line 48, in wrapper
+    (APIServer pid=1)     return await main
+    (APIServer pid=1)            ^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py", line 739, in run_server
+    (APIServer pid=1)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py", line 753, in run_server_worker
+    (APIServer pid=1)     async with build_async_engine_client(
+    (APIServer pid=1)   File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+    (APIServer pid=1)     return await anext(self.gen)
+    (APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py", line 127, in build_async_engine_client
+    (APIServer pid=1)     async with build_async_engine_client_from_engine_args(
+    (APIServer pid=1)   File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+    (APIServer pid=1)     return await anext(self.gen)
+    (APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py", line 163, in build_async_engine_client_from_engine_args
+    (APIServer pid=1)     async_llm = AsyncLLM.from_vllm_config(
+    (APIServer pid=1)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/async_llm.py", line 220, in from_vllm_config
+    (APIServer pid=1)     return cls(
+    (APIServer pid=1)            ^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/async_llm.py", line 149, in __init__
+    (APIServer pid=1)     self.engine_core = EngineCoreClient.make_async_mp_client(
+    (APIServer pid=1)                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+    (APIServer pid=1)     return func(*args, **kwargs)
+    (APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core_client.py", line 139, in make_async_mp_client
+    (APIServer pid=1)     return AsyncMPClient(*client_args)
+    (APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+    (APIServer pid=1)     return func(*args, **kwargs)
+    (APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core_client.py", line 990, in __init__
+    (APIServer pid=1)     super().__init__(
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core_client.py", line 609, in __init__
+    (APIServer pid=1)     with launch_core_engines(
+    (APIServer pid=1)   File "/usr/lib/python3.12/contextlib.py", line 144, in __exit__
+    (APIServer pid=1)     next(self.gen)
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/utils.py", line 1206, in launch_core_engines
+    (APIServer pid=1)     wait_for_engine_startup(
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/utils.py", line 1286, in wait_for_engine_startup
+    (APIServer pid=1)     raise RuntimeError(
+    (APIServer pid=1) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+    /usr/lib/python3.12/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 1 leaked shared_memory objects to clean up at shutdown
+      warnings.warn('resource_tracker: There appear to be %d '
+flash-next-vllm
+!!! vllm_mtp-off SCARTATO
+
+##### 04/09/2026 20:07:38 — ===== tabby_mtp-on =====
+c5190081ebec364ab940b3befe3a1387c42aabbb2e7baadeae6b7dbaa835a64d
+flash-next-tabby avviato (MTP=on, draft_mode=mtp) su :8011 — segui con: docker logs -f flash-next-tabby

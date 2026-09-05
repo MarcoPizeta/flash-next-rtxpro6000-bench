@@ -1,0 +1,835 @@
+
+##### 05/09/2026 01:07:48 — INIZIO run-matrix-v3 — log: /opt/flash-next/bench/logs/run-matrix-v3-20260905-0107.log
+risultati v1 archiviati in results-v1-seed42/ (82 file)
+
+##### 05/09/2026 01:07:48 — STOP 27B
+sglang-workhorse
+
+##### 05/09/2026 01:07:58 — ===== vllm_mtp-on =====
+d35aee8f608babcbacbed2bab6934fe139bfe54a8a3c252bb1c83e0761644fe7
+flash-next-vllm avviato (MTP=on) su :8010 — segui con: docker logs -f flash-next-vllm
+READY dopo 351s — gen di prova: "content":"PONG"
+VRAM dopo il caricamento: 91399 MiB, 44
+RAM: used 10Gi avail 50Gi
+=== 01:13:50 vllm_mtp-on in=1024 c=1 run=1 seed=111 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.28      
+  Output token throughput (tok/s):         86.86     
+  Median TTFT (ms):                        318.17    
+  Median TPOT (ms):                        11.61     
+  Median ITL (ms):                         29.76     
+=== 01:14:49 vllm_mtp-on in=1024 c=1 run=2 seed=112 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.41      
+  Output token throughput (tok/s):         96.28     
+  Median TTFT (ms):                        226.72    
+  Median TPOT (ms):                        9.08      
+  Median ITL (ms):                         21.34     
+=== 01:15:40 vllm_mtp-on in=1024 c=1 run=3 seed=113 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.41      
+  Output token throughput (tok/s):         121.66    
+  Median TTFT (ms):                        258.98    
+  Median TPOT (ms):                        6.69      
+  Median ITL (ms):                         20.73     
+=== 01:16:30 vllm_mtp-on in=1024 c=4 run=1 seed=141 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              1.08      
+  Output token throughput (tok/s):         224.26    
+  Median TTFT (ms):                        226.54    
+  Median TPOT (ms):                        13.58     
+  Median ITL (ms):                         32.11     
+=== 01:17:23 vllm_mtp-on in=1024 c=4 run=2 seed=142 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.98      
+  Output token throughput (tok/s):         322.87    
+  Median TTFT (ms):                        179.35    
+  Median TPOT (ms):                        10.91     
+  Median ITL (ms):                         28.17     
+=== 01:18:18 vllm_mtp-on in=1024 c=4 run=3 seed=143 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              1.29      
+  Output token throughput (tok/s):         341.96    
+  Median TTFT (ms):                        164.39    
+  Median TPOT (ms):                        10.22     
+  Median ITL (ms):                         26.35     
+=== 01:19:08 vllm_mtp-on in=8192 c=1 run=1 seed=811 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.53      
+  Output token throughput (tok/s):         139.39    
+  Median TTFT (ms):                        375.86    
+  Median TPOT (ms):                        6.23      
+  Median ITL (ms):                         17.57     
+=== 01:19:55 vllm_mtp-on in=8192 c=1 run=2 seed=812 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.52      
+  Output token throughput (tok/s):         141.37    
+  Median TTFT (ms):                        173.90    
+  Median TPOT (ms):                        6.07      
+  Median ITL (ms):                         17.36     
+=== 01:20:41 vllm_mtp-on in=8192 c=1 run=3 seed=813 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.69      
+  Output token throughput (tok/s):         140.69    
+  Median TTFT (ms):                        192.51    
+  Median TPOT (ms):                        6.00      
+  Median ITL (ms):                         17.53     
+=== 01:21:24 vllm_mtp-on in=8192 c=4 run=1 seed=841 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              1.14      
+  Output token throughput (tok/s):         281.96    
+  Median TTFT (ms):                        350.56    
+  Median TPOT (ms):                        11.74     
+  Median ITL (ms):                         25.83     
+=== 01:22:15 vllm_mtp-on in=8192 c=4 run=2 seed=842 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              1.05      
+  Output token throughput (tok/s):         276.69    
+  Median TTFT (ms):                        466.98    
+  Median TPOT (ms):                        11.08     
+  Median ITL (ms):                         25.27     
+=== 01:23:08 vllm_mtp-on in=8192 c=4 run=3 seed=843 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              1.04      
+  Output token throughput (tok/s):         287.58    
+  Median TTFT (ms):                        367.83    
+  Median TPOT (ms):                        11.64     
+  Median ITL (ms):                         24.98     
+=== 01:24:01 vllm_mtp-on in=32768 c=1 run=1 seed=3211 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.29      
+  Output token throughput (tok/s):         92.51     
+  Median TTFT (ms):                        1551.13   
+  Median TPOT (ms):                        6.33      
+  Median ITL (ms):                         17.33     
+=== 01:24:57 vllm_mtp-on in=32768 c=1 run=2 seed=3212 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.42      
+  Output token throughput (tok/s):         96.34     
+  Median TTFT (ms):                        956.05    
+  Median TPOT (ms):                        6.01      
+  Median ITL (ms):                         17.27     
+=== 01:25:46 vllm_mtp-on in=32768 c=1 run=3 seed=3213 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.47      
+  Output token throughput (tok/s):         107.88    
+  Median TTFT (ms):                        452.94    
+  Median TPOT (ms):                        6.73      
+  Median ITL (ms):                         17.28     
+=== 01:26:35 vllm_mtp-on in=32768 c=4 run=1 seed=3241 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.58      
+  Output token throughput (tok/s):         162.29    
+  Median TTFT (ms):                        1355.39   
+  Median TPOT (ms):                        17.89     
+  Median ITL (ms):                         25.24     
+=== 01:27:44 vllm_mtp-on in=32768 c=4 run=2 seed=3242 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.56      
+  Output token throughput (tok/s):         142.80    
+  Median TTFT (ms):                        1716.68   
+  Median TPOT (ms):                        18.08     
+  Median ITL (ms):                         25.22     
+=== 01:28:59 vllm_mtp-on in=32768 c=4 run=3 seed=3243 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.50      
+  Output token throughput (tok/s):         146.96    
+  Median TTFT (ms):                        1412.34   
+  Median TPOT (ms):                        20.97     
+  Median ITL (ms):                         25.46     
+=== matrice vllm_mtp-on completata ===
+=== 01:30:14 PREFILL vllm_mtp-on in=8192 run=1 seed=891 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          206.22    
+  Median TTFT (ms):                        213.27    
+=== 01:30:42 PREFILL vllm_mtp-on in=8192 run=2 seed=892 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          327.67    
+  Median TTFT (ms):                        340.21    
+=== 01:31:12 PREFILL vllm_mtp-on in=8192 run=3 seed=893 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          311.56    
+  Median TTFT (ms):                        290.43    
+=== 01:31:41 PREFILL vllm_mtp-on in=32768 run=1 seed=3291 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          905.10    
+  Median TTFT (ms):                        861.07    
+=== 01:32:11 PREFILL vllm_mtp-on in=32768 run=2 seed=3292 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          1266.84   
+  Median TTFT (ms):                        1423.38   
+=== 01:32:43 PREFILL vllm_mtp-on in=32768 run=3 seed=3293 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          1239.16   
+  Median TTFT (ms):                        1181.43   
+=== 01:33:15 PREFILL vllm_mtp-on in=131072 run=1 seed=12891 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          5743.38   
+  Median TTFT (ms):                        6591.92   
+=== 01:34:01 PREFILL vllm_mtp-on in=131072 run=2 seed=12892 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          5371.08   
+  Median TTFT (ms):                        4662.44   
+=== 01:34:45 PREFILL vllm_mtp-on in=131072 run=3 seed=12893 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          5495.05   
+  Median TTFT (ms):                        4410.73   
+--- errori server durante la serie (ultimi 20) ---
+(APIServer pid=1) [ERROR] `min_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformers/models/qwen3_vl/video_proces
+(APIServer pid=1) [ERROR] `max_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformers/models/qwen3_vl/video_proces
+[ERROR] `min_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformers/models/qwen3_vl/video_processing_qwen3_vl.py.
+[ERROR] `max_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformers/models/qwen3_vl/video_processing_qwen3_vl.py.
+(PleOffloadWorker pid=1269) [ERROR] `min_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformers/models/qwen3_vl/vi
+(PleOffloadWorker pid=1269) [ERROR] `max_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformers/models/qwen3_vl/vi
+(EngineCore pid=739) [ERROR] `min_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformers/models/qwen3_vl/video_pro
+(EngineCore pid=739) [ERROR] `max_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformers/models/qwen3_vl/video_pro
+flash-next-vllm
+===== vllm_mtp-on completato =====
+GPU a 47 C
+
+##### 05/09/2026 01:35:41 — ===== vllm_mtp-off =====
+af870b94aa888c63b01bccdb95f740cd4163b0c6f9a950069132cd7a7093d938
+flash-next-vllm avviato (MTP=off) su :8010 — segui con: docker logs -f flash-next-vllm
+READY dopo 281s — gen di prova: "content":"PONG"
+VRAM dopo il caricamento: 89661 MiB, 44
+RAM: used 12Gi avail 48Gi
+=== 01:40:23 vllm_mtp-off in=1024 c=1 run=1 seed=111 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.24      
+  Output token throughput (tok/s):         73.81     
+  Median TTFT (ms):                        295.23    
+  Median TPOT (ms):                        13.46     
+  Median ITL (ms):                         13.92     
+=== 01:41:24 vllm_mtp-off in=1024 c=1 run=2 seed=112 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.32      
+  Output token throughput (tok/s):         76.12     
+  Median TTFT (ms):                        362.70    
+  Median TPOT (ms):                        11.65     
+  Median ITL (ms):                         11.46     
+=== 01:42:18 vllm_mtp-off in=1024 c=1 run=3 seed=113 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.28      
+  Output token throughput (tok/s):         84.48     
+  Median TTFT (ms):                        286.15    
+  Median TPOT (ms):                        10.36     
+  Median ITL (ms):                         10.05     
+=== 01:43:15 vllm_mtp-off in=1024 c=4 run=1 seed=141 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.90      
+  Output token throughput (tok/s):         185.63    
+  Median TTFT (ms):                        242.27    
+  Median TPOT (ms):                        16.87     
+  Median ITL (ms):                         15.60     
+=== 01:44:11 vllm_mtp-off in=1024 c=4 run=2 seed=142 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.72      
+  Output token throughput (tok/s):         236.44    
+  Median TTFT (ms):                        135.69    
+  Median TPOT (ms):                        15.16     
+  Median ITL (ms):                         14.64     
+=== 01:45:14 vllm_mtp-off in=1024 c=4 run=3 seed=143 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.96      
+  Output token throughput (tok/s):         253.21    
+  Median TTFT (ms):                        129.44    
+  Median TPOT (ms):                        14.64     
+  Median ITL (ms):                         14.06     
+=== 01:46:10 vllm_mtp-off in=8192 c=1 run=1 seed=811 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.35      
+  Output token throughput (tok/s):         93.15     
+  Median TTFT (ms):                        352.34    
+  Median TPOT (ms):                        9.56      
+  Median ITL (ms):                         9.47      
+=== 01:47:02 vllm_mtp-off in=8192 c=1 run=2 seed=812 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.36      
+  Output token throughput (tok/s):         97.59     
+  Median TTFT (ms):                        106.90    
+  Median TPOT (ms):                        9.46      
+  Median ITL (ms):                         9.44      
+=== 01:47:54 vllm_mtp-off in=8192 c=1 run=3 seed=813 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.47      
+  Output token throughput (tok/s):         95.75     
+  Median TTFT (ms):                        175.05    
+  Median TPOT (ms):                        9.47      
+  Median ITL (ms):                         9.37      
+=== 01:48:41 vllm_mtp-off in=8192 c=4 run=1 seed=841 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.87      
+  Output token throughput (tok/s):         213.62    
+  Median TTFT (ms):                        276.70    
+  Median TPOT (ms):                        16.19     
+  Median ITL (ms):                         13.74     
+=== 01:49:38 vllm_mtp-off in=8192 c=4 run=2 seed=842 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.78      
+  Output token throughput (tok/s):         207.00    
+  Median TTFT (ms):                        413.03    
+  Median TPOT (ms):                        15.83     
+  Median ITL (ms):                         13.55     
+=== 01:50:38 vllm_mtp-off in=8192 c=4 run=3 seed=843 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.79      
+  Output token throughput (tok/s):         217.54    
+  Median TTFT (ms):                        311.47    
+  Median TPOT (ms):                        15.98     
+  Median ITL (ms):                         13.46     
+=== 01:51:37 vllm_mtp-off in=32768 c=1 run=1 seed=3211 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.23      
+  Output token throughput (tok/s):         73.40     
+  Median TTFT (ms):                        1483.36   
+  Median TPOT (ms):                        9.50      
+  Median ITL (ms):                         9.42      
+=== 01:52:39 vllm_mtp-off in=32768 c=1 run=2 seed=3212 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.32      
+  Output token throughput (tok/s):         74.35     
+  Median TTFT (ms):                        911.67    
+  Median TPOT (ms):                        9.46      
+  Median ITL (ms):                         9.40      
+=== 01:53:32 vllm_mtp-off in=32768 c=1 run=3 seed=3213 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.36      
+  Output token throughput (tok/s):         82.25     
+  Median TTFT (ms):                        425.17    
+  Median TPOT (ms):                        9.44      
+  Median ITL (ms):                         9.35      
+=== 01:54:24 vllm_mtp-off in=32768 c=4 run=1 seed=3241 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.51      
+  Output token throughput (tok/s):         142.78    
+  Median TTFT (ms):                        1246.30   
+  Median TPOT (ms):                        23.64     
+  Median ITL (ms):                         13.59     
+=== 01:55:38 vllm_mtp-off in=32768 c=4 run=2 seed=3242 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.50      
+  Output token throughput (tok/s):         127.17    
+  Median TTFT (ms):                        1565.25   
+  Median TPOT (ms):                        20.33     
+  Median ITL (ms):                         13.52     
+=== 01:56:52 vllm_mtp-off in=32768 c=4 run=3 seed=3243 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.46      
+  Output token throughput (tok/s):         136.26    
+  Median TTFT (ms):                        1293.90   
+  Median TPOT (ms):                        24.13     
+  Median ITL (ms):                         13.52     
+=== matrice vllm_mtp-off completata ===
+=== 01:58:10 PREFILL vllm_mtp-off in=8192 run=1 seed=891 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          190.89    
+  Median TTFT (ms):                        188.35    
+=== 01:58:39 PREFILL vllm_mtp-off in=8192 run=2 seed=892 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          302.44    
+  Median TTFT (ms):                        304.00    
+=== 01:59:07 PREFILL vllm_mtp-off in=8192 run=3 seed=893 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          288.42    
+  Median TTFT (ms):                        277.16    
+=== 01:59:37 PREFILL vllm_mtp-off in=32768 run=1 seed=3291 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          873.37    
+  Median TTFT (ms):                        825.45    
+=== 02:00:07 PREFILL vllm_mtp-off in=32768 run=2 seed=3292 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          1208.97   
+  Median TTFT (ms):                        1372.26   
+=== 02:00:39 PREFILL vllm_mtp-off in=32768 run=3 seed=3293 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          1195.87   
+  Median TTFT (ms):                        1134.09   
+=== 02:01:10 PREFILL vllm_mtp-off in=131072 run=1 seed=12891 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          5518.72   
+  Median TTFT (ms):                        6350.55   
+=== 02:01:55 PREFILL vllm_mtp-off in=131072 run=2 seed=12892 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          5122.86   
+  Median TTFT (ms):                        4426.02   
+=== 02:02:38 PREFILL vllm_mtp-off in=131072 run=3 seed=12893 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          5258.92   
+  Median TTFT (ms):                        4233.72   
+--- errori server durante la serie (ultimi 20) ---
+(APIServer pid=1) [ERROR] `min_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformers/models/qwen3_vl/video_proces
+(APIServer pid=1) [ERROR] `max_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformers/models/qwen3_vl/video_proces
+[ERROR] `min_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformers/models/qwen3_vl/video_processing_qwen3_vl.py.
+[ERROR] `max_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformers/models/qwen3_vl/video_processing_qwen3_vl.py.
+(PleOffloadWorker pid=1062) [ERROR] `min_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformers/models/qwen3_vl/vi
+(PleOffloadWorker pid=1062) [ERROR] `max_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformers/models/qwen3_vl/vi
+(EngineCore pid=532) [ERROR] `min_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformers/models/qwen3_vl/video_pro
+(EngineCore pid=532) [ERROR] `max_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformers/models/qwen3_vl/video_pro
+flash-next-vllm
+===== vllm_mtp-off completato =====
+GPU a 47 C
+
+##### 05/09/2026 02:03:33 — ===== tabby_mtp-on =====
+6ffda61a1065a00f0f43106daa0e6cf938fe74865807462835ecf80817001dcc
+flash-next-tabby avviato (MTP=on, draft_mode=mtp) su :8011 — segui con: docker logs -f flash-next-tabby
+READY dopo 88s — gen di prova: "content":"PONG"
+VRAM dopo il caricamento: 77076 MiB, 49
+RAM: used 43Gi avail 16Gi
+=== 02:05:01 tabby_mtp-on in=1024 c=1 run=1 seed=111 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.56      
+  Output token throughput (tok/s):         170.75    
+  Median TTFT (ms):                        282.80    
+  Median TPOT (ms):                        5.57      
+  Median ITL (ms):                         20.50     
+=== 02:05:55 tabby_mtp-on in=1024 c=1 run=2 seed=112 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.81      
+  Output token throughput (tok/s):         189.50    
+  Median TTFT (ms):                        271.80    
+  Median TPOT (ms):                        5.50      
+  Median ITL (ms):                         20.51     
+=== 02:06:37 tabby_mtp-on in=1024 c=1 run=3 seed=113 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.49      
+  Output token throughput (tok/s):         146.58    
+  Median TTFT (ms):                        327.37    
+  Median TPOT (ms):                        5.79      
+  Median ITL (ms):                         20.50     
+=== 02:07:24 tabby_mtp-on in=1024 c=4 run=1 seed=141 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              1.03      
+  Output token throughput (tok/s):         213.32    
+  Median TTFT (ms):                        611.07    
+  Median TPOT (ms):                        14.74     
+  Median ITL (ms):                         48.25     
+=== 02:08:17 tabby_mtp-on in=1024 c=4 run=2 seed=142 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.70      
+  Output token throughput (tok/s):         231.28    
+  Median TTFT (ms):                        638.54    
+  Median TPOT (ms):                        15.64     
+  Median ITL (ms):                         49.47     
+=== 02:09:19 tabby_mtp-on in=1024 c=4 run=3 seed=143 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.83      
+  Output token throughput (tok/s):         219.62    
+  Median TTFT (ms):                        638.21    
+  Median TPOT (ms):                        15.55     
+  Median ITL (ms):                         49.18     
+=== 02:10:17 tabby_mtp-on in=8192 c=1 run=1 seed=811 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.46      
+  Output token throughput (tok/s):         123.14    
+  Median TTFT (ms):                        1188.42   
+  Median TPOT (ms):                        5.28      
+  Median ITL (ms):                         21.49     
+=== 02:11:06 tabby_mtp-on in=8192 c=1 run=2 seed=812 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.55      
+  Output token throughput (tok/s):         149.58    
+  Median TTFT (ms):                        277.86    
+  Median TPOT (ms):                        5.46      
+  Median ITL (ms):                         20.63     
+=== 02:11:52 tabby_mtp-on in=8192 c=1 run=3 seed=813 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.56      
+  Output token throughput (tok/s):         114.47    
+  Median TTFT (ms):                        526.67    
+  Median TPOT (ms):                        5.54      
+  Median ITL (ms):                         20.63     
+=== 02:12:37 tabby_mtp-on in=8192 c=4 run=1 seed=841 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.60      
+  Output token throughput (tok/s):         148.16    
+  Median TTFT (ms):                        1164.14   
+  Median TPOT (ms):                        17.79     
+  Median ITL (ms):                         51.65     
+=== 02:13:45 tabby_mtp-on in=8192 c=4 run=2 seed=842 ===
+  Successful requests:                     18        
+  Request throughput (req/s):              0.47      
+  Output token throughput (tok/s):         113.87    
+  Median TTFT (ms):                        1746.25   
+  Median TPOT (ms):                        18.39     
+  Median ITL (ms):                         51.08     
+=== 02:14:58 tabby_mtp-on in=8192 c=4 run=3 seed=843 ===
+  Successful requests:                     18        
+  Request throughput (req/s):              0.45      
+  Output token throughput (tok/s):         113.71    
+  Median TTFT (ms):                        1466.33   
+  Median TPOT (ms):                        19.08     
+  Median ITL (ms):                         51.42     
+=== 02:16:13 tabby_mtp-on in=32768 c=1 run=1 seed=3211 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.16      
+  Output token throughput (tok/s):         51.29     
+  Median TTFT (ms):                        4569.88   
+  Median TPOT (ms):                        5.97      
+  Median ITL (ms):                         21.87     
+=== 02:17:37 tabby_mtp-on in=32768 c=1 run=2 seed=3212 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.28      
+  Output token throughput (tok/s):         64.03     
+  Median TTFT (ms):                        2642.61   
+  Median TPOT (ms):                        5.48      
+  Median ITL (ms):                         21.66     
+=== 02:18:40 tabby_mtp-on in=32768 c=1 run=3 seed=3213 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.32      
+  Output token throughput (tok/s):         73.90     
+  Median TTFT (ms):                        1345.91   
+  Median TPOT (ms):                        5.38      
+  Median ITL (ms):                         21.44     
+=== 02:19:42 tabby_mtp-on in=32768 c=4 run=1 seed=3241 ===
+  Successful requests:                     8         
+  Request throughput (req/s):              0.11      
+  Output token throughput (tok/s):         17.89     
+  Median TTFT (ms):                        5022.88   
+  Median TPOT (ms):                        31.82     
+  Median ITL (ms):                         43.52     
+=== 02:21:33 tabby_mtp-on in=32768 c=4 run=2 seed=3242 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.08      
+  Output token throughput (tok/s):         10.36     
+  Median TTFT (ms):                        5269.91   
+  Median TPOT (ms):                        38.64     
+  Median ITL (ms):                         41.38     
+=== 02:23:29 tabby_mtp-on in=32768 c=4 run=3 seed=3243 ===
+  Successful requests:                     7         
+  Request throughput (req/s):              0.09      
+  Output token throughput (tok/s):         20.01     
+  Median TTFT (ms):                        5581.96   
+  Median TPOT (ms):                        33.88     
+  Median ITL (ms):                         44.51     
+=== matrice tabby_mtp-on completata ===
+=== 02:25:22 PREFILL tabby_mtp-on in=8192 run=1 seed=891 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          616.73    
+  Median TTFT (ms):                        651.49    
+=== 02:25:51 PREFILL tabby_mtp-on in=8192 run=2 seed=892 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          952.01    
+  Median TTFT (ms):                        1009.50   
+=== 02:26:22 PREFILL tabby_mtp-on in=8192 run=3 seed=893 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          891.02    
+  Median TTFT (ms):                        794.37    
+=== 02:26:53 PREFILL tabby_mtp-on in=32768 run=1 seed=3291 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          2663.76   
+  Median TTFT (ms):                        2563.46   
+=== 02:27:29 PREFILL tabby_mtp-on in=32768 run=2 seed=3292 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          3609.14   
+  Median TTFT (ms):                        4025.61   
+=== 02:28:08 PREFILL tabby_mtp-on in=32768 run=3 seed=3293 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          3402.90   
+  Median TTFT (ms):                        3353.17   
+=== 02:28:46 PREFILL tabby_mtp-on in=131072 run=1 seed=12891 ===
+  Successful requests:                     1         
+  Mean TTFT (ms):                          11666.28  
+  Median TTFT (ms):                        11666.28  
+=== 02:30:08 PREFILL tabby_mtp-on in=131072 run=2 seed=12892 ===
+  Successful requests:                     2         
+  Mean TTFT (ms):                          12051.66  
+  Median TTFT (ms):                        12051.66  
+=== 02:31:17 PREFILL tabby_mtp-on in=131072 run=3 seed=12893 ===
+  Successful requests:                     2         
+  Mean TTFT (ms):                          11351.28  
+  Median TTFT (ms):                        11351.28  
+--- errori server durante la serie (ultimi 20) ---
+2026-09-05 00:23:08.602 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:23:08.655 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:23:13.865 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:24:11.572 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:24:11.573 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:24:11.759 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:24:23.064 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:24:27.107 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:24:27.108 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:24:27.244 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:24:42.544 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:24:42.545 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:24:50.383 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:24:55.793 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:24:59.232 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:24:59.233 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:29:30.920 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:29:53.772 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:30:48.188 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:32:05.417 ERROR:    Request disconnected: /v1/chat/completions
+flash-next-tabby
+===== tabby_mtp-on completato =====
+GPU a 49 C
+
+##### 05/09/2026 02:32:47 — ===== tabby_mtp-off =====
+603b6668defc9cd1dcbbf1a460a625b686744bf6e16584035b5890ca942ccf57
+flash-next-tabby avviato (MTP=off, draft_mode=disabled) su :8011 — segui con: docker logs -f flash-next-tabby
+READY dopo 65s — gen di prova: "content":"PONG"
+VRAM dopo il caricamento: 73116 MiB, 50
+RAM: used 46Gi avail 14Gi
+=== 02:33:52 tabby_mtp-off in=1024 c=1 run=1 seed=111 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.36      
+  Output token throughput (tok/s):         111.34    
+  Median TTFT (ms):                        246.78    
+  Median TPOT (ms):                        10.12     
+  Median ITL (ms):                         10.26     
+=== 02:34:50 tabby_mtp-off in=1024 c=1 run=2 seed=112 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.49      
+  Output token throughput (tok/s):         115.66    
+  Median TTFT (ms):                        237.58    
+  Median TPOT (ms):                        10.08     
+  Median ITL (ms):                         10.24     
+=== 02:35:36 tabby_mtp-off in=1024 c=1 run=3 seed=113 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.30      
+  Output token throughput (tok/s):         88.79     
+  Median TTFT (ms):                        289.02    
+  Median TPOT (ms):                        10.15     
+  Median ITL (ms):                         10.26     
+=== 02:36:31 tabby_mtp-off in=1024 c=4 run=1 seed=141 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.66      
+  Output token throughput (tok/s):         137.58    
+  Median TTFT (ms):                        393.38    
+  Median TPOT (ms):                        15.83     
+  Median ITL (ms):                         14.93     
+=== 02:37:36 tabby_mtp-off in=1024 c=4 run=2 seed=142 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.72      
+  Output token throughput (tok/s):         235.83    
+  Median TTFT (ms):                        366.15    
+  Median TPOT (ms):                        16.04     
+  Median ITL (ms):                         14.93     
+=== 02:38:37 tabby_mtp-off in=1024 c=4 run=3 seed=143 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.84      
+  Output token throughput (tok/s):         221.38    
+  Median TTFT (ms):                        368.99    
+  Median TPOT (ms):                        15.98     
+  Median ITL (ms):                         14.95     
+=== 02:39:35 tabby_mtp-off in=8192 c=1 run=1 seed=811 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.27      
+  Output token throughput (tok/s):         71.21     
+  Median TTFT (ms):                        1145.84   
+  Median TPOT (ms):                        10.89     
+  Median ITL (ms):                         11.04     
+=== 02:40:34 tabby_mtp-off in=8192 c=1 run=2 seed=812 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.34      
+  Output token throughput (tok/s):         93.71     
+  Median TTFT (ms):                        241.90    
+  Median TPOT (ms):                        10.15     
+  Median ITL (ms):                         10.30     
+=== 02:41:26 tabby_mtp-off in=8192 c=1 run=3 seed=813 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.36      
+  Output token throughput (tok/s):         74.15     
+  Median TTFT (ms):                        482.97    
+  Median TPOT (ms):                        10.45     
+  Median ITL (ms):                         11.00     
+=== 02:42:16 tabby_mtp-off in=8192 c=4 run=1 seed=841 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.62      
+  Output token throughput (tok/s):         151.93    
+  Median TTFT (ms):                        853.78    
+  Median TPOT (ms):                        20.96     
+  Median ITL (ms):                         15.31     
+=== 02:43:23 tabby_mtp-off in=8192 c=4 run=2 seed=842 ===
+  Successful requests:                     19        
+  Request throughput (req/s):              0.49      
+  Output token throughput (tok/s):         123.05    
+  Median TTFT (ms):                        1386.09   
+  Median TPOT (ms):                        20.13     
+  Median ITL (ms):                         15.32     
+=== 02:44:36 tabby_mtp-off in=8192 c=4 run=3 seed=843 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.52      
+  Output token throughput (tok/s):         143.65    
+  Median TTFT (ms):                        1204.85   
+  Median TPOT (ms):                        20.76     
+  Median ITL (ms):                         15.31     
+=== 02:45:49 tabby_mtp-off in=32768 c=1 run=1 seed=3211 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.13      
+  Output token throughput (tok/s):         42.66     
+  Median TTFT (ms):                        4406.31   
+  Median TPOT (ms):                        11.00     
+  Median ITL (ms):                         11.07     
+=== 02:47:18 tabby_mtp-off in=32768 c=1 run=2 seed=3212 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.23      
+  Output token throughput (tok/s):         53.20     
+  Median TTFT (ms):                        2621.88   
+  Median TPOT (ms):                        10.92     
+  Median ITL (ms):                         11.05     
+=== 02:48:25 tabby_mtp-off in=32768 c=1 run=3 seed=3213 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.24      
+  Output token throughput (tok/s):         55.93     
+  Median TTFT (ms):                        1276.11   
+  Median TPOT (ms):                        10.55     
+  Median ITL (ms):                         11.01     
+=== 02:49:32 tabby_mtp-off in=32768 c=4 run=1 seed=3241 ===
+  Successful requests:                     8         
+  Request throughput (req/s):              0.11      
+  Output token throughput (tok/s):         18.40     
+  Median TTFT (ms):                        4371.92   
+  Median TPOT (ms):                        37.69     
+  Median ITL (ms):                         15.34     
+=== 02:51:22 tabby_mtp-off in=32768 c=4 run=2 seed=3242 ===
+  Successful requests:                     7         
+  Request throughput (req/s):              0.09      
+  Output token throughput (tok/s):         14.54     
+  Median TTFT (ms):                        4953.94   
+  Median TPOT (ms):                        16.02     
+  Median ITL (ms):                         15.36     
+=== 02:53:15 tabby_mtp-off in=32768 c=4 run=3 seed=3243 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.08      
+  Output token throughput (tok/s):         14.53     
+  Median TTFT (ms):                        5866.74   
+  Median TPOT (ms):                        20.23     
+  Median ITL (ms):                         15.39     
+=== matrice tabby_mtp-off completata ===
+=== 02:55:03 PREFILL tabby_mtp-off in=8192 run=1 seed=891 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          583.52    
+  Median TTFT (ms):                        632.75    
+=== 02:55:33 PREFILL tabby_mtp-off in=8192 run=2 seed=892 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          926.42    
+  Median TTFT (ms):                        963.23    
+=== 02:56:04 PREFILL tabby_mtp-off in=8192 run=3 seed=893 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          859.17    
+  Median TTFT (ms):                        772.37    
+=== 02:56:34 PREFILL tabby_mtp-off in=32768 run=1 seed=3291 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          2564.78   
+  Median TTFT (ms):                        2461.49   
+=== 02:57:10 PREFILL tabby_mtp-off in=32768 run=2 seed=3292 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          3490.01   
+  Median TTFT (ms):                        3891.60   
+=== 02:57:48 PREFILL tabby_mtp-off in=32768 run=3 seed=3293 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          3279.30   
+  Median TTFT (ms):                        3213.77   
+=== 02:58:26 PREFILL tabby_mtp-off in=131072 run=1 seed=12891 ===
+  Successful requests:                     1         
+  Mean TTFT (ms):                          11316.45  
+  Median TTFT (ms):                        11316.45  
+=== 02:59:47 PREFILL tabby_mtp-off in=131072 run=2 seed=12892 ===
+  Successful requests:                     2         
+  Mean TTFT (ms):                          11677.37  
+  Median TTFT (ms):                        11677.37  
+=== 03:00:57 PREFILL tabby_mtp-off in=131072 run=3 seed=12893 ===
+  Successful requests:                     2         
+  Mean TTFT (ms):                          11001.97  
+  Median TTFT (ms):                        11001.97  
+--- errori server durante la serie (ultimi 20) ---
+2026-09-05 00:52:54.260 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:52:55.795 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:53:56.663 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:53:56.664 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:53:56.664 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:54:07.583 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:54:11.832 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:54:11.859 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:54:15.509 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:54:26.937 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:54:27.016 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:54:34.252 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:54:34.327 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:54:42.084 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:54:43.007 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:54:50.090 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:59:10.778 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 00:59:33.029 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 01:00:29.376 ERROR:    Request disconnected: /v1/chat/completions
+2026-09-05 01:01:45.846 ERROR:    Request disconnected: /v1/chat/completions
+flash-next-tabby
+===== tabby_mtp-off completato =====
+GPU a 49 C
+
+##### 05/09/2026 03:02:26 — TOOL-EVAL vLLM MTP off (thinking ON) — confronto xgrammar con/senza speculativo (gli errori compaiono solo col thinking)
+61a739a3e74069a0e6acbc906feb35c624fe186e8e4f8661ddd337c53cbdb56b
+flash-next-vllm avviato (MTP=off) su :8010 — segui con: docker logs -f flash-next-vllm
+READY dopo 291s — gen di prova: "content":"PONG"
+│      TC-51: 0.5 ± 0.5  (1,0,0,0,1,0,1,1)                                     │
+│      TC-52: 1.9 ± 0.3  (2,2,2,1,2,2,2,2)                                     │
+│      TC-53: 1.9 ± 0.3  (2,2,2,2,1,2,2,2)                                     │
+│      TC-55: 1.8 ± 0.5  (2,1,2,2,2,2,2,1)                                     │
+│      TC-58: 1.5 ± 0.5  (1,1,1,2,2,1,2,2)                                     │
+│      TC-60: 1.1 ± 0.8  (1,2,0,0,1,2,2,1)                                     │
+│      TC-61: 0.6 ± 0.5  (1,0,1,0,1,1,0,1)                                     │
+│      TC-62: 1.2 ± 0.5  (1,1,1,1,2,2,1,1)                                     │
+│      TC-68: 0.8 ± 1.0  (2,0,0,2,0,2,0,0)                                     │
+│      TC-74: 0.5 ± 0.9  (0,0,0,0,2,2,0,0)                                     │
+│      TC-75: 1.2 ± 0.7  (1,2,2,0,1,1,2,1)                                     │
+│      TC-76: 1.8 ± 0.7  (2,0,2,2,2,2,2,2)                                     │
+│      TC-80: 0.2 ± 0.7  (0,0,0,2,0,0,0,0)                                     │
+│      TC-81: 1.0 ± 0.9  (0,0,2,1,2,2,0,1)                                     │
+│      TC-82: 1.1 ± 0.3  (1,2,1,1,1,1,1,1)                                     │
+│      TC-84: 1.2 ± 0.9  (1,2,2,1,0,2,0,2)                                     │
+│      TC-85: 1.6 ± 0.5  (1,2,2,1,2,2,2,1)                                     │
+│      TC-88: 1.2 ± 1.0  (0,2,2,2,0,0,2,2)                                     │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  📊 Summary report: 
+/opt/flash-next/bench/runs/runs/2026/09/2026-09-05T01-07-20.682888Z_2631458d_sum
+mary.md
+
+--- errori xgrammar SENZA MTP: 0 (richieste 2093) ---
+flash-next-vllm
+
+##### 05/09/2026 04:32:18 — RIEPILOGO risultati v3
+  tabby_mtp-off_in1024_out512_c1_r1                  111.3 tok/s  TTFT    247 ms  ok 6
+  tabby_mtp-off_in1024_out512_c1_r2                  115.7 tok/s  TTFT    238 ms  ok 6
+  tabby_mtp-off_in1024_out512_c1_r3                   88.8 tok/s  TTFT    289 ms  ok 6
+  tabby_mtp-off_in32768_out512_c1_r1                  42.7 tok/s  TTFT   4406 ms  ok 6
+  tabby_mtp-off_in32768_out512_c1_r2                  53.2 tok/s  TTFT   2622 ms  ok 6
+  tabby_mtp-off_in32768_out512_c1_r3                  55.9 tok/s  TTFT   1276 ms  ok 6
+  tabby_mtp-off_in8192_out512_c1_r1                   71.2 tok/s  TTFT   1146 ms  ok 6
+  tabby_mtp-off_in8192_out512_c1_r2                   93.7 tok/s  TTFT    242 ms  ok 6
+  tabby_mtp-off_in8192_out512_c1_r3                   74.2 tok/s  TTFT    483 ms  ok 6
+  tabby_mtp-on_in1024_out512_c1_r1                   170.8 tok/s  TTFT    283 ms  ok 6
+  tabby_mtp-on_in1024_out512_c1_r2                   189.5 tok/s  TTFT    272 ms  ok 6
+  tabby_mtp-on_in1024_out512_c1_r3                   146.6 tok/s  TTFT    327 ms  ok 6
+  tabby_mtp-on_in32768_out512_c1_r1                   51.3 tok/s  TTFT   4570 ms  ok 6
+  tabby_mtp-on_in32768_out512_c1_r2                   64.0 tok/s  TTFT   2643 ms  ok 6
+  tabby_mtp-on_in32768_out512_c1_r3                   73.9 tok/s  TTFT   1346 ms  ok 6
+  tabby_mtp-on_in8192_out512_c1_r1                   123.1 tok/s  TTFT   1188 ms  ok 6
+  tabby_mtp-on_in8192_out512_c1_r2                   149.6 tok/s  TTFT    278 ms  ok 6
+  tabby_mtp-on_in8192_out512_c1_r3                   114.5 tok/s  TTFT    527 ms  ok 6
+  vllm_mtp-off_in1024_out512_c1_r1                    73.8 tok/s  TTFT    295 ms  ok 6
+  vllm_mtp-off_in1024_out512_c1_r2                    76.1 tok/s  TTFT    363 ms  ok 6
+  vllm_mtp-off_in1024_out512_c1_r3                    84.5 tok/s  TTFT    286 ms  ok 6
+  vllm_mtp-off_in32768_out512_c1_r1                   73.4 tok/s  TTFT   1483 ms  ok 6
+  vllm_mtp-off_in32768_out512_c1_r2                   74.4 tok/s  TTFT    912 ms  ok 6
+  vllm_mtp-off_in32768_out512_c1_r3                   82.3 tok/s  TTFT    425 ms  ok 6
+  vllm_mtp-off_in8192_out512_c1_r1                    93.2 tok/s  TTFT    352 ms  ok 6
+  vllm_mtp-off_in8192_out512_c1_r2                    97.6 tok/s  TTFT    107 ms  ok 6
+  vllm_mtp-off_in8192_out512_c1_r3                    95.7 tok/s  TTFT    175 ms  ok 6
+  vllm_mtp-on_in1024_out512_c1_r1                     86.9 tok/s  TTFT    318 ms  ok 6
+  vllm_mtp-on_in1024_out512_c1_r2                     96.3 tok/s  TTFT    227 ms  ok 6
+  vllm_mtp-on_in1024_out512_c1_r3                    121.7 tok/s  TTFT    259 ms  ok 6
+  vllm_mtp-on_in32768_out512_c1_r1                    92.5 tok/s  TTFT   1551 ms  ok 6
+  vllm_mtp-on_in32768_out512_c1_r2                    96.3 tok/s  TTFT    956 ms  ok 6
+  vllm_mtp-on_in32768_out512_c1_r3                   107.9 tok/s  TTFT    453 ms  ok 6
+  vllm_mtp-on_in8192_out512_c1_r1                    139.4 tok/s  TTFT    376 ms  ok 6
+  vllm_mtp-on_in8192_out512_c1_r2                    141.4 tok/s  TTFT    174 ms  ok 6
+  vllm_mtp-on_in8192_out512_c1_r3                    140.7 tok/s  TTFT    193 ms  ok 6
+
+##### 05/09/2026 04:32:19 — FINE run-matrix-v3
+
+##### 05/09/2026 04:32:19 — RIAVVIO 27B (script canonico)
+sglang-workhorse
+87322b775e8dba297d33bb680a72e9f40b9ae5348610a4899924870f802bb792
+27B READY dopo ~130s

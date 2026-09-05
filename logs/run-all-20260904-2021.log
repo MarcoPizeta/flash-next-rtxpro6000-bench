@@ -1,0 +1,813 @@
+
+##### 04/09/2026 20:21:13 — INIZIO run-all — log: /opt/flash-next/bench/logs/run-all-20260904-2021.log
+
+##### 04/09/2026 20:21:14 — snapshot hardware/software
+salvato in /opt/flash-next/bench/results/HARDWARE.md
+
+##### 04/09/2026 20:21:26 — STOP 27B (docker stop: al termine riparte con run-sglang-38.sh)
+sglang-workhorse
+27B fermato
+2 MiB
+
+##### 04/09/2026 20:21:36 — ===== vllm_mtp-on =====
+5bd5966a57b3f311935b4fb4ddb66d6f50a817c156b0aeb91f094a7e88a585d4
+flash-next-vllm avviato (MTP=on) su :8010 — segui con: docker logs -f flash-next-vllm
+CONTAINER flash-next-vllm MORTO dopo 261s (stato: exited exit=1)
+!!! vllm_mtp-on NON PRONTO entro 30 min — ultime righe del container:
+    (Worker pid=993) INFO 09-04 18:23:53 [interface.py:939] Padding mamba page size by 0.25% to ensure that mamba page size and attention page size are exactly equal.
+    (EngineCore pid=739) INFO 09-04 18:23:53 [torch_utils.py:262] Reducing Torch threads from 48 to 1 for serving. Set OMP_NUM_THREADS in the external environment to override.
+    (Worker pid=993) Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+    (Worker pid=993) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_section', 'mrope_interleaved'}
+    (Worker pid=993) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_section', 'mrope_interleaved'}
+    (Worker pid=993) [transformers] The `use_fast` parameter is deprecated and will be removed in a future version. Use `backend="torchvision"` instead of `use_fast=True`, or `backend="pil"` instead of `use_fast=False`.
+    (Worker pid=993) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_section', 'mrope_interleaved'}
+    (Worker pid=993) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_section', 'mrope_interleaved'}
+    (Worker pid=993) INFO 09-04 18:24:01 [encoder_runner.py:120] Encoder cache will be initialized with a budget of 16384 tokens, and profiled with 1 image items of the maximum feature size.
+    (Worker pid=993) INFO 09-04 18:24:17 [backends.py:1094] Using cache directory: /root/.cache/vllm/torch_compile_cache/6e295b3d26/rank_0_0/backbone for vLLM's torch.compile
+    (Worker pid=993) INFO 09-04 18:24:17 [backends.py:1155] Dynamo bytecode transform time: 7.99 s
+    (Worker pid=993) INFO 09-04 18:24:47 [backends.py:393] Compiling a graph for compile range (1, 8192) takes 30.07 s
+    (Worker pid=993) INFO 09-04 18:24:52 [backends.py:920] collected artifacts: 50 entries, 40 artifacts, 76673770 bytes total
+    (Worker pid=993) INFO 09-04 18:24:53 [decorators.py:708] saved AOT compiled function to /root/.cache/vllm/torch_compile_cache/torch_aot_compile/2f0a6aa8fd51eb88bc0aaf8eefa59d52a76f272e44a7324a7a60a97276509a85/rank_0_0/model
+    (Worker pid=993) INFO 09-04 18:24:53 [monitor.py:53] torch.compile took 43.54 s in total
+    (Worker pid=993) /usr/local/lib/python3.12/dist-packages/triton/language/core.py:2284: UserWarning: tl.make_block_ptr is deprecated. Use TensorDescriptor or tl.make_tensor_descriptor instead.
+    (Worker pid=993)   warn("tl.make_block_ptr is deprecated. Use TensorDescriptor or tl.make_tensor_descriptor instead.")
+    (EngineCore pid=739) INFO 09-04 18:24:54 [shm_broadcast.py:801] No available shared memory broadcast block found in 60 seconds. This typically happens when some processes are hanging or doing some time-consuming work (e.g. compilation, weight/kv cache quantization).
+    (Worker pid=993) INFO 09-04 18:25:28 [monitor.py:81] Initial profiling/warmup run took 35.95 s
+    (Worker pid=993) INFO 09-04 18:25:29 [backends.py:1094] Using cache directory: /root/.cache/vllm/torch_compile_cache/6e295b3d26/rank_0_0/eagle_head for vLLM's torch.compile
+    (Worker pid=993) INFO 09-04 18:25:29 [backends.py:1155] Dynamo bytecode transform time: 0.22 s
+    (Worker pid=993) INFO 09-04 18:25:31 [backends.py:393] Compiling a graph for compile range (1, 8192) takes 2.11 s
+    (Worker pid=993) INFO 09-04 18:25:31 [backends.py:920] collected artifacts: 2 entries, 2 artifacts, 2401277 bytes total
+    (Worker pid=993) INFO 09-04 18:25:31 [decorators.py:708] saved AOT compiled function to /root/.cache/vllm/torch_compile_cache/torch_aot_compile/80aa7e301c4aada46030e23d3d308458ea21a0b76242591c27c32a38a75b9536/rank_0_0/model
+    (Worker pid=993) INFO 09-04 18:25:31 [monitor.py:53] torch.compile took 2.47 s in total
+    (Worker pid=993) INFO 09-04 18:25:31 [monitor.py:81] Initial profiling/warmup run took 0.01 s
+    (Worker pid=993) INFO 09-04 18:25:33 [gpu_worker.py:693] Available KV cache memory: 6.98 GiB
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346] EngineCore failed to start.
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346] Traceback (most recent call last):
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1315, in run_engine_core
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346]     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346]   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346]     return func(*args, **kwargs)
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346]            ^^^^^^^^^^^^^^^^^^^^^
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1073, in __init__
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346]     super().__init__(
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 144, in __init__
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346]     kv_cache_config = self._initialize_kv_caches(vllm_config)
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346]                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346]   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346]     return func(*args, **kwargs)
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346]            ^^^^^^^^^^^^^^^^^^^^^
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 307, in _initialize_kv_caches
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346]     kv_cache_configs = get_kv_cache_configs(
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346]                        ^^^^^^^^^^^^^^^^^^^^^
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/core/kv_cache_utils.py", line 2593, in get_kv_cache_configs
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346]     _check_enough_kv_cache_memory(
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/core/kv_cache_utils.py", line 763, in _check_enough_kv_cache_memory
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346]     raise ValueError(
+    (EngineCore pid=739) ERROR 09-04 18:25:33 [core.py:1346] ValueError: To serve at least one request with the model's max seq len (262144), (7.57 GiB KV cache is needed, which is larger than the available KV cache memory (6.98 GiB). Based on the available memory, the estimated maximum model length is 238400. Try increasing `gpu_memory_utilization` (which also controls CPU memory on the CPU backend) or decreasing `max_model_len` when initializing the engine. See https://docs.vllm.ai/en/latest/configuration/conserving_memory/ for more details.
+    (PleOffloadWorker pid=1269) INFO 09-04 18:25:33 [worker.py:258] Parent exited, shutting down.
+    [W904 18:25:39.944891514 CudaIPCTypes.cpp:16] Producer process has been terminated before all shared CUDA tensors released. See Note [Sharing CUDA tensors]
+    (EngineCore pid=739) Process EngineCore:
+    (EngineCore pid=739) Traceback (most recent call last):
+    (EngineCore pid=739)   File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    (EngineCore pid=739)     self.run()
+    (EngineCore pid=739)   File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    (EngineCore pid=739)     self._target(*self._args, **self._kwargs)
+    (EngineCore pid=739)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1350, in run_engine_core
+    (EngineCore pid=739)     raise e
+    (EngineCore pid=739)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1315, in run_engine_core
+    (EngineCore pid=739)     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+    (EngineCore pid=739)                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    (EngineCore pid=739)   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+    (EngineCore pid=739)     return func(*args, **kwargs)
+    (EngineCore pid=739)            ^^^^^^^^^^^^^^^^^^^^^
+    (EngineCore pid=739)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1073, in __init__
+    (EngineCore pid=739)     super().__init__(
+    (EngineCore pid=739)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 144, in __init__
+    (EngineCore pid=739)     kv_cache_config = self._initialize_kv_caches(vllm_config)
+    (EngineCore pid=739)                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    (EngineCore pid=739)   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+    (EngineCore pid=739)     return func(*args, **kwargs)
+    (EngineCore pid=739)            ^^^^^^^^^^^^^^^^^^^^^
+    (EngineCore pid=739)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 307, in _initialize_kv_caches
+    (EngineCore pid=739)     kv_cache_configs = get_kv_cache_configs(
+    (EngineCore pid=739)                        ^^^^^^^^^^^^^^^^^^^^^
+    (EngineCore pid=739)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/core/kv_cache_utils.py", line 2593, in get_kv_cache_configs
+    (EngineCore pid=739)     _check_enough_kv_cache_memory(
+    (EngineCore pid=739)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/core/kv_cache_utils.py", line 763, in _check_enough_kv_cache_memory
+    (EngineCore pid=739)     raise ValueError(
+    (EngineCore pid=739) ValueError: To serve at least one request with the model's max seq len (262144), (7.57 GiB KV cache is needed, which is larger than the available KV cache memory (6.98 GiB). Based on the available memory, the estimated maximum model length is 238400. Try increasing `gpu_memory_utilization` (which also controls CPU memory on the CPU backend) or decreasing `max_model_len` when initializing the engine. See https://docs.vllm.ai/en/latest/configuration/conserving_memory/ for more details.
+    (EngineCore pid=739) INFO 09-04 18:25:40 [multiproc_executor.py:469] [shutdown] Executor: waiting for worker exit count=0
+    (EngineCore pid=739) INFO 09-04 18:25:40 [multiproc_executor.py:476] [shutdown] Executor: all workers exited gracefully
+    (APIServer pid=1) INFO 09-04 18:25:43 [utils.py:615] [shutdown] Process manager: send sigterm to process EngineCore
+    (APIServer pid=1) Traceback (most recent call last):
+    (APIServer pid=1)   File "/usr/local/bin/vllm", line 10, in <module>
+    (APIServer pid=1)     sys.exit(main())
+    (APIServer pid=1)              ^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/cli/main.py", line 97, in main
+    (APIServer pid=1)     args.dispatch_function(args)
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/cli/serve.py", line 152, in cmd
+    (APIServer pid=1)     uvloop.run(run_server(args))
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/uvloop/__init__.py", line 96, in run
+    (APIServer pid=1)     return __asyncio.run(
+    (APIServer pid=1)            ^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    (APIServer pid=1)     return runner.run(main)
+    (APIServer pid=1)            ^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    (APIServer pid=1)     return self._loop.run_until_complete(task)
+    (APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/uvloop/__init__.py", line 48, in wrapper
+    (APIServer pid=1)     return await main
+    (APIServer pid=1)            ^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py", line 739, in run_server
+    (APIServer pid=1)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py", line 753, in run_server_worker
+    (APIServer pid=1)     async with build_async_engine_client(
+    (APIServer pid=1)   File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+    (APIServer pid=1)     return await anext(self.gen)
+    (APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py", line 127, in build_async_engine_client
+    (APIServer pid=1)     async with build_async_engine_client_from_engine_args(
+    (APIServer pid=1)   File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+    (APIServer pid=1)     return await anext(self.gen)
+    (APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py", line 163, in build_async_engine_client_from_engine_args
+    (APIServer pid=1)     async_llm = AsyncLLM.from_vllm_config(
+    (APIServer pid=1)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/async_llm.py", line 220, in from_vllm_config
+    (APIServer pid=1)     return cls(
+    (APIServer pid=1)            ^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/async_llm.py", line 149, in __init__
+    (APIServer pid=1)     self.engine_core = EngineCoreClient.make_async_mp_client(
+    (APIServer pid=1)                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+    (APIServer pid=1)     return func(*args, **kwargs)
+    (APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core_client.py", line 139, in make_async_mp_client
+    (APIServer pid=1)     return AsyncMPClient(*client_args)
+    (APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+    (APIServer pid=1)     return func(*args, **kwargs)
+    (APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core_client.py", line 990, in __init__
+    (APIServer pid=1)     super().__init__(
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core_client.py", line 609, in __init__
+    (APIServer pid=1)     with launch_core_engines(
+    (APIServer pid=1)   File "/usr/lib/python3.12/contextlib.py", line 144, in __exit__
+    (APIServer pid=1)     next(self.gen)
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/utils.py", line 1206, in launch_core_engines
+    (APIServer pid=1)     wait_for_engine_startup(
+    (APIServer pid=1)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/utils.py", line 1286, in wait_for_engine_startup
+    (APIServer pid=1)     raise RuntimeError(
+    (APIServer pid=1) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+    /usr/lib/python3.12/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 1 leaked shared_memory objects to clean up at shutdown
+      warnings.warn('resource_tracker: There appear to be %d '
+flash-next-vllm
+!!! vllm_mtp-on SCARTATO
+
+##### 04/09/2026 20:25:57 — ===== vllm_mtp-off =====
+9deb65237533228df1b4a5f0e2c56f9c9b5f8864a8fbb9cde6b29a2967a721a7
+flash-next-vllm avviato (MTP=off) su :8010 — segui con: docker logs -f flash-next-vllm
+READY dopo 281s — gen di prova: "content":"PONG"
+VRAM dopo il caricamento: 89663 MiB, 45
+RAM: used 10Gi avail 50Gi
+=== 20:30:39 vllm_mtp-off in=1024 c=1 run=1 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.33      
+  Output token throughput (tok/s):         62.05     
+  Median TTFT (ms):                        535.26    
+  Median TPOT (ms):                        13.50     
+  Median ITL (ms):                         13.59     
+=== 20:31:34 vllm_mtp-off in=1024 c=1 run=2 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.46      
+  Output token throughput (tok/s):         85.45     
+  Median TTFT (ms):                        57.74     
+  Median TPOT (ms):                        11.50     
+  Median ITL (ms):                         11.79     
+=== 20:32:19 vllm_mtp-off in=1024 c=1 run=3 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.49      
+  Output token throughput (tok/s):         90.91     
+  Median TTFT (ms):                        53.05     
+  Median TPOT (ms):                        10.79     
+  Median ITL (ms):                         10.50     
+=== 20:33:03 vllm_mtp-off in=1024 c=4 run=1 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.61      
+  Output token throughput (tok/s):         179.28    
+  Median TTFT (ms):                        265.78    
+  Median TPOT (ms):                        19.20     
+  Median ITL (ms):                         17.47     
+=== 20:34:10 vllm_mtp-off in=1024 c=4 run=2 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.81      
+  Output token throughput (tok/s):         237.70    
+  Median TTFT (ms):                        99.28     
+  Median TPOT (ms):                        15.12     
+  Median ITL (ms):                         14.58     
+=== 20:35:09 vllm_mtp-off in=1024 c=4 run=3 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.83      
+  Output token throughput (tok/s):         244.59    
+  Median TTFT (ms):                        97.96     
+  Median TPOT (ms):                        14.61     
+  Median ITL (ms):                         14.12     
+=== 20:36:07 vllm_mtp-off in=8192 c=1 run=1 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.48      
+  Output token throughput (tok/s):         88.63     
+  Median TTFT (ms):                        354.91    
+  Median TPOT (ms):                        9.63      
+  Median ITL (ms):                         9.49      
+=== 20:36:54 vllm_mtp-off in=8192 c=1 run=2 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.49      
+  Output token throughput (tok/s):         90.75     
+  Median TTFT (ms):                        379.42    
+  Median TPOT (ms):                        9.41      
+  Median ITL (ms):                         9.35      
+=== 20:37:39 vllm_mtp-off in=8192 c=1 run=3 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.55      
+  Output token throughput (tok/s):         101.76    
+  Median TTFT (ms):                        72.26     
+  Median TPOT (ms):                        9.50      
+  Median ITL (ms):                         9.36      
+=== 20:38:23 vllm_mtp-off in=8192 c=4 run=1 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.74      
+  Output token throughput (tok/s):         218.71    
+  Median TTFT (ms):                        251.01    
+  Median TPOT (ms):                        15.58     
+  Median ITL (ms):                         13.67     
+=== 20:39:22 vllm_mtp-off in=8192 c=4 run=2 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.75      
+  Output token throughput (tok/s):         219.21    
+  Median TTFT (ms):                        311.40    
+  Median TPOT (ms):                        15.48     
+  Median ITL (ms):                         13.59     
+=== 20:40:21 vllm_mtp-off in=8192 c=4 run=3 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.86      
+  Output token throughput (tok/s):         253.12    
+  Median TTFT (ms):                        100.95    
+  Median TPOT (ms):                        13.98     
+  Median ITL (ms):                         13.46     
+=== 20:41:18 vllm_mtp-off in=32768 c=1 run=1 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.43      
+  Output token throughput (tok/s):         79.76     
+  Median TTFT (ms):                        344.82    
+  Median TPOT (ms):                        9.36      
+  Median ITL (ms):                         9.26      
+=== 20:42:07 vllm_mtp-off in=32768 c=1 run=2 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.48      
+  Output token throughput (tok/s):         90.08     
+  Median TTFT (ms):                        342.52    
+  Median TPOT (ms):                        9.34      
+  Median ITL (ms):                         9.25      
+=== 20:42:54 vllm_mtp-off in=32768 c=1 run=3 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.54      
+  Output token throughput (tok/s):         101.07    
+  Median TTFT (ms):                        106.49    
+  Median TPOT (ms):                        9.43      
+  Median ITL (ms):                         9.30      
+=== 20:43:39 vllm_mtp-off in=32768 c=4 run=1 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.58      
+  Output token throughput (tok/s):         170.28    
+  Median TTFT (ms):                        624.76    
+  Median TPOT (ms):                        18.53     
+  Median ITL (ms):                         13.44     
+=== 20:44:47 vllm_mtp-off in=32768 c=4 run=2 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.79      
+  Output token throughput (tok/s):         232.12    
+  Median TTFT (ms):                        129.28    
+  Median TPOT (ms):                        14.07     
+  Median ITL (ms):                         13.33     
+=== 20:45:47 vllm_mtp-off in=32768 c=4 run=3 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.86      
+  Output token throughput (tok/s):         253.63    
+  Median TTFT (ms):                        116.45    
+  Median TPOT (ms):                        13.89     
+  Median ITL (ms):                         13.36     
+=== matrice vllm_mtp-off completata ===
+=== 20:46:44 PREFILL vllm_mtp-off in=8192 run=1 ===
+  Mean TTFT (ms):                          205.99    
+  Median TTFT (ms):                        67.86     
+=== 20:47:14 PREFILL vllm_mtp-off in=8192 run=2 ===
+  Mean TTFT (ms):                          64.72     
+  Median TTFT (ms):                        66.93     
+=== 20:47:41 PREFILL vllm_mtp-off in=8192 run=3 ===
+  Mean TTFT (ms):                          66.89     
+  Median TTFT (ms):                        68.87     
+=== 20:48:09 PREFILL vllm_mtp-off in=32768 run=1 ===
+  Mean TTFT (ms):                          85.08     
+  Median TTFT (ms):                        90.01     
+=== 20:48:36 PREFILL vllm_mtp-off in=32768 run=2 ===
+  Mean TTFT (ms):                          85.17     
+  Median TTFT (ms):                        91.04     
+=== 20:49:04 PREFILL vllm_mtp-off in=32768 run=3 ===
+  Mean TTFT (ms):                          85.65     
+  Median TTFT (ms):                        92.14     
+=== 20:49:32 PREFILL vllm_mtp-off in=131072 run=1 ===
+  Mean TTFT (ms):                          133.43    
+  Median TTFT (ms):                        90.38     
+=== 20:50:07 PREFILL vllm_mtp-off in=131072 run=2 ===
+  Mean TTFT (ms):                          141.33    
+  Median TTFT (ms):                        93.46     
+=== 20:50:34 PREFILL vllm_mtp-off in=131072 run=3 ===
+  Mean TTFT (ms):                          141.87    
+  Median TTFT (ms):                        93.94     
+flash-next-vllm
+===== vllm_mtp-off completato =====
+GPU a 43 C
+
+##### 04/09/2026 20:51:02 — ===== tabby_mtp-on =====
+dd4d02681bfd1ea347e1182c334dc54ce56e74fc6fa7c30b57d5681b408d9293
+flash-next-tabby avviato (MTP=on, draft_mode=mtp) su :8011 — segui con: docker logs -f flash-next-tabby
+READY dopo 88s — gen di prova: "content":"PONG"
+VRAM dopo il caricamento: 77076 MiB, 50
+RAM: used 43Gi avail 16Gi
+=== 20:52:30 tabby_mtp-on in=1024 c=1 run=1 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.61      
+  Output token throughput (tok/s):         113.78    
+  Median TTFT (ms):                        393.80    
+  Median TPOT (ms):                        5.86      
+  Median ITL (ms):                         20.23     
+=== 20:53:22 tabby_mtp-on in=1024 c=1 run=2 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.85      
+  Output token throughput (tok/s):         157.40    
+  Median TTFT (ms):                        153.20    
+  Median TPOT (ms):                        5.81      
+  Median ITL (ms):                         20.28     
+=== 20:54:03 tabby_mtp-on in=1024 c=1 run=3 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.87      
+  Output token throughput (tok/s):         161.43    
+  Median TTFT (ms):                        149.28    
+  Median TPOT (ms):                        5.44      
+  Median ITL (ms):                         20.37     
+=== 20:54:42 tabby_mtp-on in=1024 c=4 run=1 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.73      
+  Output token throughput (tok/s):         215.71    
+  Median TTFT (ms):                        615.20    
+  Median TPOT (ms):                        15.69     
+  Median ITL (ms):                         48.81     
+=== 20:55:42 tabby_mtp-on in=1024 c=4 run=2 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.78      
+  Output token throughput (tok/s):         228.53    
+  Median TTFT (ms):                        449.55    
+  Median TPOT (ms):                        14.93     
+  Median ITL (ms):                         48.75     
+=== 20:56:39 tabby_mtp-on in=1024 c=4 run=3 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.80      
+  Output token throughput (tok/s):         235.02    
+  Median TTFT (ms):                        440.26    
+  Median TPOT (ms):                        14.24     
+  Median ITL (ms):                         48.21     
+=== 20:57:36 tabby_mtp-on in=8192 c=1 run=1 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.47      
+  Output token throughput (tok/s):         87.01     
+  Median TTFT (ms):                        1142.13   
+  Median TPOT (ms):                        5.73      
+  Median ITL (ms):                         21.44     
+=== 20:58:25 tabby_mtp-on in=8192 c=1 run=2 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.81      
+  Output token throughput (tok/s):         150.58    
+  Median TTFT (ms):                        169.70    
+  Median TPOT (ms):                        5.59      
+  Median ITL (ms):                         21.31     
+=== 20:59:04 tabby_mtp-on in=8192 c=1 run=3 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.80      
+  Output token throughput (tok/s):         148.21    
+  Median TTFT (ms):                        170.59    
+  Median TPOT (ms):                        6.02      
+  Median ITL (ms):                         21.28     
+=== 20:59:44 tabby_mtp-on in=8192 c=4 run=1 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.52      
+  Output token throughput (tok/s):         152.92    
+  Median TTFT (ms):                        1091.70   
+  Median TPOT (ms):                        21.51     
+  Median ITL (ms):                         49.98     
+=== 21:00:54 tabby_mtp-on in=8192 c=4 run=2 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.76      
+  Output token throughput (tok/s):         222.11    
+  Median TTFT (ms):                        514.10    
+  Median TPOT (ms):                        15.74     
+  Median ITL (ms):                         50.76     
+=== 21:01:54 tabby_mtp-on in=8192 c=4 run=3 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.79      
+  Output token throughput (tok/s):         230.65    
+  Median TTFT (ms):                        472.63    
+  Median TPOT (ms):                        15.43     
+  Median ITL (ms):                         49.93     
+=== 21:02:51 tabby_mtp-on in=32768 c=1 run=1 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.32      
+  Output token throughput (tok/s):         59.36     
+  Median TTFT (ms):                        1545.82   
+  Median TPOT (ms):                        5.61      
+  Median ITL (ms):                         21.35     
+=== 21:03:51 tabby_mtp-on in=32768 c=1 run=2 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.82      
+  Output token throughput (tok/s):         151.97    
+  Median TTFT (ms):                        198.79    
+  Median TPOT (ms):                        5.44      
+  Median ITL (ms):                         21.35     
+=== 21:04:31 tabby_mtp-on in=32768 c=1 run=3 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.76      
+  Output token throughput (tok/s):         142.01    
+  Median TTFT (ms):                        208.40    
+  Median TPOT (ms):                        5.96      
+  Median ITL (ms):                         21.26     
+=== 21:05:12 tabby_mtp-on in=32768 c=4 run=1 ===
+  Successful requests:                     14        
+  Request throughput (req/s):              0.22      
+  Output token throughput (tok/s):         58.11     
+  Median TTFT (ms):                        2960.61   
+  Median TPOT (ms):                        26.72     
+  Median ITL (ms):                         50.27     
+=== 21:06:49 tabby_mtp-on in=32768 c=4 run=2 ===
+  Successful requests:                     7         
+  Request throughput (req/s):              0.10      
+  Output token throughput (tok/s):         21.02     
+  Median TTFT (ms):                        4615.55   
+  Median TPOT (ms):                        18.41     
+  Median ITL (ms):                         33.99     
+=== 21:08:43 tabby_mtp-on in=32768 c=4 run=3 ===
+  Successful requests:                     8         
+  Request throughput (req/s):              0.11      
+  Output token throughput (tok/s):         23.04     
+  Median TTFT (ms):                        5204.85   
+  Median TPOT (ms):                        24.29     
+  Median ITL (ms):                         42.22     
+=== matrice tabby_mtp-on completata ===
+=== 21:10:39 PREFILL tabby_mtp-on in=8192 run=1 ===
+  Mean TTFT (ms):                          640.30    
+  Median TTFT (ms):                        320.81    
+=== 21:11:08 PREFILL tabby_mtp-on in=8192 run=2 ===
+  Mean TTFT (ms):                          139.31    
+  Median TTFT (ms):                        140.68    
+=== 21:11:36 PREFILL tabby_mtp-on in=8192 run=3 ===
+  Mean TTFT (ms):                          139.83    
+  Median TTFT (ms):                        141.54    
+=== 21:12:02 PREFILL tabby_mtp-on in=32768 run=1 ===
+  Mean TTFT (ms):                          648.51    
+  Median TTFT (ms):                        217.31    
+=== 21:12:35 PREFILL tabby_mtp-on in=32768 run=2 ===
+  Mean TTFT (ms):                          163.04    
+  Median TTFT (ms):                        164.59    
+=== 21:13:02 PREFILL tabby_mtp-on in=32768 run=3 ===
+  Mean TTFT (ms):                          163.63    
+  Median TTFT (ms):                        164.18    
+=== 21:13:30 PREFILL tabby_mtp-on in=131072 run=1 ===
+=== 21:14:14 PREFILL tabby_mtp-on in=131072 run=2 ===
+  Mean TTFT (ms):                          254.20    
+  Median TTFT (ms):                        160.65    
+=== 21:14:53 PREFILL tabby_mtp-on in=131072 run=3 ===
+  Mean TTFT (ms):                          255.95    
+  Median TTFT (ms):                        165.37    
+flash-next-tabby
+===== tabby_mtp-on completato =====
+GPU a 45 C
+
+##### 04/09/2026 21:15:23 — ===== tabby_mtp-off =====
+05881de053ab73dfccea793a75412c6f7a72310cc1f429010339c11a5fe23474
+flash-next-tabby avviato (MTP=off, draft_mode=disabled) su :8011 — segui con: docker logs -f flash-next-tabby
+READY dopo 64s — gen di prova: "content":"PONG"
+VRAM dopo il caricamento: 73116 MiB, 50
+RAM: used 43Gi avail 17Gi
+=== 21:16:29 tabby_mtp-off in=1024 c=1 run=1 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.42      
+  Output token throughput (tok/s):         78.46     
+  Median TTFT (ms):                        360.62    
+  Median TPOT (ms):                        10.03     
+  Median ITL (ms):                         10.20     
+=== 21:17:23 tabby_mtp-off in=1024 c=1 run=2 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.51      
+  Output token throughput (tok/s):         94.38     
+  Median TTFT (ms):                        115.80    
+  Median TPOT (ms):                        10.01     
+  Median ITL (ms):                         10.19     
+=== 21:18:08 tabby_mtp-off in=1024 c=1 run=3 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.51      
+  Output token throughput (tok/s):         94.30     
+  Median TTFT (ms):                        116.85    
+  Median TPOT (ms):                        10.03     
+  Median ITL (ms):                         10.21     
+=== 21:18:52 tabby_mtp-off in=1024 c=4 run=1 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.56      
+  Output token throughput (tok/s):         164.06    
+  Median TTFT (ms):                        352.12    
+  Median TPOT (ms):                        16.00     
+  Median ITL (ms):                         14.90     
+=== 21:20:01 tabby_mtp-off in=1024 c=4 run=2 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.79      
+  Output token throughput (tok/s):         231.56    
+  Median TTFT (ms):                        206.46    
+  Median TPOT (ms):                        15.38     
+  Median ITL (ms):                         14.87     
+=== 21:20:58 tabby_mtp-off in=1024 c=4 run=3 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.78      
+  Output token throughput (tok/s):         230.21    
+  Median TTFT (ms):                        208.79    
+  Median TPOT (ms):                        15.49     
+  Median ITL (ms):                         14.89     
+=== 21:21:56 tabby_mtp-off in=8192 c=1 run=1 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.34      
+  Output token throughput (tok/s):         62.63     
+  Median TTFT (ms):                        1085.08   
+  Median TPOT (ms):                        10.78     
+  Median ITL (ms):                         10.99     
+=== 21:22:49 tabby_mtp-off in=8192 c=1 run=2 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.47      
+  Output token throughput (tok/s):         87.66     
+  Median TTFT (ms):                        135.39    
+  Median TPOT (ms):                        10.78     
+  Median ITL (ms):                         10.99     
+=== 21:23:34 tabby_mtp-off in=8192 c=1 run=3 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.47      
+  Output token throughput (tok/s):         87.48     
+  Median TTFT (ms):                        138.39    
+  Median TPOT (ms):                        10.78     
+  Median ITL (ms):                         11.00     
+=== 21:24:19 tabby_mtp-off in=8192 c=4 run=1 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.53      
+  Output token throughput (tok/s):         156.27    
+  Median TTFT (ms):                        817.76    
+  Median TPOT (ms):                        19.57     
+  Median ITL (ms):                         15.25     
+=== 21:25:29 tabby_mtp-off in=8192 c=4 run=2 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.74      
+  Output token throughput (tok/s):         216.00    
+  Median TTFT (ms):                        230.00    
+  Median TPOT (ms):                        16.05     
+  Median ITL (ms):                         15.28     
+=== 21:26:28 tabby_mtp-off in=8192 c=4 run=3 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.74      
+  Output token throughput (tok/s):         218.41    
+  Median TTFT (ms):                        233.35    
+  Median TPOT (ms):                        16.11     
+  Median ITL (ms):                         15.27     
+=== 21:27:27 tabby_mtp-off in=32768 c=1 run=1 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.25      
+  Output token throughput (tok/s):         46.93     
+  Median TTFT (ms):                        1452.42   
+  Median TPOT (ms):                        10.79     
+  Median ITL (ms):                         11.00     
+=== 21:28:32 tabby_mtp-off in=32768 c=1 run=2 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.46      
+  Output token throughput (tok/s):         86.32     
+  Median TTFT (ms):                        166.18    
+  Median TPOT (ms):                        10.78     
+  Median ITL (ms):                         10.99     
+=== 21:29:17 tabby_mtp-off in=32768 c=1 run=3 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.46      
+  Output token throughput (tok/s):         86.01     
+  Median TTFT (ms):                        179.07    
+  Median TPOT (ms):                        10.78     
+  Median ITL (ms):                         11.00     
+=== 21:30:03 tabby_mtp-off in=32768 c=4 run=1 ===
+  Successful requests:                     12        
+  Request throughput (req/s):              0.19      
+  Output token throughput (tok/s):         53.07     
+  Median TTFT (ms):                        1792.70   
+  Median TPOT (ms):                        21.38     
+  Median ITL (ms):                         15.27     
+=== 21:31:38 tabby_mtp-off in=32768 c=4 run=2 ===
+  Successful requests:                     8         
+  Request throughput (req/s):              0.11      
+  Output token throughput (tok/s):         25.67     
+  Median TTFT (ms):                        4321.77   
+  Median TPOT (ms):                        22.15     
+  Median ITL (ms):                         15.23     
+=== 21:33:30 tabby_mtp-off in=32768 c=4 run=3 ===
+  Successful requests:                     7         
+  Request throughput (req/s):              0.10      
+  Output token throughput (tok/s):         20.84     
+  Median TTFT (ms):                        4203.37   
+  Median TPOT (ms):                        21.70     
+  Median ITL (ms):                         15.33     
+=== matrice tabby_mtp-off completata ===
+=== 21:35:22 PREFILL tabby_mtp-off in=8192 run=1 ===
+  Mean TTFT (ms):                          615.89    
+  Median TTFT (ms):                        307.78    
+=== 21:35:52 PREFILL tabby_mtp-off in=8192 run=2 ===
+  Mean TTFT (ms):                          126.17    
+  Median TTFT (ms):                        127.07    
+=== 21:36:19 PREFILL tabby_mtp-off in=8192 run=3 ===
+  Mean TTFT (ms):                          125.94    
+  Median TTFT (ms):                        126.35    
+=== 21:36:46 PREFILL tabby_mtp-off in=32768 run=1 ===
+  Mean TTFT (ms):                          616.60    
+  Median TTFT (ms):                        190.29    
+=== 21:37:18 PREFILL tabby_mtp-off in=32768 run=2 ===
+  Mean TTFT (ms):                          147.71    
+  Median TTFT (ms):                        147.67    
+=== 21:37:45 PREFILL tabby_mtp-off in=32768 run=3 ===
+  Mean TTFT (ms):                          147.24    
+  Median TTFT (ms):                        147.43    
+=== 21:38:12 PREFILL tabby_mtp-off in=131072 run=1 ===
+=== 21:38:56 PREFILL tabby_mtp-off in=131072 run=2 ===
+  Mean TTFT (ms):                          232.65    
+  Median TTFT (ms):                        149.86    
+=== 21:39:35 PREFILL tabby_mtp-off in=131072 run=3 ===
+  Mean TTFT (ms):                          250.70    
+  Median TTFT (ms):                        158.88    
+flash-next-tabby
+===== tabby_mtp-off completato =====
+GPU a 45 C
+
+##### 04/09/2026 21:40:05 — TOOL-EVAL-BENCH (seed 42, 8 trial, hard mode) — qualita' confrontabile con MiaAI
+
+##### 04/09/2026 21:40:05 — tool-eval-bench su vllm (MTP on)
+0a61d27d9d29c6950e46a59dd787536e498a623d41307fd54d06f0f3d5bc6882
+flash-next-vllm avviato (MTP=on) su :8010 — segui con: docker logs -f flash-next-vllm
+READY dopo 341s — gen di prova: "content":"PONG"
+--- thinking ON ---
+│      TC-52: 1.8 ± 0.5  (2,2,2,2,2,1,2,1)                                     │
+│      TC-53: 1.5 ± 0.5  (2,2,2,2,1,1,1,1)                                     │
+│      TC-55: 1.1 ± 0.3  (1,1,2,1,1,1,1,1)                                     │
+│      TC-58: 1.5 ± 0.5  (2,2,1,1,1,2,2,1)                                     │
+│      TC-60: 1.5 ± 0.5  (1,2,2,2,2,1,1,1)                                     │
+│      TC-61: 0.1 ± 0.3  (0,0,0,0,0,1,0,0)                                     │
+│      TC-62: 1.1 ± 0.3  (1,1,1,1,1,1,1,2)                                     │
+│      TC-65: 1.6 ± 0.5  (2,2,2,2,1,1,2,1)                                     │
+│      TC-68: 1.0 ± 1.1  (2,0,0,2,0,2,0,2)                                     │
+│      TC-69: 1.9 ± 0.3  (2,2,2,2,2,2,2,1)                                     │
+│      TC-74: 0.5 ± 0.9  (0,0,0,0,0,2,2,0)                                     │
+│      TC-75: 1.9 ± 0.3  (1,2,2,2,2,2,2,2)                                     │
+│      TC-80: 0.8 ± 1.0  (2,2,0,0,0,2,0,0)                                     │
+│      TC-81: 1.4 ± 0.7  (2,1,1,2,2,1,0,2)                                     │
+│      TC-82: 1.2 ± 0.5  (1,1,2,1,1,1,2,1)                                     │
+│      TC-84: 1.8 ± 0.7  (2,2,2,0,2,2,2,2)                                     │
+│      TC-85: 1.1 ± 0.6  (1,1,1,2,2,0,1,1)                                     │
+│      TC-88: 0.5 ± 0.9  (0,0,0,2,2,0,0,0)                                     │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  📊 Summary report: 
+/opt/flash-next/bench/runs/runs/2026/09/2026-09-04T19-45-48.097880Z_adf6acb6_sum
+mary.md
+
+--- thinking OFF ---
+│      TC-48: 1.5 ± 0.9  (2,2,2,0,2,0,2,2)                                     │
+│      TC-49: 1.6 ± 0.5  (1,2,1,2,2,2,2,1)                                     │
+│      TC-50: 1.2 ± 0.5  (1,2,1,1,2,1,1,1)                                     │
+│      TC-53: 1.5 ± 0.5  (1,2,2,2,1,1,1,2)                                     │
+│      TC-58: 1.8 ± 0.7  (2,2,0,2,2,2,2,2)                                     │
+│      TC-60: 1.9 ± 0.3  (1,2,2,2,2,2,2,2)                                     │
+│      TC-61: 0.1 ± 0.3  (0,0,0,0,0,1,0,0)                                     │
+│      TC-62: 1.1 ± 0.3  (1,1,1,1,2,1,1,1)                                     │
+│      TC-65: 1.9 ± 0.3  (2,2,2,2,2,2,1,2)                                     │
+│      TC-68: 1.2 ± 1.0  (0,2,2,2,0,2,2,0)                                     │
+│      TC-71: 1.8 ± 0.7  (2,2,2,2,2,2,2,0)                                     │
+│      TC-74: 1.8 ± 0.7  (2,0,2,2,2,2,2,2)                                     │
+│      TC-75: 0.6 ± 0.9  (0,2,0,1,0,0,0,2)                                     │
+│      TC-76: 1.9 ± 0.3  (1,2,2,2,2,2,2,2)                                     │
+│      TC-80: 1.8 ± 0.7  (0,2,2,2,2,2,2,2)                                     │
+│      TC-81: 1.9 ± 0.3  (2,2,2,2,2,2,1,2)                                     │
+│      TC-84: 1.8 ± 0.7  (2,2,2,2,2,2,0,2)                                     │
+│      TC-85: 1.6 ± 0.7  (2,2,0,2,2,2,2,1)                                     │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  📊 Summary report: 
+/opt/flash-next/bench/runs/runs/2026/09/2026-09-04T20-46-11.236956Z_67e03869_sum
+mary.md
+
+flash-next-vllm
+GPU a 50 C
+
+##### 04/09/2026 23:14:04 — tool-eval-bench su tabby (MTP on)
+9dc829e04f0379266b8649d6641e2c2bef83ba03f3c1eefa6abd0d0675dd26eb
+flash-next-tabby avviato (MTP=on, draft_mode=mtp) su :8011 — segui con: docker logs -f flash-next-tabby
+READY dopo 88s — gen di prova: "content":"PONG"
+--- thinking ON ---
+│      TC-43: 0.8 ± 0.5  (1,1,0,1,1,1,0,1)                                     │
+│      TC-50: 1.4 ± 0.5  (1,2,2,1,1,1,2,1)                                     │
+│      TC-52: 1.9 ± 0.3  (2,2,2,2,2,2,1,2)                                     │
+│      TC-58: 1.0 ± 0.8  (0,1,0,1,1,1,2,2)                                     │
+│      TC-60: 0.9 ± 0.3  (1,1,1,1,1,1,1,0)                                     │
+│      TC-61: 0.4 ± 0.5  (0,1,0,0,0,0,1,1)                                     │
+│      TC-67: 1.8 ± 0.5  (2,1,2,2,2,2,2,1)                                     │
+│      TC-68: 0.5 ± 0.9  (0,0,2,0,0,0,2,0)                                     │
+│      TC-69: 1.8 ± 0.7  (2,2,2,2,2,0,2,2)                                     │
+│      TC-74: 0.5 ± 0.9  (0,0,0,0,2,2,0,0)                                     │
+│      TC-75: 1.5 ± 0.5  (1,1,1,2,2,1,2,2)                                     │
+│      TC-76: 1.8 ± 0.7  (0,2,2,2,2,2,2,2)                                     │
+│      TC-80: 1.2 ± 1.0  (0,2,2,2,0,2,2,0)                                     │
+│      TC-81: 1.5 ± 0.8  (1,1,2,0,2,2,2,2)                                     │
+│      TC-82: 1.2 ± 0.5  (2,1,1,1,1,2,1,1)                                     │
+│      TC-84: 1.8 ± 0.7  (2,2,0,2,2,2,2,2)                                     │
+│      TC-85: 1.8 ± 0.7  (2,2,0,2,2,2,2,2)                                     │
+│      TC-88: 0.8 ± 1.0  (2,2,2,0,0,0,0,0)                                     │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  📊 Summary report: 
+/opt/flash-next/bench/runs/runs/2026/09/2026-09-04T21-15-34.780347Z_a3e80021_sum
+mary.md
+
+--- thinking OFF ---
+│      TC-40: 1.9 ± 0.3  (2,2,2,2,2,2,2,1)                                     │
+│      TC-41: 1.8 ± 0.7  (2,2,0,2,2,2,2,2)                                     │
+│      TC-43: 1.6 ± 0.5  (1,2,1,1,2,2,2,2)                                     │
+│      TC-47: 1.4 ± 0.9  (0,2,2,2,2,1,2,0)                                     │
+│      TC-48: 1.5 ± 0.9  (2,2,2,2,2,0,0,2)                                     │
+│      TC-49: 1.9 ± 0.3  (2,2,2,2,2,1,2,2)                                     │
+│      TC-51: 1.1 ± 0.3  (1,1,1,1,2,1,1,1)                                     │
+│      TC-53: 1.6 ± 0.5  (1,1,2,2,2,2,2,1)                                     │
+│      TC-58: 1.8 ± 0.7  (2,2,2,0,2,2,2,2)                                     │
+│      TC-60: 1.9 ± 0.3  (1,2,2,2,2,2,2,2)                                     │
+│      TC-61: 0.6 ± 0.5  (1,0,0,1,0,1,1,1)                                     │
+│      TC-62: 1.1 ± 0.3  (1,1,1,1,2,1,1,1)                                     │
+│      TC-68: 0.4 ± 0.7  (0,1,0,2,0,0,0,0)                                     │
+│      TC-69: 1.6 ± 0.5  (1,2,1,2,2,2,1,2)                                     │
+│      TC-74: 1.1 ± 1.0  (0,2,2,2,0,0,2,1)                                     │
+│      TC-76: 1.9 ± 0.3  (2,2,2,1,2,2,2,2)                                     │
+│      TC-80: 1.5 ± 0.9  (2,0,2,2,2,0,2,2)                                     │
+│      TC-87: 1.5 ± 0.9  (0,2,2,2,2,2,2,0)                                     │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  📊 Summary report: 
+/opt/flash-next/bench/runs/runs/2026/09/2026-09-04T22-25-50.893634Z_8bfe9610_sum
+mary.md
+
+flash-next-tabby
+GPU a 50 C
+
+##### 05/09/2026 01:00:08 — RIEPILOGO risultati
+  json prodotti: 79
+  tabby_mtp-off_in1024_out512_c1_r1                   78.5 tok/s  TTFT    361 ms
+  tabby_mtp-off_in1024_out512_c1_r2                   94.4 tok/s  TTFT    116 ms
+  tabby_mtp-off_in1024_out512_c1_r3                   94.3 tok/s  TTFT    117 ms
+  tabby_mtp-off_in32768_out512_c1_r1                  46.9 tok/s  TTFT   1452 ms
+  tabby_mtp-off_in32768_out512_c1_r2                  86.3 tok/s  TTFT    166 ms
+  tabby_mtp-off_in32768_out512_c1_r3                  86.0 tok/s  TTFT    179 ms
+  tabby_mtp-off_in8192_out512_c1_r1                   62.6 tok/s  TTFT   1085 ms
+  tabby_mtp-off_in8192_out512_c1_r2                   87.7 tok/s  TTFT    135 ms
+  tabby_mtp-off_in8192_out512_c1_r3                   87.5 tok/s  TTFT    138 ms
+  tabby_mtp-on_in1024_out512_c1_r1                   113.8 tok/s  TTFT    394 ms
+  tabby_mtp-on_in1024_out512_c1_r2                   157.4 tok/s  TTFT    153 ms
+  tabby_mtp-on_in1024_out512_c1_r3                   161.4 tok/s  TTFT    149 ms
+  tabby_mtp-on_in32768_out512_c1_r1                   59.4 tok/s  TTFT   1546 ms
+  tabby_mtp-on_in32768_out512_c1_r2                  152.0 tok/s  TTFT    199 ms
+  tabby_mtp-on_in32768_out512_c1_r3                  142.0 tok/s  TTFT    208 ms
+  tabby_mtp-on_in8192_out512_c1_r1                    87.0 tok/s  TTFT   1142 ms
+  tabby_mtp-on_in8192_out512_c1_r2                   150.6 tok/s  TTFT    170 ms
+  tabby_mtp-on_in8192_out512_c1_r3                   148.2 tok/s  TTFT    171 ms
+  vllm_mtp-off_in1024_out512_c1_r1                    62.0 tok/s  TTFT    535 ms
+  vllm_mtp-off_in1024_out512_c1_r2                    85.5 tok/s  TTFT     58 ms
+  vllm_mtp-off_in1024_out512_c1_r3                    90.9 tok/s  TTFT     53 ms
+  vllm_mtp-off_in32768_out512_c1_r1                   79.8 tok/s  TTFT    345 ms
+  vllm_mtp-off_in32768_out512_c1_r2                   90.1 tok/s  TTFT    343 ms
+  vllm_mtp-off_in32768_out512_c1_r3                  101.1 tok/s  TTFT    106 ms
+  vllm_mtp-off_in8192_out512_c1_r1                    88.6 tok/s  TTFT    355 ms
+  vllm_mtp-off_in8192_out512_c1_r2                    90.8 tok/s  TTFT    379 ms
+  vllm_mtp-off_in8192_out512_c1_r3                   101.8 tok/s  TTFT     72 ms
+
+##### 05/09/2026 01:00:08 — FINE run-all
+
+##### 05/09/2026 01:00:08 — RIAVVIO 27B (script canonico, non docker start)
+sglang-workhorse
+e5246116f4a01d01760b3b1727c7b62d69c219f92555fd2373f2f6f1413ab4a0
+27B READY dopo ~120s

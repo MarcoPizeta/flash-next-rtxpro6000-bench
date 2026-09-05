@@ -1,0 +1,5 @@
+# 04/09/2026 — tabbyapi:cu13 non ha Python.h: Triton non compila cuda_utils al primo kernel GDN
+# di Flash-Next ("fatal error: Python.h: No such file or directory"). Solo header, nulla di runtime.
+FROM ghcr.io/theroyallab/tabbyapi:cu13
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends python3-dev && rm -rf /var/lib/apt/lists/*
