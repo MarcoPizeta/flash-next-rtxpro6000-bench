@@ -1,0 +1,109 @@
+##### 06/09/2026 15:55:21 — 1) download overlay revisionato in /opt/flash-next/ple-quant-v2
+overlay sha 7490249483a1e904a943c9f593eb2deab8c6874e lastModified 2026-09-06T13:32:26.000Z
+ple_layer_quant.py       vecchio b60f8a56  nuovo 21b57f6b  DIVERSO
+worker_image_quant.py    vecchio 706ad5eb  nuovo 170c3192  DIVERSO
+connector_mrv2.py        vecchio 3b43fe9e  nuovo 3b43fe9e  uguale
+285:        # materialised, so build it on the meta device: otherwise the offload worker
+291:            torch.device("meta") if os.environ.get("VLLM_PLE_QUANT_DIR") else nullcontext()
+591:        # The offload process builds the surrounding model on meta while
+776:        metadata: PleShortConvAttentionMetadata,
+786:        non_spec_query_start_loc = metadata.non_spec_query_start_loc
+##### 06/09/2026 15:55:22 — 2) overcommit: attuale 1 → 0 per la prova; CommitLimit CommitLimit:    40315824 kB
+vm.overcommit_memory = 0
+##### 06/09/2026 15:55:22 — 3) STOP 27B
+##### 06/09/2026 15:55:26 — 27B fermo
+##### 06/09/2026 15:55:26 — mount v2 nel launcher: 3 (attesi 3)
+14:  -v /opt/flash-next/ple-quant-v2/worker_image_quant.py:$SP/vllm/v1/ple_offload/worker.py:ro \
+15:  -v /opt/flash-next/ple-quant-v2/ple_layer_quant.py:$SP/vllm/models/qwen3_8_flash_next/nvidia/ple_layer.py:ro \
+16:  -v /opt/flash-next/ple-quant-v2/connector_mrv2.py:$SP/vllm/v1/ple_offload/connector.py:ro \
+##### 06/09/2026 15:55:26 — 4) AVVIO vLLM MTP=on, flag nostri (0.92 / 64 / 135168), overlay v2, overcommit=0
+64fece9e7ef7c63001c7ddeaf6d793f90aad013f954905b2eb8e49c81ef47e00
+flash-next-vllm avviato (MTP=on) su :8010 — segui con: docker logs -f flash-next-vllm
+ple_layer montato ha 'torch.device("meta")': 1
+READY dopo 341s — gen di prova: "content":"PONG"
+##### 06/09/2026 16:01:12 — boot totale 346 s
+(Worker pid=999) INFO 09-06 13:56:23 [gpu_worker.py:270] PleOffload: spawning worker (rank=0, local_rank=0, dp_size=1, tp_size=1, num_workers=1, ipc_addr=ipc:///tmp/960df738-dad2-4ad0-b4d9-02083214c3b4).
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:29 [parallel_state.py:1638] world_size=1 rank=0 local_rank=0 distributed_init_method=file:///tmp/vllm_ple_offload_65vj5u0m/store backend=gloo
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:29 [scheduler.py:246] Chunked prefill is enabled with max_num_batched_tokens=2048.
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:29 [kernel.py:308] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:29 [parallel_state.py:1982] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank 0, EPLB rank N/A
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:29 [worker.py:160] Distributed environment initialized (backend=gloo, rank=0, world_size=1).
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:29 [worker.py:594] Initializing model structure for PLE weight discovery ...
+(PleOffloadWorker pid=1274) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_section', 'mrope_interleaved'}
+(PleOffloadWorker pid=1274) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_section', 'mrope_interleaved'}
+(PleOffloadWorker pid=1274) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_section', 'mrope_interleaved'}
+(PleOffloadWorker pid=1274) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_section', 'mrope_interleaved'}
+(PleOffloadWorker pid=1274) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_section', 'mrope_interleaved'}
+(PleOffloadWorker pid=1274) [ERROR] `min_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformer
+(PleOffloadWorker pid=1274) [ERROR] `max_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformer
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:31 [cuda.py:545] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:31 [mm_encoder_attention.py:375] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:31 [__init__.py:720] Selected CutlassFP8ScaledMMLinearKernel for CompressedTensorsW8A8Fp8
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:31 [deep_gemm.py:186] deep_gemm not found in site-packages, trying vendored vllm.third_party.deep_gemm
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:31 [deep_gemm.py:213] DeepGEMM PDL enabled on vllm.third_party.deep_gemm.
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:31 [deep_gemm.py:131] DeepGEMM E8M0 enabled on current platform.
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:31 [qwen_gdn_linear_attn.py:158] Using Triton/FLA GDN prefill kernel (requested=auto, head_k_dim=128).
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:31 [qwen_gdn_linear_attn.py:505] GDN decode kernel: triton
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:31 [nvfp4.py:291] Using 'FLASHINFER_CUTLASS' NvFp4 MoE backend out of potential backends: ['FLASHINFER_TRTLLM', 'FLASHINFER_CUTEDSL', 'FLASHINFER_CUTEDSL_BATCHED', 'FLASHINFER
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:31 [flash_attn.py:911] Using FlashAttention version 2
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:31 [worker.py:614] Found 1 PleOffloadLayer(s): ['language_model.model.layers.1.ple.ple_embedding']
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:31 [worker.py:372] PLE quant table: group16_int4_fp16scale_lownibblefirst, 128 shards mmapped from /ples_int4
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:31 [worker.py:449] PLE quant: language_model.model.layers.1.ple.ple_embedding.ngram_embedding.weight stubbed, gathers served from sidecar.
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:32 [weight_utils.py:866] Filesystem type for checkpoints: EXT4. Checkpoint size: 171.11 GiB. Available RAM: 52.18 GiB.
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:32 [weight_utils.py:896] Auto-prefetch is disabled because the filesystem (EXT4) is not a recognized network FS (NFS/Lustre) and the checkpoint size (171.11 GiB) exceeds 90% o
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):   0% Completed | 0/96 [00:00<?, ?it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):   6% Completed | 6/96 [00:00<00:01, 51.58it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  12% Completed | 12/96 [00:00<00:03, 26.16it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  17% Completed | 16/96 [00:00<00:03, 23.40it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  20% Completed | 19/96 [00:00<00:03, 22.27it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  23% Completed | 22/96 [00:00<00:03, 21.35it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  26% Completed | 25/96 [00:01<00:03, 20.85it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  29% Completed | 28/96 [00:01<00:03, 20.48it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  32% Completed | 31/96 [00:01<00:03, 20.18it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  35% Completed | 34/96 [00:02<00:08,  6.96it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  38% Completed | 36/96 [00:03<00:13,  4.43it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  40% Completed | 38/96 [00:04<00:17,  3.39it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  41% Completed | 39/96 [00:05<00:18,  3.05it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  42% Completed | 40/96 [00:05<00:20,  2.78it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  43% Completed | 41/96 [00:06<00:21,  2.57it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  44% Completed | 42/96 [00:06<00:22,  2.41it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  45% Completed | 43/96 [00:07<00:23,  2.28it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  46% Completed | 44/96 [00:07<00:23,  2.18it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  47% Completed | 45/96 [00:08<00:24,  2.11it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  48% Completed | 46/96 [00:08<00:24,  2.06it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  49% Completed | 47/96 [00:09<00:24,  2.03it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  50% Completed | 48/96 [00:09<00:23,  2.02it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  51% Completed | 49/96 [00:10<00:23,  1.99it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  52% Completed | 50/96 [00:10<00:23,  1.98it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  53% Completed | 51/96 [00:11<00:23,  1.95it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload):  54% Completed | 52/96 [00:11<00:22,  1.93it/s]
+(PleOffloadWorker pid=1274) Loading safetensors checkpoint shards(PLE-offload): 100% Completed | 96/96 [00:11<00:00,  8.10it/s]
+(PleOffloadWorker pid=1274) 
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:44 [worker.py:715] PLE offload matched 131 checkpoint tensor(s), loaded 3 offload entries, and verified 0/1 materialized parameter(s) for layers: ['language_model.model.layers
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:44 [worker.py:744] PLE weight loading complete.
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:44 [worker.py:291] Bound IPC address ipc:///tmp/960df738-dad2-4ad0-b4d9-02083214c3b4; waiting for 1 GPU worker registration(s).
+(PleOffloadWorker pid=1274) INFO 09-06 13:56:44 [worker.py:752] Waiting for 1 GPU worker registration(s) ...
+(Worker pid=999) INFO 09-06 13:57:29 [default_loader.py:430] Loading weights took 64.75 seconds
+(Worker pid=999) INFO 09-06 13:57:51 [default_loader.py:430] Loading weights took 21.02 seconds
+(Worker pid=999) INFO 09-06 13:57:52 [model_runner.py:407] Model loading took 77.02 GiB memory and 89.031255 seconds
+(Worker pid=999) INFO 09-06 13:57:52 [connector.py:241] PleOffload: registered 1 PleOffloadLayer(s) (dp_rank=0, tp_rank=0, ipc_addr=ipc:///tmp/960df738-dad2-4ad0-b4d9-02083214c3b4): ['language_model.model.layers.1.ple.pl
+(PleOffloadWorker pid=1274) INFO 09-06 13:57:52 [worker.py:762] GPU worker 0 registered (dp_rank=0, tp_rank=0, layers=['language_model.model.layers.1.ple.ple_embedding']).
+(PleOffloadWorker pid=1274) INFO 09-06 13:57:52 [worker.py:849] Registrations complete (dp_size=1, tp_size=1, layers=['language_model.model.layers.1.ple.ple_embedding']).
+(Worker pid=999) INFO 09-06 13:57:52 [worker.py:234] Worker ready - 1 PleOffloadLayer(s): ['language_model.model.layers.1.ple.ple_embedding']
+(PleOffloadWorker pid=1274) INFO 09-06 13:57:52 [worker.py:863] Busy-loop started.
+(Worker pid=999) INFO 09-06 13:59:40 [gpu_worker.py:693] Available KV cache memory: 6.98 GiB
+(EngineCore pid=745) INFO 09-06 13:59:41 [kv_cache_utils.py:2258] GPU KV cache size: 216,778 tokens, Maximum concurrency for 135,168 tokens per request: 1.60x
+(Worker pid=999) INFO 09-06 13:59:41 [speculator.py:117] Fused multi-step draft decode is not supported by attention backend(s) QWEN38_FLASH_NEXT_EXP_QSA_STATE; falling back to rebuilding attention metadata between draft
+(APIServer pid=1) INFO:     Application startup complete.
+RAM used 10 avail 50 GB
+CommitLimit:    40315824 kB
+Committed_AS:   107508828 kB
+##### 06/09/2026 16:01:12 — 5) sanity tool-call (2 tool, required, non-stream)
+"name":"calculator"
+"finish_reason":"tool_calls"
+##### 06/09/2026 16:01:14 — 6) decode rapido 1k x1 (1 run, 6 prompt)
+##### 06/09/2026 16:01:32 — 7) pulizia: rimuovo container, overcommit → 1 (persistente resta 1), riavvio 27B
+vm.overcommit_memory = 1
+##### 06/09/2026 16:03:27 — 27B READY dopo 120s — "content":"PONG"
+sglang-workhorse Up About a minute
+##### 06/09/2026 16:03:27 — FINE — overcommit ora 1 — log: /opt/flash-next/bench/logs/test-overlay-v2-no-overcommit-20260906-1555.log
