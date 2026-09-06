@@ -1,0 +1,24 @@
+##### 06/09/2026 15:12:44 — STOP 27B (sglang-workhorse)
+##### 06/09/2026 15:12:48 — 27B fermo
+24:  --gpu-memory-utilization 0.92 \
+##### 06/09/2026 15:12:48 — AVVIO vLLM MTP=off, max-num-seqs/max-model-len = default
+75285e304c04a24b8998b3d753032f69130cc71fd5c9f83d80d790380237ab98
+flash-next-vllm avviato (MTP=off) su :8010 — segui con: docker logs -f flash-next-vllm
+CONTAINER flash-next-vllm MORTO dopo 260s (stato: exited exit=1)
+##### 06/09/2026 15:17:09 — ESITO wait-ready rc=0
+(APIServer pid=1) INFO 09-06 13:13:16 [config.py:605] Mamba cache mode is set to 'align' for Qwen4ExpForConditionalGeneration by default when prefix caching is enabled
+(EngineCore pid=532) INFO 09-06 13:13:32 [core.py:122] Initializing a V1 LLM engine (v0.1.dev20073+g8e685d198) with config: model='primitive-ai/Qwen3.8-Flash-Next-mixed-NVFP4-FP8', speculative_config=None, tokenizer='primitive-ai/Qwen3.8-Flash-Next-mixed-NVFP4
+(Worker pid=786) INFO 09-06 13:14:50 [default_loader.py:430] Loading weights took 67.55 seconds
+(Worker pid=786) INFO 09-06 13:14:53 [model_runner.py:407] Model loading took 71.94 GiB memory and 72.371216 seconds
+(Worker pid=786) INFO 09-06 13:16:39 [gpu_worker.py:693] Available KV cache memory: 11.26 GiB
+(EngineCore pid=532) INFO 09-06 13:16:39 [kv_cache_utils.py:2258] GPU KV cache size: 463,613 tokens, Maximum concurrency for 262,144 tokens per request: 1.77x
+(Worker pid=786) ERROR 09-06 13:16:39 [multiproc_executor.py:1051] ValueError: max_num_seqs (1024) exceeds available Mamba cache blocks (596). Each decode sequence requires one Mamba cache block, so CUDA graph capture cannot proceed. Please lower max_num_seqs 
+(Worker pid=786) ERROR 09-06 13:16:39 [multiproc_executor.py:1051] ValueError: max_num_seqs (1024) exceeds available Mamba cache blocks (596). Each decode sequence requires one Mamba cache block, so CUDA graph capture cannot proceed. Please lower max_num_seqs 
+(EngineCore pid=532) ERROR 09-06 13:16:39 [core.py:1346] RuntimeError: Worker failed with error 'max_num_seqs (1024) exceeds available Mamba cache blocks (596). Each decode sequence requires one Mamba cache block, so CUDA graph capture cannot proceed. Please l
+(EngineCore pid=532) RuntimeError: Worker failed with error 'max_num_seqs (1024) exceeds available Mamba cache blocks (596). Each decode sequence requires one Mamba cache block, so CUDA graph capture cannot proceed. Please lower max_num_seqs to at most 596 or 
+(APIServer pid=1) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+##### 06/09/2026 15:17:09 — RIMOZIONE container di prova
+##### 06/09/2026 15:17:09 — RIAVVIO 27B (script canonico)
+##### 06/09/2026 15:19:10 — 27B READY dopo 130s — "content":"PONG"
+sglang-workhorse Up 2 minutes
+##### 06/09/2026 15:19:10 — FINE prova — log: /opt/flash-next/bench/logs/test-mtp-off-default-seqs-20260906-1512.log
