@@ -9,6 +9,12 @@ Independent, reproducible benchmark of the two ways to serve **Qwen3.8-Flash-Nex
 * **Flash-Next vs Qwen3.8-27B (the incumbent)**: on tool-calling (tool-eval-bench, best effort each) the 27B scores **91.0 ± 1.5** vs Flash-Next **87.9 ± 1.9** (vLLM, `reasoning_effort=low`); the gap is concentrated in a handful of scenarios, one of which (`tool_choice="required"`) is a vLLM/xgrammar enforcement problem rather than model quality. On AIME 2025+2026 they are equal (48/60 vs 50/60). On a 19-case in-house A/B (Italian RAG, delivery-note photos, quality-management drafting) they are equivalent, Flash-Next ~2× faster. **Quantization is not the cause**: 27B BF16 scores 89.0 (≤ NVFP4 91.0), EXL3 5.05 bpw 86.9 ≈ 4.05 bpw 87.4.
 * Why the 27B stays in production here anyway: KV capacity (1.27M tokens fp8 vs 217k), `required` enforced 8/8, 2-minute restart vs 5–6, and no Flash-Next checkpoint with calibrated KV scales yet.
 
+![Decode and prefill throughput, vLLM vs ExLlamaV3](docs/speed.png)
+
+![Tool-calling and AIME quality, Flash-Next vs Qwen3.8-27B](docs/quality.png)
+
+*Figures regenerated from the numbers in this README by `scripts/make-figures.py`.*
+
 ---
 
 ## Hardware & software
@@ -252,7 +258,8 @@ runs/                       tool-eval-bench summaries + per-trial reports (14 ru
 eval/                       reasoning-eval.py (AIME) + per-problem results for both models (no problem text)
 configs/                    engine launch scripts (vLLM, TabbyAPI, SGLang 27B NVFP4 production and BF16), TabbyAPI config,
                             chat templates (27B medium default, Flash-Next "discipline"), Dockerfile for the python3-dev fix
-scripts/                    matrix / prefill / readiness / memory-monitor / prefix-cache / energy scripts
+scripts/                    matrix / prefill / readiness / memory-monitor / prefix-cache / energy scripts + make-figures.py
+docs/                       speed.png, quality.png (the two figures above)
 run-*.sh                    unattended orchestrators (Telegram notify calls are site-specific, harmless if absent)
 logs/                       orchestrator logs (04/09 night, 05/09 chains) + xgrammar-observations.md
 PLE-QUANT-README-primitive-ai.md  the overlay's README as downloaded (credit: primitive-ai)
