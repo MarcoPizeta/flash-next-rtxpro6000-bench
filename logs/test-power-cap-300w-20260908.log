@@ -1,0 +1,81 @@
+##### 08/09/2026 07:35:35 — STOP 27B
+##### 08/09/2026 07:35:40 — 27B fermo
+##### 08/09/2026 07:35:40 — tetto potenza → 300 W
+All done.
+power.limit ora: 300.00 W
+##### 08/09/2026 07:35:40 — TabbyAPI EXL3 4.05 MTP on @300 W
+58b55b3b6f72a841aee53566637935250efde922b619eb83addceac8845f65c5
+flash-next-tabby avviato (MTP=on, draft_mode=mtp) su :8011 — segui con: docker logs -f flash-next-tabby
+READY dopo 87s — gen di prova: "content":"PONG"
+=== 07:37:08 tabby_mtp-on in=8192 out=1 c=1 seed=991 ===
+  Successful requests:                     3         
+  Output token throughput (tok/s):         0.46      
+  Median TTFT (ms):                        2402.92   
+  Median TPOT (ms):                        0.00      
+=== 07:37:45 tabby_mtp-on in=8192 out=1 c=1 seed=992 ===
+  Successful requests:                     3         
+  Output token throughput (tok/s):         0.46      
+  Median TTFT (ms):                        2308.11   
+  Median TPOT (ms):                        0.00      
+=== 07:38:21 tabby_mtp-on in=32768 out=1 c=1 seed=3391 ===
+  Successful requests:                     3         
+  Output token throughput (tok/s):         0.16      
+  Median TTFT (ms):                        4780.01   
+  Median TPOT (ms):                        0.00      
+=== 07:39:08 tabby_mtp-on in=32768 out=1 c=1 seed=3392 ===
+  Successful requests:                     3         
+  Output token throughput (tok/s):         0.39      
+  Median TTFT (ms):                        3033.53   
+  Median TPOT (ms):                        0.00      
+=== 07:39:44 tabby_mtp-on in=1024 out=512 c=1 seed=1911 ===
+  Successful requests:                     6         
+  Output token throughput (tok/s):         146.39    
+  Median TTFT (ms):                        356.82    
+  Median TPOT (ms):                        4.24      
+=== 07:40:27 tabby_mtp-on in=8192 out=512 c=1 seed=1981 ===
+  Successful requests:                     6         
+  Output token throughput (tok/s):         83.52     
+  Median TTFT (ms):                        1572.40   
+  Median TPOT (ms):                        6.65      
+##### 08/09/2026 07:41:18 — vLLM MTP on @300 W (overlay v1, flag soliti)
+ad3ebaf2fd1da106c5b8fdd3adf0036f5b40e3d924a65562a9905f864b2c53fe
+flash-next-vllm avviato (MTP=on) su :8010 — segui con: docker logs -f flash-next-vllm
+READY dopo 351s — gen di prova: "content":"PONG"
+=== 07:47:10 vllm_mtp-on in=8192 out=1 c=1 seed=991 ===
+  Successful requests:                     3         
+  Output token throughput (tok/s):         0.35      
+  Median TTFT (ms):                        1167.60   
+  Median TPOT (ms):                        0.00      
+=== 07:47:49 vllm_mtp-on in=8192 out=1 c=1 seed=992 ===
+  Successful requests:                     3         
+  Output token throughput (tok/s):         0.98      
+  Median TTFT (ms):                        1013.56   
+  Median TPOT (ms):                        0.00      
+=== 07:48:20 vllm_mtp-on in=32768 out=1 c=1 seed=3391 ===
+  Successful requests:                     3         
+  Output token throughput (tok/s):         0.49      
+  Median TTFT (ms):                        1999.73   
+  Median TPOT (ms):                        0.00      
+=== 07:48:56 vllm_mtp-on in=32768 out=1 c=1 seed=3392 ===
+  Successful requests:                     3         
+  Output token throughput (tok/s):         0.81      
+  Median TTFT (ms):                        1529.30   
+  Median TPOT (ms):                        0.00      
+=== 07:49:28 vllm_mtp-on in=1024 out=512 c=1 seed=1911 ===
+  Successful requests:                     6         
+  Output token throughput (tok/s):         103.52    
+  Median TTFT (ms):                        379.97    
+  Median TPOT (ms):                        8.59      
+=== 07:50:11 vllm_mtp-on in=8192 out=512 c=1 seed=1981 ===
+  Successful requests:                     6         
+  Output token throughput (tok/s):         103.89    
+  Median TTFT (ms):                        549.35    
+  Median TPOT (ms):                        7.78      
+##### 08/09/2026 07:50:59 — tetto potenza → 600 W
+All done.
+power.limit ora: 600.00 W
+##### 08/09/2026 07:50:59 — RIAVVIO 27B
+##### 08/09/2026 07:52:53 — 27B READY dopo 120s — "content":"PONG"
+##### 08/09/2026 07:52:53 — potenza durante i bench (W, max e p95 dei campioni con util>50%):
+  campioni 31 max 301.47 p95 300.28
+##### 08/09/2026 07:52:53 — FINE — log: /opt/flash-next/bench/logs/test-pl300-20260908-0735.log

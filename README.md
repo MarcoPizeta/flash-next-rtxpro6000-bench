@@ -85,6 +85,19 @@ Cold prefill, output 1, c=1, 3 runs (individual TTFTs in the last column).
 
 vLLM prefills **~2.7× faster** and flat from 8k to 128k. At 128k only 5 of the 9 EXL3 requests per config completed (per run: 1/3, 2/3, 2/3 — `completed` field in `results/prefill_tabby_*_in131072_r*.json`); the failures are the same non-JSON-chunk error seen at 32k × 4. The 128k medians are computed on the completed requests only.
 
+## Results — the same points with the GPU capped at 300 W (Max-Q emulation)
+
+Run on 08/09/2026 after a reader with an RTX PRO 6000 **Max-Q** (300 W) reported ~4k tok/s prefill on TabbyAPI and ~10k on vLLM against our 10k / 28k. Same engines, same checkpoints and launch scripts, `nvidia-smi -pl 300` (p95 of the sampled draw during the runs: 300.3 W, `results/power-log-pl300.csv`), fresh seeds, 2 cold prefill runs per point, 1 decode run per point (`results/pl300_*.json`, [`logs/test-power-cap-300w-20260908.log`](logs/test-power-cap-300w-20260908.log)).
+
+| | vLLM MTP on @600 W | **@300 W** | EXL3 4.05 MTP on @600 W | **@300 W** |
+|---|---|---|---|---|
+| prefill 8k (cold, c=1) | 28.2k tok/s | **7.0k / 8.1k** (TTFT 1168 / 1014 ms) | 10.3k tok/s | **3.4k / 3.5k** (2403 / 2308 ms) |
+| prefill 32k (cold, c=1) | 27.7k | **16.4k / 21.4k** (2000 / 1529 ms) | 9.8k | **6.9k / 10.8k** (4780 / 3034 ms) |
+| decode 1k × 1 | 101.6 tok/s | **103.5** | 168.9 | **146.4** |
+| decode 8k × 1 | 140.5 | **103.9** | 129.1 | **83.5** |
+
+Prefill is compute-bound and takes the hit: 3.5–4× slower at 8k on both engines, less at 32k where the run is long enough for clocks to settle. Short-context decode is memory-bound and barely moves (vLLM 1k: unchanged; EXL3 1k: −13 %); 8k decode loses 26–35 %. The 300 W numbers land on the Max-Q reader's figures (4k / 10k prefill), so the remaining difference (DDR4 + PCIe 4.0 on the n-gram gather path) is second order. **When comparing Flash-Next numbers across machines, the GPU power limit matters more than anything else on the host.**
+
 ## Results — concurrency at 32k input (Flash-Next vs 27B)
 
 Input 32,768 × output 256, thinking off, one run per point (`results/conc_*.json`).
@@ -250,7 +263,7 @@ Any of: (1) a checkpoint with **calibrated FP8 KV scales** (today `kv_cache_quan
 
 ```
 HARDWARE.md                 hardware/software snapshot taken at run start
-results/                    v3 raw client JSON (matrix + prefill, 4.05 and 5.05 bpw), conc_* (32k × 8/16), prefix_*,
+results/                    v3 raw client JSON (matrix + prefill, 4.05 and 5.05 bpw), conc_* (32k × 8/16), prefix_*, pl300_* (300 W run),
                             host memory CSV, power-log.csv, energy.md — the numbers above
                             (the `generated_texts` field — model output to random-token prompts — replaced by a placeholder)
 results-v1-seed42/          v1 raw JSON (fixed seed, prefix-cache contaminated) — for transparency only
