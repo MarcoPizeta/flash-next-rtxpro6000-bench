@@ -1,0 +1,55 @@
+{
+  "model": "flash-next",
+  "max_tokens": 800,
+  "temperature": 0.6,
+  "tool_choice": "required",
+  "parallel_tool_calls": true,
+  "stream": true,
+  "messages": [
+    {
+      "role": "user",
+      "content": "What is 7 times 8?"
+    }
+  ],
+  "chat_template_kwargs": {
+    "enable_thinking": false
+  },
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "calculator",
+        "description": "Evaluate an arithmetic expression",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "expression": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "expression"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "get_weather",
+        "description": "Weather for a city",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "location"
+          ]
+        }
+      }
+    }
+  ]
+}
