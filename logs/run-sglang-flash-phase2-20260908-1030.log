@@ -1,0 +1,12 @@
+##### 08/09/2026 10:30:16 — orchestratore fase 1 fermato
+##### 08/09/2026 10:30:18 — tokenizer: /opt/hf-cache/hub/models--RadixArk--Qwen3.8-Flash-Next-NVFP4/snapshots/7b719225242aacd3dbd3f9407468c2ee9a9d2594/ → 4 file tokenizer
+10:B=/opt/flash-next/bench; TOK="${TOK:-/opt/flash-next/exl3-4.05bpw}"
+19:    -v $B/results:/results -v "$TOK":/tok:ro \
+8:B=/opt/flash-next/bench; TOK="${TOK:-/opt/flash-next/exl3-4.05bpw}"
+16:    -v $B/results:/results -v "$TOK":/tok:ro \
+"id":"flash-next"
+##### 08/09/2026 10:30:18 — PROVA di un punto (1k x1, 1 run) prima della matrice
+    raise ValueError(
+ValueError: Couldn't instantiate the backend tokenizer from one of: 
+Fail to load tokenizer config with error=flash-next is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+##### 08/09/2026 10:30:35 — IL CLIENT NON PRODUCE RISULTATI — mi fermo senza toccare il server

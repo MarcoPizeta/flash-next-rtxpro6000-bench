@@ -1,0 +1,143 @@
+##### 08/09/2026 08:37:34 — INIZIO run-sglang-flash — attendo download RadixArk e immagine
+##### 08/09/2026 08:37:35 — pronti: ckpt 126G, immagine 9d2a843c706c 2026-09-07 13:04:39 +0200 CEST
+##### 08/09/2026 08:37:35 — STOP 27B
+RAM prima: used 4 avail 56 GB
+##### 08/09/2026 08:37:45 — svuoto la page cache (la tabella n-gram va pinnata: 47,7 GiB)
+RAM dopo drop_caches: used 3 free 57 avail 56 GB
+##### 08/09/2026 08:37:46 — PROVA: una sola allocazione pinnata da 47,7 GiB in un processo nuovo (quella che il boot 'pinned' fa)
+pinned 40.0 GiB: FALLITO -> CUDA error: out of memory
+Search for `cudaErrorMemoryAllocation' in https://docs.nvidia.com/cuda/cud
+pinned 47.7 GiB: FALLITO -> CUDA error: out of memory
+Search for `cudaErrorMemoryAllocation' in https://docs.nvidia.com/cuda/cud
+RAM dopo la prova: used 4 free 55 avail 56 GB
+##### 08/09/2026 08:37:52 — AVVIO SGLang Flash-Next MTP on — PLE_BACKEND=file (file = mmap sparso su NVMe /opt/flash-next/ple-cache, device check saltato)
+244ce9838cd727b3e03cd001a858359a746043966d288eb2b6b246d42788792f
+flash-next-sglang avviato (MTP=on, PLE=file, max-running-requests=16, mem=0.96) su :8012 — segui con: docker logs -f flash-next-sglang
+memlock nel container: unlimited
+READY dopo 268s — gen di prova: "content":"PONG"
+##### 08/09/2026 08:42:23 — boot totale 271 s
+[2026-09-08 06:38:21] PLE table: file-backed mmap /ple-cache/ple_table_320001536x160_float8_e4m3fn_51200245760B_rows0-320001536.bin (47.7 GiB, torch.float8_e4m3fn)
+[2026-09-08 06:38:21] PLE table: WILLNEED prefetch on for gathers of >= 2048 rows (row = 160 B)
+[2026-09-08 06:38:21] PLE table: resident set capped at 8.0 GiB, checked every 30 s
+Multi-thread loading shards:   0% Completed | 0/206 [00:00<?, ?it/s]Multi-thread loading shards:   0% Completed | 1/206 [00:01<05:14,  1.54s/it]Multi-thread loading shards:   1% Completed | 2/206 [
+[2026-09-08 06:40:22] PLE table: trimmed resident set 23.9 -> 0.0 GiB (budget 8.0 GiB)
+[2026-09-08 06:40:34] Load weight end. elapsed=133.72 s, type=Qwen4ExpForConditionalGeneration, quant=modelopt_fp4, quant_algo=NVFP4, avail mem=12.92 GB, mem usage=81.22 GB.
+[2026-09-08 06:40:39] Load weight begin. avail mem=12.88 GB
+Multi-thread loading shards:   0% Completed | 0/206 [00:00<?, ?it/s]Multi-thread loading shards:   0% Completed | 1/206 [00:01<04:35,  1.35s/it]Multi-thread loading shards:   1% Completed | 2/206 [
+[2026-09-08 06:41:13] Load weight end. elapsed=33.72 s, type=Qwen4ExpForCausalLMMTP, quant=modelopt_fp4, quant_algo=NVFP4, avail mem=12.37 GB, mem usage=0.51 GB.
+[2026-09-08 06:41:14] Mamba Cache is allocated. max_mamba_cache_size: 48, conv_state size: 0.10GB, ssm_state size: 2.58GB intermediate_ssm_state_cache size: 3.59GB intermediate_conv_window_cache size:
+[2026-09-08 06:41:15] KV Cache is allocated. dtype: torch.bfloat16, #tokens: 81664, K size: 0.94 GB, V size: 0.94 GB
+[2026-09-08 06:41:15] Memory pool end. avail mem=4.11 GB
+[2026-09-08 06:41:15] KV Cache is allocated. dtype: torch.bfloat16, #tokens: 81664, K size: 0.08 GB, V size: 0.08 GB
+[2026-09-08 06:41:15] Memory pool end. avail mem=3.95 GB
+[06:41:36] : Warning: Data race detected: `Logits(bx, position)`is written by multiple threads in loop (token,), Example:
+2026-09-08 06:41:39  [TileLang:tilelang.jit.kernel:INFO] (kernel.py:138): TileLang completes to compile kernel `kernel`
+[2026-09-08 06:41:51] FlashInfer autotune completed.
+[2026-09-08 06:41:51] Capture target verify CUDA graph begin. backend=full, num_tokens_per_req=4, bs=[1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 16], avail mem=5.28 GB
+[2026-09-08 06:41:57] Capture target verify CUDA graph end. elapsed=6.25 s, mem usage=0.31 GB, avail mem=4.97 GB.
+[2026-09-08 06:41:57] Capture draft decode CUDA graph begin. backend=full, num_tokens_per_req=1, bs=[1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 16], avail mem=4.97 GB
+[2026-09-08 06:41:59] FlashInfer autotune completed.
+[2026-09-08 06:42:00] Capture draft decode CUDA graph end. elapsed=2.59 s, mem usage=0.56 GB, avail mem=4.41 GB.
+[2026-09-08 06:42:00] Capture draft extend CUDA graph begin. backend=full, num_tokens_per_req=4, bs=[1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 16], avail mem=4.41 GB
+[2026-09-08 06:42:00] FlashInfer autotune completed.
+[2026-09-08 06:42:01] Capture draft extend CUDA graph end. elapsed=1.10 s, mem usage=0.46 GB, avail mem=3.94 GB.
+[2026-09-08 06:42:01] max_total_num_tokens=81664, chunked_prefill_size=4096, max_prefill_tokens=16384, max_running_requests=16, context_len=262144, available_gpu_mem=3.94 GB
+[2026-09-08 06:42:04] INFO:     Application startup complete.
+[2026-09-08 06:42:22] Prefill batch, #new-seq: 1, #new-token: 128, #cached-token: 0, full token usage: 0.00, mamba usage: 0.08, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, in
+[2026-09-08 06:42:23] Prefill batch, #new-seq: 1, #new-token: 64, #cached-token: 0, full token usage: 0.00, mamba usage: 0.10, #running-req: 1, #queue-req: 0, #pending-token: 0, cuda graph: False, inp
+[2026-09-08 06:42:23] INFO:     172.17.0.1:39794 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+RAM con Flash-Next su SGLang: used 8 avail 52 GB
+Unevictable:        9440 kB
+Mlocked:            9440 kB
+GPU: 94352 MiB, 124.67 W
+##### 08/09/2026 08:42:23 — SANITY (la tabella via HMM deve dare testo sensato, non spazzatura)
+  Q: Quanto fa 17 per 23? Rispondi solo con il numero. → "content":"391"
+  Q: Qual è la capitale della Francia? Una parola. → "content":"Parigi"
+  Q: Elenca tre metalli comuni separati da virgola. → "content":"Ferro, rame, alluminio"
+##### 08/09/2026 08:42:26 — REQUIRED (12 tool, stream/non-stream, think on/off)
+tools: UNIVERSAL_TOOLS (12 tool)
+stream=True  think=False run 0 → finish=tool_calls tool_calls=['calculator'] content=''
+stream=True  think=False run 1 → finish=tool_calls tool_calls=['calculator'] content=''
+stream=True  think=False run 2 → finish=tool_calls tool_calls=['calculator'] content=''
+stream=True  think=True  run 0 → finish=tool_calls tool_calls=['calculator'] content=''
+stream=True  think=True  run 1 → finish=tool_calls tool_calls=['calculator'] content=''
+stream=True  think=True  run 2 → finish=tool_calls tool_calls=['calculator'] content=''
+stream=False think=False run 0 → finish=tool_calls tool_calls=['calculator'] content=''
+stream=False think=False run 1 → finish=tool_calls tool_calls=['calculator'] content=''
+stream=False think=False run 2 → finish=tool_calls tool_calls=['calculator'] content=''
+stream=False think=True  run 0 → finish=tool_calls tool_calls=['calculator'] content=''
+stream=False think=True  run 1 → finish=tool_calls tool_calls=['calculator'] content=''
+stream=False think=True  run 2 → finish=tool_calls tool_calls=['calculator'] content=''
+RIEPILOGO required: 12/12 risposte con almeno una tool call
+##### 08/09/2026 08:42:43 — TOOL-EVAL Flash-Next SGLang, reasoning_effort=low (88x8)
+│      TC-52: 1.9 ± 0.3  (2,2,2,1,2,2,2,2)                                     │
+│      TC-53: 1.4 ± 0.5  (2,1,1,1,2,2,1,1)                                     │
+│      TC-61: 0.1 ± 0.3  (0,0,0,0,0,1,0,0)                                     │
+│      TC-62: 1.1 ± 0.3  (1,1,2,1,1,1,1,1)                                     │
+│      TC-74: 1.9 ± 0.3  (2,2,2,2,1,2,2,2)                                     │
+│      TC-75: 1.8 ± 0.5  (2,2,1,1,2,2,2,2)                                     │
+│      TC-79: 1.9 ± 0.3  (2,2,2,2,2,2,2,1)                                     │
+│      TC-80: 0.8 ± 1.0  (2,2,0,0,0,0,0,2)                                     │
+│      TC-82: 1.0 ± 0.9  (0,2,1,1,0,0,2,2)                                     │
+│      TC-84: 0.5 ± 0.9  (0,2,0,2,0,0,0,0)                                     │
+│      TC-85: 0.5 ± 0.5  (0,1,0,1,0,1,1,0)                                     │
+│      TC-88: 1.1 ± 1.0  (2,0,2,0,0,2,1,2)                                     │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  📊 Summary report: 
+/opt/flash-next/bench/runs/runs/2026/09/2026-09-08T06-42-44.345460Z_259f0e21--sg
+lang-dev-qwen38-next-local-radixark-flash-next-nvfp4-nextn-3-4-ple-pinned-ram-_s
+ummary.md
+
+##### 08/09/2026 09:41:09 — TOOL-EVAL Flash-Next SGLang, thinking OFF (88x8)
+│      TC-54: 1.9 ± 0.3  (2,2,2,2,2,1,2,2)                                     │
+│      TC-58: 1.5 ± 0.8  (2,1,0,2,1,2,2,2)                                     │
+│      TC-60: 1.8 ± 0.7  (2,2,2,0,2,2,2,2)                                     │
+│      TC-67: 1.4 ± 0.5  (1,1,1,2,2,2,1,1)                                     │
+│      TC-75: 1.6 ± 0.7  (2,0,2,1,2,2,2,2)                                     │
+│      TC-76: 1.1 ± 0.8  (0,2,2,0,2,1,1,1)                                     │
+│      TC-80: 1.5 ± 0.9  (2,2,2,2,0,0,2,2)                                     │
+│      TC-81: 1.6 ± 0.7  (2,2,2,2,2,2,0,1)                                     │
+│      TC-82: 0.9 ± 0.3  (1,1,1,1,1,1,0,1)                                     │
+│      TC-84: 1.8 ± 0.7  (0,2,2,2,2,2,2,2)                                     │
+│      TC-85: 1.1 ± 0.3  (1,1,1,1,2,1,1,1)                                     │
+│      TC-87: 1.6 ± 0.7  (2,2,2,0,2,1,2,2)                                     │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  📊 Summary report: 
+/opt/flash-next/bench/runs/runs/2026/09/2026-09-08T07-41-10.231915Z_b886a918--sg
+lang-dev-qwen38-next-local-radixark-flash-next-nvfp4-nextn-3-4-ple-pinned-ram-_s
+ummary.md
+
+##### 08/09/2026 10:17:52 — MATRICE v2 (1k/8k/32k x c1/c4 x 3 run)
+=== 10:17:52 sglang_mtp-on in=1024 c=1 run=1 seed=111 ===
+=== 10:21:00 sglang_mtp-on in=1024 c=1 run=2 seed=112 ===
+=== 10:21:28 sglang_mtp-on in=1024 c=1 run=3 seed=113 ===
+=== 10:21:55 sglang_mtp-on in=1024 c=4 run=1 seed=141 ===
+=== 10:22:22 sglang_mtp-on in=1024 c=4 run=2 seed=142 ===
+=== 10:22:49 sglang_mtp-on in=1024 c=4 run=3 seed=143 ===
+=== 10:23:16 sglang_mtp-on in=8192 c=1 run=1 seed=811 ===
+=== 10:23:43 sglang_mtp-on in=8192 c=1 run=2 seed=812 ===
+=== 10:24:10 sglang_mtp-on in=8192 c=1 run=3 seed=813 ===
+=== 10:24:37 sglang_mtp-on in=8192 c=4 run=1 seed=841 ===
+=== 10:25:04 sglang_mtp-on in=8192 c=4 run=2 seed=842 ===
+=== 10:25:31 sglang_mtp-on in=8192 c=4 run=3 seed=843 ===
+=== 10:25:59 sglang_mtp-on in=32768 c=1 run=1 seed=3211 ===
+=== 10:26:26 sglang_mtp-on in=32768 c=1 run=2 seed=3212 ===
+=== 10:26:53 sglang_mtp-on in=32768 c=1 run=3 seed=3213 ===
+=== 10:27:20 sglang_mtp-on in=32768 c=4 run=1 seed=3241 ===
+=== 10:27:47 sglang_mtp-on in=32768 c=4 run=2 seed=3242 ===
+=== 10:28:14 sglang_mtp-on in=32768 c=4 run=3 seed=3243 ===
+=== matrice sglang_mtp-on completata ===
+##### 08/09/2026 10:28:41 — PREFILL v2 (8k/32k/128k x 3)
+=== 10:28:41 PREFILL sglang_mtp-on in=8192 run=1 seed=891 ===
+=== 10:29:04 PREFILL sglang_mtp-on in=8192 run=2 seed=892 ===
+=== 10:29:26 PREFILL sglang_mtp-on in=8192 run=3 seed=893 ===
+=== 10:29:48 PREFILL sglang_mtp-on in=32768 run=1 seed=3291 ===
+=== 10:30:10 PREFILL sglang_mtp-on in=32768 run=2 seed=3292 ===
+=== 10:30:32 PREFILL sglang_mtp-on in=32768 run=3 seed=3293 ===
+=== 10:30:55 PREFILL sglang_mtp-on in=131072 run=1 seed=12891 ===
+=== 10:31:17 PREFILL sglang_mtp-on in=131072 run=2 seed=12892 ===
+=== 10:31:39 PREFILL sglang_mtp-on in=131072 run=3 seed=12893 ===

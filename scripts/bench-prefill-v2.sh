@@ -5,7 +5,7 @@
 # Uso: bench-prefill-v2.sh ENGINE PORT MTP
 set -uo pipefail
 ENGINE=$1; PORT=$2; MTP=$3
-B=/opt/flash-next/bench
+B=/opt/flash-next/bench; TOK="${TOK:-/opt/flash-next/exl3-4.05bpw}"
 TAG="${ENGINE}_mtp-${MTP}"
 EXTRA='{"temperature":0,"chat_template_kwargs":{"enable_thinking":false}}'
 for IN in 8192 32768 131072; do for RUN in 1 2 3; do
@@ -13,9 +13,9 @@ for IN in 8192 32768 131072; do for RUN in 1 2 3; do
   OUT="/results/prefill_${TAG}_in${IN}_r${RUN}.json"
   echo "=== $(date '+%H:%M:%S') PREFILL $TAG in=$IN run=$RUN seed=$SEED ==="
   docker run --rm --network host \
-    -v $B/results:/results -v /opt/flash-next/exl3-4.05bpw:/tok:ro \
+    -v $B/results:/results -v /opt/hf-cache:/opt/hf-cache:ro \
     lmsysorg/sglang:dev-cu13 python3 -m sglang.benchmark.serving \
-      --backend vllm-chat --host 127.0.0.1 --port "$PORT" --model flash-next --tokenizer /tok \
+      --backend vllm-chat --host 127.0.0.1 --port "$PORT" --model flash-next --tokenizer "$TOK" \
       --dataset-name random --random-input-len "$IN" --random-output-len 1 --random-range-ratio 0 \
       --num-prompts 3 --max-concurrency 1 --warmup-requests 0 --seed "$SEED" \
       --extra-request-body "$EXTRA" \

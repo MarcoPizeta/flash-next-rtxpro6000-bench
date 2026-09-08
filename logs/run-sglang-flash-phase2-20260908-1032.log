@@ -1,0 +1,201 @@
+##### 08/09/2026 10:32:19 — nessun orchestratore fase 1 attivo
+##### 08/09/2026 10:32:21 — tokenizer: /opt/hf-cache/hub/models--RadixArk--Qwen3.8-Flash-Next-NVFP4/snapshots/7b719225242aacd3dbd3f9407468c2ee9a9d2594/
+  merges.txt -> ../../blobs/a494e019ca1502219fd0128658b979e5f05ae8e8
+  tokenizer.json -> ../../blobs/0997f410c57a1f4e53b09e4be8f4a172d90edd9564368fb0847030937229b9f3
+  tokenizer_config.json -> ../../blobs/5de744b3fca2129d7186979ae47c06be33903243
+  vocab.json -> ../../blobs/0aa0ce0658d60ac4a5d609f4eadb0e8e43514176
+10:B=/opt/flash-next/bench; TOK="${TOK:-/opt/flash-next/exl3-4.05bpw}"
+21:      --backend vllm-chat --host 127.0.0.1 --port "$PORT" --model flash-next --tokenizer "$TOK" \
+8:B=/opt/flash-next/bench; TOK="${TOK:-/opt/flash-next/exl3-4.05bpw}"
+18:      --backend vllm-chat --host 127.0.0.1 --port "$PORT" --model flash-next --tokenizer "$TOK" \
+"id":"flash-next"
+##### 08/09/2026 10:32:21 — PROVA di un punto (1k x1, 1 run) prima della matrice
+[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Fail to load tokenizer config with error=flash-next is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+Successful requests:                     2         
+Output token throughput (tok/s):         26.75     
+##### 08/09/2026 10:32:53 — MATRICE v2 (1k/8k/32k x c1/c4 x 3 run)
+=== 10:32:53 sglang_mtp-on in=1024 c=1 run=1 seed=111 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.14      
+  Output token throughput (tok/s):         42.86     
+  Median TTFT (ms):                        344.76    
+  Median TPOT (ms):                        24.11     
+  Median ITL (ms):                         70.13     
+=== 10:34:15 sglang_mtp-on in=1024 c=1 run=2 seed=112 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.20      
+  Output token throughput (tok/s):         46.53     
+  Median TTFT (ms):                        304.15    
+  Median TPOT (ms):                        20.06     
+  Median ITL (ms):                         54.00     
+=== 10:35:30 sglang_mtp-on in=1024 c=1 run=3 seed=113 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.14      
+  Output token throughput (tok/s):         41.24     
+  Median TTFT (ms):                        1493.63   
+  Median TPOT (ms):                        14.89     
+  Median ITL (ms):                         53.17     
+=== 10:36:54 sglang_mtp-on in=1024 c=4 run=1 seed=141 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.21      
+  Output token throughput (tok/s):         43.31     
+  Median TTFT (ms):                        1682.66   
+  Median TPOT (ms):                        79.22     
+  Median ITL (ms):                         158.46    
+=== 10:39:09 sglang_mtp-on in=1024 c=4 run=2 seed=142 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.19      
+  Output token throughput (tok/s):         61.04     
+  Median TTFT (ms):                        1109.47   
+  Median TPOT (ms):                        54.81     
+  Median ITL (ms):                         137.96    
+=== 10:41:36 sglang_mtp-on in=1024 c=4 run=3 seed=143 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.19      
+  Output token throughput (tok/s):         49.95     
+  Median TTFT (ms):                        1980.96   
+  Median TPOT (ms):                        65.91     
+  Median ITL (ms):                         163.16    
+=== 10:44:08 sglang_mtp-on in=8192 c=1 run=1 seed=811 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.19      
+  Output token throughput (tok/s):         49.60     
+  Median TTFT (ms):                        1268.99   
+  Median TPOT (ms):                        17.48     
+  Median ITL (ms):                         45.78     
+=== 10:45:22 sglang_mtp-on in=8192 c=1 run=2 seed=812 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.17      
+  Output token throughput (tok/s):         45.47     
+  Median TTFT (ms):                        695.72    
+  Median TPOT (ms):                        17.62     
+  Median ITL (ms):                         55.48     
+=== 10:46:35 sglang_mtp-on in=8192 c=1 run=3 seed=813 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.21      
+  Output token throughput (tok/s):         43.88     
+  Median TTFT (ms):                        1733.21   
+  Median TPOT (ms):                        17.94     
+  Median ITL (ms):                         49.78     
+=== 10:47:41 sglang_mtp-on in=8192 c=4 run=1 seed=841 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.18      
+  Output token throughput (tok/s):         45.47     
+  Median TTFT (ms):                        1220.90   
+  Median TPOT (ms):                        73.57     
+  Median ITL (ms):                         145.96    
+=== 10:50:11 sglang_mtp-on in=8192 c=4 run=2 seed=842 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.20      
+  Output token throughput (tok/s):         53.22     
+  Median TTFT (ms):                        3280.30   
+  Median TPOT (ms):                        59.32     
+  Median ITL (ms):                         126.58    
+=== 10:52:32 sglang_mtp-on in=8192 c=4 run=3 seed=843 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.17      
+  Output token throughput (tok/s):         47.65     
+  Median TTFT (ms):                        1660.69   
+  Median TPOT (ms):                        70.84     
+  Median ITL (ms):                         141.66    
+=== 10:55:04 sglang_mtp-on in=32768 c=1 run=1 seed=3211 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.08      
+  Output token throughput (tok/s):         24.89     
+  Median TTFT (ms):                        5159.19   
+  Median TPOT (ms):                        21.09     
+  Median ITL (ms):                         53.98     
+=== 10:57:00 sglang_mtp-on in=32768 c=1 run=2 seed=3212 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.17      
+  Output token throughput (tok/s):         39.20     
+  Median TTFT (ms):                        1141.40   
+  Median TPOT (ms):                        16.97     
+  Median ITL (ms):                         46.95     
+=== 10:58:17 sglang_mtp-on in=32768 c=1 run=3 seed=3213 ===
+  Successful requests:                     6         
+  Request throughput (req/s):              0.20      
+  Output token throughput (tok/s):         45.26     
+  Median TTFT (ms):                        1227.30   
+  Median TPOT (ms):                        17.25     
+  Median ITL (ms):                         53.66     
+=== 10:59:35 sglang_mtp-on in=32768 c=4 run=1 seed=3241 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.14      
+  Output token throughput (tok/s):         39.69     
+  Median TTFT (ms):                        4761.17   
+  Median TPOT (ms):                        74.47     
+  Median ITL (ms):                         141.75    
+=== 11:02:38 sglang_mtp-on in=32768 c=4 run=2 seed=3242 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.16      
+  Output token throughput (tok/s):         40.25     
+  Median TTFT (ms):                        7092.33   
+  Median TPOT (ms):                        64.14     
+  Median ITL (ms):                         136.19    
+=== 11:05:24 sglang_mtp-on in=32768 c=4 run=3 seed=3243 ===
+  Successful requests:                     20        
+  Request throughput (req/s):              0.15      
+  Output token throughput (tok/s):         44.72     
+  Median TTFT (ms):                        5627.23   
+  Median TPOT (ms):                        65.25     
+  Median ITL (ms):                         111.92    
+=== matrice sglang_mtp-on completata ===
+##### 08/09/2026 11:08:15 — PREFILL v2 (8k/32k/128k x 3)
+=== 11:08:15 PREFILL sglang_mtp-on in=8192 run=1 seed=891 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          687.89    
+  Median TTFT (ms):                        718.71    
+=== 11:08:47 PREFILL sglang_mtp-on in=8192 run=2 seed=892 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          520.53    
+  Median TTFT (ms):                        517.85    
+=== 11:09:19 PREFILL sglang_mtp-on in=8192 run=3 seed=893 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          3505.38   
+  Median TTFT (ms):                        2664.44   
+=== 11:10:01 PREFILL sglang_mtp-on in=32768 run=1 seed=3291 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          3252.06   
+  Median TTFT (ms):                        4451.42   
+=== 11:10:41 PREFILL sglang_mtp-on in=32768 run=2 seed=3292 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          3746.76   
+  Median TTFT (ms):                        3330.62   
+=== 11:11:24 PREFILL sglang_mtp-on in=32768 run=3 seed=3293 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          1963.89   
+  Median TTFT (ms):                        1940.04   
+=== 11:12:00 PREFILL sglang_mtp-on in=131072 run=1 seed=12891 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          1114.33   
+  Median TTFT (ms):                        0.00      
+=== 11:12:34 PREFILL sglang_mtp-on in=131072 run=2 seed=12892 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          4366.35   
+  Median TTFT (ms):                        4733.64   
+=== 11:13:18 PREFILL sglang_mtp-on in=131072 run=3 seed=12893 ===
+  Successful requests:                     3         
+  Mean TTFT (ms):                          2823.39   
+  Median TTFT (ms):                        3392.17   
+##### 08/09/2026 11:13:57 — CONCORRENZA 32k c=8/16
+  Successful requests:                     16        
+  Output token throughput (tok/s):         19.19     
+  Median TTFT (ms):                        31047.86  
+  P99 TTFT (ms):                           50182.25  
+  Median TPOT (ms):                        138.21    
+  Successful requests:                     32        
+  Output token throughput (tok/s):         24.44     
+  Median TTFT (ms):                        60341.00  
+  P99 TTFT (ms):                           83781.81  
+  Median TPOT (ms):                        104.78    
+##### 08/09/2026 11:19:04 — PREFIX-CACHE
+  req 5: TTFT 174 ms  total 341 ms  
+  req 6: TTFT 188 ms  total 278 ms  
+  req 7: TTFT 207 ms  total 294 ms  
+  prompt None tok — TTFT freddo 1983 ms, caldo mediano 210 ms
+##### 08/09/2026 11:19:08 — STOP Flash-Next SGLang, RIAVVIO 27B
+righe errore-traceback nel log server: 0
+##### 08/09/2026 11:21:11 — 27B READY dopo 130s — "content":"PONG"
+##### 08/09/2026 11:21:11 — FINE fase 2 — log: /opt/flash-next/bench/logs/run-sglang-flash-phase2-20260908-1032.log

@@ -1,0 +1,59 @@
+{
+ "base_url": "http://127.0.0.1:8012",
+ "model": "flash-next",
+ "n": 8,
+ "cold_ttft_ms": 1983,
+ "warm_ttft_ms_median": 210,
+ "warm_ttft_ms_min": 174,
+ "prompt_tokens": null,
+ "requests": [
+  {
+   "i": 0,
+   "ttft_ms": 1983,
+   "total_ms": 2120,
+   "usage": null
+  },
+  {
+   "i": 1,
+   "ttft_ms": 255,
+   "total_ms": 409,
+   "usage": null
+  },
+  {
+   "i": 2,
+   "ttft_ms": 271,
+   "total_ms": 406,
+   "usage": null
+  },
+  {
+   "i": 3,
+   "ttft_ms": 210,
+   "total_ms": 662,
+   "usage": null
+  },
+  {
+   "i": 4,
+   "ttft_ms": 220,
+   "total_ms": 364,
+   "usage": null
+  },
+  {
+   "i": 5,
+   "ttft_ms": 174,
+   "total_ms": 341,
+   "usage": null
+  },
+  {
+   "i": 6,
+   "ttft_ms": 188,
+   "total_ms": 278,
+   "usage": null
+  },
+  {
+   "i": 7,
+   "ttft_ms": 207,
+   "total_ms": 294,
+   "usage": null
+  }
+ ]
+}

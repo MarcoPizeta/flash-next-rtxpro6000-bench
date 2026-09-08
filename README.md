@@ -4,9 +4,12 @@ Independent, reproducible benchmark of the two ways to serve **Qwen3.8-Flash-Nex
 
 **v2 (05/09/2026)** extends the night run with: reasoning-effort sweep, a head-to-head against the model this machine actually serves in production (**Qwen3.8-27B NVFP4 on SGLang**), per-scenario diff, a `tool_choice="required"` investigation, context-pressure sweep, 32k × 8/16 concurrency, prefix-cache latency, GPU energy, 27B BF16 vs NVFP4, EXL3 5.05 vs 4.05 bpw, a "tool discipline" chat template, AIME 2025+2026, and a small in-house A/B on real workloads (protocol and counts only).
 
+**v3 (08/09/2026)** adds a third engine: **SGLang** (`lmsysorg/sglang:dev-qwen38-next-local`, the build the SGLang cookbook verifies for a single RTX PRO 6000) with the calibrated `RadixArk/Qwen3.8-Flash-Next-NVFP4` checkpoint — the same engine that serves the 27B here — plus a 300 W power-capped run.
+
 **TL;DR**
 * **Flash-Next engine choice on this box**: vLLM + `primitive-ai/Qwen3.8-Flash-Next-mixed-NVFP4-FP8` + INT4 PLE offload + MTP. Faster from 8k context up and at any concurrency > 1, 2.7× faster prefill, stable at 32k × 4/8/16, ~10–12 GB host RAM. ExLlamaV3/TabbyAPI (`turboderp/Qwen3.8-Flash-Next-exl3`) wins only short single-user chat (169–173 tok/s at 1k), loads in 1–1.5 min instead of 5–6, needs ~45 GB host RAM and completes only 21/60 requests at 32k × 4, 2/16 at 32k × 8.
 * **Flash-Next vs Qwen3.8-27B (the incumbent)**: on tool-calling (tool-eval-bench, best effort each) the 27B scores **91.0 ± 1.5** vs Flash-Next **87.9 ± 1.9** (vLLM, `reasoning_effort=low`); the gap is concentrated in a handful of scenarios, one of which (`tool_choice="required"`) is a vLLM/xgrammar enforcement problem rather than model quality. On AIME 2025+2026 they are equal (48/60 vs 50/60). On a 19-case in-house A/B (Italian RAG, delivery-note photos, quality-management drafting) they are equivalent, Flash-Next ~2× faster. **Quantization is not the cause**: 27B BF16 scores 89.0 (≤ NVFP4 91.0), EXL3 5.05 bpw 86.9 ≈ 4.05 bpw 87.4.
+* **Flash-Next on SGLang (v3)**: same quality (88.0 low / 88.9 thinking-off), `tool_choice="required"` enforced 12/12, warm prefix TTFT 210 ms, zero server-side errors — but on a 64 GB host the cookbook's pinned-RAM n-gram table does not allocate (see below) and the file-backed table via HMM costs decode: **37–51 tok/s at every point**, TPOT ~18 ms, flat with concurrency; KV pool 81,664 tokens (bf16).
 * Why the 27B stays in production here anyway: KV capacity (1.27M tokens fp8 vs 217k), `required` enforced 8/8, 2-minute restart vs 5–6, and no Flash-Next checkpoint with calibrated KV scales yet.
 
 ![Decode and prefill throughput, vLLM vs ExLlamaV3](docs/speed.png)
@@ -84,6 +87,41 @@ Cold prefill, output 1, c=1, 3 runs (individual TTFTs in the last column).
 | EXL3 MTP off | 772 ms → **10.6k** (633/963/772) | 3214 ms → **10.2k** (2461/3892/3214) | 11316 ms → **11.6k** (11316/11677/11002) · completed 1/3, 2/3, 2/3 |
 
 vLLM prefills **~2.7× faster** and flat from 8k to 128k. At 128k only 5 of the 9 EXL3 requests per config completed (per run: 1/3, 2/3, 2/3 — `completed` field in `results/prefill_tabby_*_in131072_r*.json`); the failures are the same non-JSON-chunk error seen at 32k × 4. The 128k medians are computed on the completed requests only.
+
+## Results — Flash-Next on SGLang (v3, 08/09/2026)
+
+**Why**: SGLang is the engine that serves the 27B on this machine and enforces `tool_choice="required"` (8/8 in every 27B run), and its cookbook now carries a verified single-RTX-PRO-6000 recipe for `RadixArk/Qwen3.8-Flash-Next-NVFP4` (ModelOpt NVFP4 experts calibrated on 128 CNN/DailyMail articles, everything else BF16, FP8 n-gram table, no KV scales). Recipe: [`configs/sglang-flash-next.sh`](configs/sglang-flash-next.sh) = the cookbook's low-latency cell (`--quantization modelopt_fp4 --fp4-gemm-backend flashinfer_cutlass --moe-runner-backend flashinfer_cutlass --page-size 64 --mamba-track-interval 64 --chunked-prefill-size 4096 --context-length 262144 --speculative-algorithm NEXTN --speculative-num-steps 3 --speculative-eagle-topk 1 --speculative-num-draft-tokens 4 --mamba-radix-cache-strategy extra_buffer_lazy --max-running-requests 16 --max-mamba-cache-size 48 --mamba-ssm-dtype bfloat16 --mem-fraction-static 0.96`, `SGLANG_OPT_MAMBA_SKIP_DECODE_LOCK=1`, `--ulimit memlock=-1`) plus `--tool-call-parser qwen3_coder`.
+
+**The n-gram table does not pin on a 64 GB host.** The recipe keeps the 47.7 GiB FP8 table in CPU pinned memory (`--ple-offload-embedding`) and states "≥ 64 GB of free host RAM"; this host has 63.85 GB total. With the 27B stopped and the page cache dropped (57 GB free) `torch.empty(…, pin_memory=True)` for 47.7 GiB fails with `CUDA error: out of memory`, and so does a standalone 40 GiB pinned allocation ([`logs/flash-next-sglang-boot-fail-0831.log`](logs/flash-next-sglang-boot-fail-0831.log)). `dmesg` shows `NVRM: failed to allocate page table!` from `os_lock_user_pages`; the AMD IOMMU runs in translated mode (`DMA-FQ`) on this host — `iommu=pt` is the next thing to try, not tested yet. What did boot is the **file-backed table** (`--ple-offload-backend file --ple-offload-dir …`, a 47.7 GiB file on the NVMe, resident set capped at 8 GiB), which the cookbook restricts to unified-memory GB10 because the gather kernel reads host memory through page faults; the RTX PRO 6000 reports `cudaDevAttrPageableMemoryAccess = 1` (HMM) but `…UsesHostPageTables = 0`, so the check was bypassed with `SGLANG_QWEN4_PLE_FILE_SKIP_DEVICE_CHECK=1`. Boot 271 s, ~10 GB host RAM, sanity answers correct, 0 errors or tracebacks in the server log over ~4,500 requests. Everything below is measured with that file-backed table; the pinned-RAM numbers of the cookbook (148 tok/s single, 613 at 16) are not reproducible here yet.
+
+**Quality** (tool-eval-bench 88 × 8, hard, seed 42):
+
+| Flash-Next engine / setting | Final Score | Pass@8 | Pass^8 | TC-45 (`required`) |
+|---|---|---|---|---|
+| **SGLang** · low | 88.0 ± 0.9 | 88.6 % | 69.3 % | 7/8 |
+| **SGLang** · thinking off | **88.9 ± 2.1** | 92.0 % | 64.8 % | 8/8 |
+| vLLM · low (v2) | 87.9 ± 1.9 | 89.8 % | 68.2 % | 0/8 |
+| vLLM · thinking off (v2) | 87.0 ± 2.1 | 92.0 % | 56.8 % | 0/8 |
+| Qwen3.8-27B NVFP4 · medium (reference) | 91.0 ± 1.5 | 96.6 % | 72.7 % | 8/8 |
+
+`required` replication (12 tools, streaming and non-streaming, thinking on and off, 3 runs each): **12/12** tool calls on SGLang vs 2/3 plain-text answers on vLLM (streaming, thinking off). The engine fixes TC-45 and TC-80 but other discipline scenarios move the other way (TC-46 6→0, TC-55 3→0, TC-49 3→0 at `low`), so the score lands where vLLM's did: the remaining gap to the 27B is the model, not the stack. Thinking-off on SGLang (88.9) is the best thinking-off result of any Flash-Next configuration. (The report labels say "PLE pinned RAM": they were written before the fallback to the file backend; the runs are file-backed.)
+
+**Speed** (`results/sglang_mtp-on_*`, `prefill_sglang_*`, `conc_flash-next-sglang_*`, `prefix_flash-next-sglang.json`; same client, seeds and method as the v3 matrix):
+
+| | SGLang file-backed PLE | vLLM MTP on (v2) | EXL3 4.05 MTP on (v2) |
+|---|---|---|---|
+| decode 1k × 1 / × 4 | 43.5 / 51.4 tok/s (TPOT 19.7 / 66.6 ms) | 101.6 / 296.4 | 168.9 / 221.4 |
+| decode 8k × 1 / × 4 | 46.3 / 48.8 | 140.5 / 282.1 | 129.1 / 125.2 |
+| decode 32k × 1 / × 4 | 36.5 / 41.6 (all 60/60) | 98.9 / 150.7 | 63.1 / 16.1 (21/60) |
+| prefill 8k / 32k (cold) | 11.4k / 9.8k tok/s (noisy: 519–2664 ms at 8k) | 28.2k / 27.7k | 10.3k / 9.8k |
+| 32k × 8 / × 16 | 16/16 · 19 tok/s · TTFT med 31 s / 32/32 · 24 tok/s · TTFT med 60 s (p99 84 s) | 16/16 · 47 · 12.8 s / 32/32 · 68 · 20.6 s | 2/16 / 3/32 |
+| prefix cache, ~4.7k system, warm TTFT | **210 ms** (cold 1983) | 238–270 | 820 |
+| KV pool | 81,664 tokens (bf16) | 217k (MTP) / 503k | 262k |
+| load | 271 s (incl. writing the 47.7 GiB table file) | 5–6 min | 65–88 s |
+
+Decode is ~3× slower than vLLM and does not scale with concurrency (c=4 adds 10–20 %): every generated token gathers n-gram rows from the file through host page faults, so the bottleneck is the CPU/PCIe path, not the GPU (GPU utilisation 100 % but ~180–390 W). Prefill is fine (chunked, the table rows for a whole chunk prefetch with `WILLNEED`). The 82k-token bf16 KV pool admits two 32k requests at a time, hence the 31–60 s TTFT medians at 8–16 concurrent 32k prompts even though every request completes. Host RAM stays at ~10 GB.
+
+**Where this leaves the decision**: SGLang gives Flash-Next the thing vLLM lacked (`required`, and a working prefix cache), at equal quality; on this 64 GB host it costs 3× the decode speed until the pinned table can be allocated (IOMMU passthrough to be tried) — and the KV pool stays far below the 27B's 1.27M tokens either way. The 27B stays.
 
 ## Results — the same points with the GPU capped at 300 W (Max-Q emulation)
 
@@ -263,15 +301,15 @@ Any of: (1) a checkpoint with **calibrated FP8 KV scales** (today `kv_cache_quan
 
 ```
 HARDWARE.md                 hardware/software snapshot taken at run start
-results/                    v3 raw client JSON (matrix + prefill, 4.05 and 5.05 bpw), conc_* (32k × 8/16), prefix_*, pl300_* (300 W run),
+results/                    raw client JSON: vLLM/EXL3 matrix + prefill (4.05 and 5.05 bpw), sglang_* (Flash-Next on SGLang), conc_* (32k × 8/16), prefix_*, pl300_* (300 W run),
                             host memory CSV, power-log.csv, energy.md — the numbers above
                             (the `generated_texts` field — model output to random-token prompts — replaced by a placeholder)
 results-v1-seed42/          v1 raw JSON (fixed seed, prefix-cache contaminated) — for transparency only
-runs/                       tool-eval-bench summaries + per-trial reports (14 runs + 2 context-pressure sweeps)
+runs/                       tool-eval-bench summaries + per-trial reports (16 runs + 2 context-pressure sweeps)
 eval/                       reasoning-eval.py (AIME) + per-problem results for both models (no problem text)
-configs/                    engine launch scripts (vLLM, TabbyAPI, SGLang 27B NVFP4 production and BF16), TabbyAPI config,
+configs/                    engine launch scripts (vLLM, TabbyAPI, SGLang Flash-Next file/pinned PLE, SGLang 27B NVFP4 production and BF16), TabbyAPI config,
                             chat templates (27B medium default, Flash-Next "discipline"), Dockerfile for the python3-dev fix
-scripts/                    matrix / prefill / readiness / memory-monitor / prefix-cache / energy scripts + make-figures.py
+scripts/                    matrix / prefill / readiness / memory-monitor / prefix-cache / energy / required-test scripts + make-figures.py
 docs/                       speed.png, quality.png (the two figures above)
 run-*.sh                    unattended orchestrators (Telegram notify calls are site-specific, harmless if absent)
 logs/                       orchestrator logs (04/09 night, 05/09 chains) + xgrammar-observations.md
